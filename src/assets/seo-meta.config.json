@@ -1,0 +1,14 @@
+[
+  {
+    "route": "/",
+    "title": "Home | Bonanza Webstore",
+    "keywords": "best ecommerce, buy product at best price, worlds best webstore",
+    "description": "Welcome to our webstore where you can buy our product with ease."
+  },
+  {
+    "route": "/auth/login",
+    "title": "Bonanza Webstore | Login",
+    "keywords": "login, webstore, bonanza",
+    "description": "Login to our webstore and explore our wide range of products."
+  }
+]

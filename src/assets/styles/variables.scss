@@ -1,0 +1,45 @@
+/* set base values */
+$text-base-size: 1em;
+$text-scale-ratio: 1.2;
+
+/* type scale */
+$text-xs: calc(1em / ($text-scale-ratio * $text-scale-ratio));
+$text-sm: calc(1em / $text-scale-ratio);
+$text-md: calc(1em * $text-scale-ratio);
+$text-lg: calc(1em * $text-scale-ratio * $text-scale-ratio);
+$text-xl: calc(1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio);
+$text-xxl: calc(
+  1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio *
+    $text-scale-ratio
+);
+$text-xxxl: calc(
+  1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio *
+    $text-scale-ratio * $text-scale-ratio
+);
+
+// Spacing
+$space-unit: 16px;
+$space-xxs: calc(0.25 * $space-unit); // 4px
+$space-xs: calc(0.5 * $space-unit); // 8px
+$space-sm: calc(0.75 * $space-unit); // 12px
+$space-md: calc(1.25 * $space-unit); // 20px
+$space-lg: calc(2 * $space-unit); // 32px
+$space-xl: calc(3.25 * $space-unit); // 52px
+$space-xxl: calc(5.25 * $space-unit); // 84px
+
+// Setting Up Dynamic Theming
+
+// Colors
+$color-brand: #7423bc;
+$color-light: #ffffff;
+$color-accent: #000000;
+$color-dark: #08243e;
+$gray-color-100: #f8f8f8;
+$gray-color-200: #dfdfdf; // Light Accent
+$gray-color-400: #a0a0a0; // Medium Accent
+
+$success-color: #699468;
+$success-hover-color: #476d47;
+$danger-color: #fc1239;
+$warning-color: #ff9500;
+$primary-danger-hover-color: #dd0327e8;

@@ -1,0 +1,93 @@
+<div class="header__wrapper">
+  <div class="container">
+    <div class="header__search--wrapper">
+      <div class="header__search desktop-only">
+        <img src="assets/icons/search.png" alt="Search Icon" />
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search"
+          class="form-control"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          (keydown.enter)="searchProducts($event)"
+        />
+      </div>
+    </div>
+    <div>
+      <div class="header__brand c-pointer" routerLink="/">
+        <img [src]="storeLogo" alt="Brand Logo" />
+        <!-- <img
+              [src]="storeLogo ? storeLogo?.url : 'assets/images/logo.png'"
+              alt="Brand Logo"
+            /> -->
+      </div>
+      <!-- <div class="header__search desktop-only">
+        <img src="assets/icons/search.png" alt="Search Icon" />
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search"
+          class="form-control"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          (keydown.enter)="searchProducts($event)"
+        />
+      </div> -->
+      <div class="header__action">
+        <div class="header__action--item c-pointer bag" routerLink="/cart">
+          <img src="assets/icons/bag.png" alt="Bag icon" />
+          Shopping Cart
+          <span>{{ cartItemCount }}</span>
+        </div>
+        <div class="header__action--item c-pointer">
+          <img src="assets/icons/heart.png" alt="Heart Icon" />
+          My Wishlist
+        </div>
+        <div
+          class="header__action--item c-pointer"
+          routerLink="/auth/login"
+          *ngIf="!isLogin"
+        >
+          <img src="assets/icons/user.png" alt="User Icon" />
+          <span>Sign in or Create Account</span>
+        </div>
+
+        <div ngbDropdown class="d-inline-block">
+          <div
+            class="header__action--item c-pointer"
+            *ngIf="isLogin"
+            ngbDropdownToggle
+          >
+            <img src="assets/icons/user.png" alt="User Icon" />
+            <span>{{ userFirstName }}</span>
+          </div>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem routerLink="/account/profile/settings">
+              My Profile
+            </button>
+            <button
+              ngbDropdownItem
+              routerLink="/manage-store/settings/theme"
+              *ngIf="userType === 'admin'"
+            >
+              Manage Store
+            </button>
+            <button ngbDropdownItem (click)="onLogout()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-only">
+      <div class="header__search">
+        <img src="assets/icons/search.png" alt="Search Icon" />
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search"
+          (keydown.enter)="searchProducts($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

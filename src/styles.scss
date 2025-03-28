@@ -1,1 +1,523 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+// @import "/node_modules/bootstrap/scss/bootstrap";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
+
+/* Importing Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+// Bootstrap Icons
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+// @import "quill/dist/quill.snow.css";
+
+// @import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* Importing Local Fonts */
+@font-face {
+  font-family: Graphik;
+  src: url(assets/fonts/Graphik/Graphik-Extralight-Trial.otf) format("opentype");
+  font-weight: 200;
+}
+@font-face {
+  font-family: Graphik;
+  src: url(assets/fonts/Graphik/Graphik-Light-Trial.otf) format("opentype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: Graphik;
+  src: url(assets/fonts/Graphik/Graphik-Regular-Trial.otf) format("opentype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Graphik;
+  src: url(assets/fonts/Graphik/Graphik-Medium-Trial.otf) format("opentype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Graphik;
+  src: url(assets/fonts/Graphik/Graphik-Semibold-Trial.otf) format("opentype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Graphik;
+  src: url(assets/fonts/Graphik/Graphik-Bold-Trial.otf) format("opentype");
+  font-weight: 700;
+}
+
+* {
+  font-family: "Graphik", sans-serif;
+  // font-weight: 400;
+}
+
+// Swiper Overrides
+* {
+  --swiper-theme-color: #000 !important;
+  // --swiper-theme-color: #4995e9 !important;
+  // --swiper-pagination-bottom: -20px !important;
+}
+
+// .swiper-button-next,
+// .swiper-button-prev {
+//   color: #000000 !important;
+// }
+
+:root {
+  --color-text-primary: #2d2d2d;
+  --color-text-secondary: #414141;
+}
+
+// Global Styles
+.c-pointer {
+  cursor: pointer;
+}
+
+.w-100 {
+  width: 100%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-25 {
+  width: 25%;
+}
+
+.h-100 {
+  height: 100%;
+}
+.h-75 {
+  height: 75%;
+}
+.h-50 {
+  height: 50%;
+}
+.h-25 {
+  height: 25%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.btn-primary {
+  border: 1px solid var(--color-primary-action);
+  background: var(--color-primary-action);
+  opacity: 0.9;
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    border: 1px solid var(--color-primary-action) !important;
+    background: var(--color-primary-action) !important;
+    opacity: 1 !important;
+  }
+}
+.btn-secondary {
+  border: 1px solid var(--color-medium);
+  background: var(--color-medium);
+  opacity: 0.95;
+  &:hover {
+    border: 1px solid var(--color-medium);
+    background: var(--color-medium);
+    opacity: 1;
+  }
+}
+
+.btn-dark {
+  border: 1px solid var(--color-dark);
+  background: var(--color-dark);
+}
+
+label.required {
+  position: relative;
+  &::after {
+    content: "*";
+    color: red;
+    position: absolute;
+    right: -8px;
+    top: -2px;
+  }
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--color-medium);
+  background-color: var(--color-brand-xlight);
+  box-shadow: none;
+  &::after {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+}
+.accordion-button:focus {
+  border-color: var(--color-medium);
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: var(--color-primary-action);
+  border-color: var(--color-primary-action);
+  &:focus {
+    box-shadow: 0 0 0 0.25rem var(--color-brand-light);
+  }
+}
+
+.form-check-input {
+  &:focus {
+    border-color: var(--color-primary-action);
+    box-shadow: 0 0 0 0.25rem var(--color-brand-light);
+  }
+}
+
+input[type="checkbox"] {
+  accent-color: var(--color-primary-action);
+}
+
+// Theming Styles
+
+// || ========== BEGINS: THEME_FASHION =========== ||
+
+$gradient-banner-th-fashion-01: #eef4ff;
+$gradient-banner-th-fashion-02: #efeeff;
+
+$gradient-light-th-fashion-01: #ffffff;
+$gradient-light-th-fashion-02: #5f9adb;
+
+$gradient-medium-th-fashion-01: #2f4284;
+$gradient-medium-th-fashion-02: #193492;
+
+$gradient-dark-th-fashion-01: #0e2457;
+$gradient-dark-th-fashion-02: #000000;
+
+$color-brand-th-fashion: #7423bc;
+$color-brand-light-th-fashion: #ecf2ff;
+$color-brand-xlight-th-fashion: #eff5fc;
+$color-medium-th-fashion: #3677c1;
+$color-dark-th-fashion: #08243e;
+
+$color-primary-action-th-fashion: #1e408d;
+
+// || ========== ENDS: THEME_FASHION =========== ||
+
+// || ========== BEGINS: THEME_FURNITURE =========== ||
+
+$gradient-banner-th-furniture-01: #fffce5;
+$gradient-banner-th-furniture-02: #ffeeeb;
+
+$gradient-light-th-furniture-01: #ffffff;
+$gradient-light-th-furniture-02: #ebab94;
+
+$gradient-medium-th-furniture-01: #77352c;
+$gradient-medium-th-furniture-02: #7e3929;
+
+$gradient-dark-th-furniture-01: #39170f;
+$gradient-dark-th-furniture-02: #332f31;
+
+$color-brand-th-furniture: #bc6123;
+$color-brand-light-th-furniture: #fff0e6;
+$color-brand-xlight-th-furniture: #fdf7f2;
+$color-medium-th-furniture: #b1622d;
+$color-dark-th-furniture: #3f1f09;
+
+$color-primary-action-th-furniture: #7f4016;
+
+// || ========== EˀNDS: THEME_FURNITURE =========== ||
+
+// || ========== BEGINS: THEME_ELECTRONIC =========== ||
+
+$gradient-banner-th-electronics-01: #fffdeb;
+$gradient-banner-th-electronics-02: #fffce6;
+
+$gradient-light-th-electronics-01: #ffffff;
+$gradient-light-th-electronics-02: #ebab94;
+
+$gradient-medium-th-electronics-01: #ffc705;
+$gradient-medium-th-electronics-02: #e4b509;
+
+$gradient-dark-th-electronics-01: #ffc705;
+$gradient-dark-th-electronics-02: #e4b509;
+
+$color-brand-th-electronics: #ffc700;
+$color-brand-light-th-electronics: #fffbdd;
+$color-brand-xlight-th-electronics: #fffdeb;
+$color-medium-th-electronics: #e4b509;
+$color-dark-th-electronics: #a48100;
+
+$color-primary-action-th-electronics: #bb9200;
+
+// || ========== ENDS: THEME_ELECTRONIC =========== ||
+
+// || ========== BEGINS: THEME_GARDEN =========== ||
+
+$gradient-banner-th-garden-01: #f1fff3;
+$gradient-banner-th-garden-02: #b0ffb8;
+
+$gradient-light-th-garden-01: #ffffff;
+$gradient-light-th-garden-02: #95f19f;
+
+$gradient-medium-th-garden-01: #68f076;
+$gradient-medium-th-garden-02: #3ec54b;
+
+$gradient-dark-th-garden-01: #49b654;
+$gradient-dark-th-garden-02: #22782b;
+
+// $color-brand-th-garden: #e9d716;
+$color-brand-th-garden: #e916b3;
+$color-brand-light-th-garden: #95f19f;
+$color-brand-xlight-th-garden: #c5f5ca;
+$color-medium-th-garden: #3ec54b;
+$color-dark-th-garden: #22782b;
+
+$color-primary-action-th-garden: #22782b;
+
+// || ========== ENDS: THEME_GARDEN =========== ||
+
+// || ========== BEGINS: THEME_BEAUTY =========== ||
+
+$gradient-banner-th-beauty-01: #fff2e5;
+$gradient-banner-th-beauty-02: #fff4eb;
+
+$gradient-light-th-beauty-01: #ffffff;
+$gradient-light-th-beauty-02: #ebae94;
+
+$gradient-medium-th-beauty-01: #ea6106;
+$gradient-medium-th-beauty-02: #d55d0d;
+
+$gradient-dark-th-beauty-01: #bb4b00;
+$gradient-dark-th-beauty-02: #d55500;
+
+$color-brand-th-beauty: #ff6700;
+$color-brand-light-th-beauty: #ffeadd;
+$color-brand-xlight-th-beauty: #fff5eb;
+$color-medium-th-beauty: #ea6106;
+$color-dark-th-beauty: #7f3300;
+
+$color-primary-action-th-beauty: #bb4b00;
+
+// || ========== ENDS: THEME_BEAUTY =========== ||
+
+// mixin that enables scss variables in THEME_FASHION
+@mixin fashion() {
+  --gradient-banner: linear-gradient(
+    104deg,
+    #{$gradient-banner-th-fashion-01} 0%,
+    #{$gradient-banner-th-fashion-02} 100%
+  );
+  --gradient-light: linear-gradient(
+    180deg,
+    #{$gradient-light-th-fashion-01} 0%,
+    #{$gradient-light-th-fashion-02} 227.15%
+  );
+  --gradient-medium: linear-gradient(
+    270deg,
+    #{$gradient-medium-th-fashion-01} 0%,
+    #{$gradient-medium-th-fashion-02} 100%
+  );
+  --gradient-dark: linear-gradient(
+    90.11deg,
+    #{$gradient-dark-th-fashion-01} 0%,
+    #{$gradient-dark-th-fashion-02} 212.84%
+  );
+
+  --color-brand: #{$color-brand-th-fashion};
+  --color-brand-light: #{$color-brand-light-th-fashion};
+  --color-brand-xlight: #{$color-brand-xlight-th-fashion};
+  --color-medium: #{$color-medium-th-fashion};
+  --color-dark: #{$color-dark-th-fashion};
+  --color-primary-action: #{$color-primary-action-th-fashion};
+}
+
+// mixin that enables scss variables in THEME_FURNITURE
+@mixin furniture() {
+  --gradient-banner: linear-gradient(
+    104deg,
+    #{$gradient-banner-th-furniture-01} 0%,
+    #{$gradient-banner-th-furniture-02} 100%
+  );
+  --gradient-light: linear-gradient(
+    180deg,
+    #{$gradient-light-th-furniture-01} 0%,
+    #{$gradient-light-th-furniture-02} 227.15%
+  );
+  --gradient-medium: linear-gradient(
+    270deg,
+    #{$gradient-medium-th-furniture-01} 0%,
+    #{$gradient-medium-th-furniture-02} 100%
+  );
+  --gradient-dark: linear-gradient(
+    90.11deg,
+    #{$gradient-dark-th-furniture-01} 0%,
+    #{$gradient-dark-th-furniture-02} 212.84%
+  );
+  --color-brand: #{$color-brand-th-furniture};
+  --color-brand-light: #{$color-brand-light-th-furniture};
+  --color-brand-xlight: #{$color-brand-xlight-th-furniture};
+  --color-medium: #{$color-medium-th-furniture};
+  --color-dark: #{$color-dark-th-furniture};
+  --color-primary-action: #{$color-primary-action-th-furniture};
+}
+
+// mixin that enables scss variables in THEME_ELECTRONIC
+@mixin electronics() {
+  --gradient-banner: linear-gradient(
+    104deg,
+    #{$gradient-banner-th-electronics-01} 0%,
+    #{$gradient-banner-th-electronics-02} 100%
+  );
+  --gradient-light: linear-gradient(
+    180deg,
+    #{$gradient-light-th-electronics-01} 0%,
+    #{$gradient-light-th-electronics-02} 227.15%
+  );
+  --gradient-medium: linear-gradient(
+    270deg,
+    #{$gradient-medium-th-electronics-01} 0%,
+    #{$gradient-medium-th-electronics-02} 100%
+  );
+  --gradient-dark: linear-gradient(
+    90.11deg,
+    #{$gradient-dark-th-electronics-01} 0%,
+    #{$gradient-dark-th-electronics-02} 212.84%
+  );
+  --color-brand: #{$color-brand-th-electronics};
+  --color-brand-light: #{$color-brand-light-th-electronics};
+  --color-brand-xlight: #{$color-brand-xlight-th-electronics};
+  --color-medium: #{$color-medium-th-electronics};
+  --color-dark: #{$color-dark-th-electronics};
+  --color-primary-action: #{$color-primary-action-th-electronics};
+}
+
+// mixin that enables scss variables in THEME_GARDEN
+@mixin garden() {
+  --gradient-banner: linear-gradient(
+    104deg,
+    #{$gradient-banner-th-garden-01} -9.74%,
+    #{$gradient-banner-th-garden-02} 134.78%
+  );
+  border-radius: 5px;
+  --gradient-light: linear-gradient(
+    180deg,
+    #{$gradient-light-th-garden-01} 0%,
+    #{$gradient-light-th-garden-02} 227.15%
+  );
+  --gradient-medium: linear-gradient(
+    270deg,
+    #{$gradient-medium-th-garden-01} 0%,
+    #{$gradient-medium-th-garden-02} 100%
+  );
+  --gradient-dark: linear-gradient(
+    90.11deg,
+    #{$gradient-dark-th-garden-01} 0%,
+    #{$gradient-dark-th-garden-02} 212.84%
+  );
+  --color-brand: #{$color-brand-th-garden};
+  --color-brand-light: #{$color-brand-light-th-garden};
+  --color-brand-xlight: #{$color-brand-xlight-th-garden};
+  --color-medium: #{$color-medium-th-garden};
+  --color-dark: #{$color-dark-th-garden};
+  --color-primary-action: #{$color-primary-action-th-garden};
+}
+
+// mixin that enables scss variables in THEME_BEAUTY
+@mixin beauty() {
+  --gradient-banner: linear-gradient(
+    104deg,
+    #{$gradient-banner-th-beauty-01} -9.74%,
+    #{$gradient-banner-th-beauty-02} 134.78%
+  );
+  border-radius: 5px;
+  --gradient-light: linear-gradient(
+    180deg,
+    #{$gradient-light-th-beauty-01} 0%,
+    #{$gradient-light-th-beauty-02} 227.15%
+  );
+  --gradient-medium: linear-gradient(
+    270deg,
+    #{$gradient-medium-th-beauty-01} 0%,
+    #{$gradient-medium-th-beauty-02} 100%
+  );
+  --gradient-dark: linear-gradient(
+    90.11deg,
+    #{$gradient-dark-th-beauty-01} 0%,
+    #{$gradient-dark-th-beauty-02} 212.84%
+  );
+  --color-brand: #{$color-brand-th-beauty};
+  --color-brand-light: #{$color-brand-light-th-beauty};
+  --color-brand-xlight: #{$color-brand-xlight-th-beauty};
+  --color-medium: #{$color-medium-th-beauty};
+  --color-dark: #{$color-dark-th-beauty};
+  --color-primary-action: #{$color-primary-action-th-beauty};
+}
+
+// Switching themes
+body.THEME_FASHION {
+  @include fashion();
+}
+body.THEME_FURNITURE {
+  @include furniture();
+}
+body.THEME_ELECTRONIC,
+body.THEME_AUTOPARTS,
+body.THEME_JEWELRY,
+body.THEME_PET,
+body.THEME_LIGHTS {
+  @include electronics();
+}
+body.THEME_GARDEN,
+body.THEME_SPORTS {
+  @include garden();
+}
+body.THEME_BEAUTY {
+  @include beauty();
+}
+
+// Shimmer Effect
+.shimmer {
+  background: #f6f7f8;
+  background-image: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 100%;
+  display: inline-block;
+  position: relative;
+
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: placeholderShimmer;
+  -webkit-animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+@-webkit-keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
