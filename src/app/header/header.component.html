@@ -1,19 +1,5 @@
 <div class="header__wrapper">
   <div class="container">
-    <div class="header__search--wrapper">
-      <div class="header__search desktop-only">
-        <img src="assets/icons/search.png" alt="Search Icon" />
-        <input
-          type="search"
-          class="form-control"
-          placeholder="Search"
-          class="form-control"
-          placeholder="Search"
-          [(ngModel)]="searchText"
-          (keydown.enter)="searchProducts($event)"
-        />
-      </div>
-    </div>
     <div>
       <div class="header__brand c-pointer" routerLink="/">
         <img [src]="storeLogo" alt="Brand Logo" />
@@ -37,12 +23,12 @@
       <div class="header__action">
         <div class="header__action--item c-pointer bag" routerLink="/cart">
           <img src="assets/icons/bag.png" alt="Bag icon" />
-          Shopping Cart
-          <span>{{ cartItemCount }}</span>
+          Bag
+          <span>{{ cartItemCount || 0 }}</span>
         </div>
         <div class="header__action--item c-pointer">
           <img src="assets/icons/heart.png" alt="Heart Icon" />
-          My Wishlist
+          Wishlist
         </div>
         <div
           class="header__action--item c-pointer"
@@ -50,7 +36,21 @@
           *ngIf="!isLogin"
         >
           <img src="assets/icons/user.png" alt="User Icon" />
-          <span>Sign in or Create Account</span>
+          <span>Sign in</span>
+        </div>
+        <div class="header__action--item header__search--wrapper">
+          <div class="header__search">
+            <img src="assets/icons/search.png" alt="Search Icon" />
+            <input
+              type="search"
+              class="form-control"
+              placeholder="Search"
+              class="form-control"
+              placeholder="Search products..."
+              [(ngModel)]="searchText"
+              (keydown.enter)="searchProducts($event)"
+            />
+          </div>
         </div>
 
         <div ngbDropdown class="d-inline-block">
