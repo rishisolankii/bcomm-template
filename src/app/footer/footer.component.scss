@@ -1,7 +1,8 @@
 @import "../../assets/styles/variables.scss";
 .footer {
   //   background-color: #f6f6fe;
-  background: var(--color-dark);
+  background: $color-brand;
+  // background: var(--color-dark);
   color: #fff;
   .container {
     // background-image: url("../../../../assets/images/abstract-line.png");
@@ -23,8 +24,8 @@
   &__right {
     // background-color: #f1f8ff;
     background-color: var(--color-brand-light);
-    max-width: 300px;
     border-radius: 8px;
+    max-width: 800px;
   }
   &__brand {
     margin-bottom: 32px;
@@ -40,11 +41,11 @@
     &--icon {
       padding-right: 12px;
       img {
-        width: 16px;
+        width: 32px;
       }
     }
     &--text {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 400;
       color: #fff;
     }
@@ -58,11 +59,15 @@
   }
   &__subscribe {
     padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
     &--title {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
     }
     &--input {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
+      width: calc(100% - 300px);
       .input-group-append {
         background-color: var(--color-dark);
         border-radius: 0 5px 5px 0;
@@ -110,7 +115,8 @@
   &__social {
     display: flex;
     gap: 20px;
-    margin-top: 80px;
+    margin-top: 16px;
+    margin-bottom: 32px;
     &--item {
       width: 32px;
       height: 32px;

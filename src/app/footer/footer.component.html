@@ -3,7 +3,11 @@
     <div class="footer__top">
       <div class="footer__left">
         <div class="footer__brand c-pointer">
-          <img title="companyName" [src]="storeLogo" [alt]="companyName" />
+          <img
+            title="companyName"
+            [src]="storeLogo || 'assets/images/logo-dark.png'"
+            [alt]="companyName"
+          />
           <!-- <img
                 [src]="storeLogo ? storeLogo?.url : 'assets/images/logo-dark.png'"
                 alt="Brand Logo"
@@ -47,6 +51,20 @@
             </div>
             <div *ngIf="!companyContact">123-456-7890</div>
             <div>{{ companyEmail ? companyEmail : "company@email.com" }}</div>
+          </div>
+        </div>
+        <div class="footer__social">
+          <div class="footer__social--item">
+            <img src="assets/icons/facebook.png" alt="Facebook Icon" />
+          </div>
+          <div class="footer__social--item">
+            <img src="assets/icons/twitter.png" alt="Twitter Icon" />
+          </div>
+          <div class="footer__social--item">
+            <img src="assets/icons/linkedin.png" alt="LinkedIn Icon" />
+          </div>
+          <div class="footer__social--item">
+            <img src="assets/icons/dribbble.png" alt="Dribble Icon" />
           </div>
         </div>
       </div>
@@ -101,58 +119,28 @@
           </div>
         </div>
       </div>
-
-      <div class="footer__right">
-        <div class="footer__subscribe">
-          <div class="footer__subscribe--title">Subscribe</div>
-          <!-- <div class="footer__subscribe--input" #newsletterContainer></div> -->
-          <div class="footer__subscribe--input" [innerHTML]="iframeHtml"></div>
-          <!-- <ng-container #newsletterContainer> </ng-container> -->
-          <!-- <div
-                class="yhi-hai"
-                *ngIf="newsletterData"
-                [innerHTML]="newsletterData.iframe"
-              ></div> -->
-          <!-- <div class="yhi-hai" [innerHTML]="newsletterData?.iframe">{{ newsletterData?.iframe }}</div> -->
-          <!-- <ng-container #newsletterContainer></ng-container> -->
-          <!-- <iframe
-                src="https://connect.enterprisehub.io/widget/form/dKAniG24dUZSr1oiSEHA"
-                style="width: 100%; height: 100%; border: none; border-radius: 3px"
-                id="inline-dKAniG24dUZSr1oiSEHA"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="All Things Lighting Newsletter"
-                data-height="432"
-                data-layout-iframe-id="inline-dKAniG24dUZSr1oiSEHA"
-                data-form-id="dKAniG24dUZSr1oiSEHA"
-                title="All Things Lighting Newsletter"
-              >
-              </iframe> -->
-          <div class="footer__subscribe--input" *ngIf="!newsletterData">
-            <div class="input-group">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email address"
-              />
-              <div class="input-group-append c-pointer">
-                <span class="input-group-text">
-                  <img
-                    src="assets/icons/arrow-right-white.png"
-                    alt="Arrow Right"
-                  />
-                </span>
-              </div>
+    </div>
+    <div class="footer__right">
+      <div class="footer__subscribe">
+        <div class="footer__subscribe--title">
+          Stay updated with offers and updates
+        </div>
+        <!-- <div class="footer__subscribe--input" [innerHTML]="iframeHtml"></div> -->
+        <div class="footer__subscribe--input" *ngIf="!newsletterData">
+          <div class="input-group">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email address"
+            />
+            <div class="input-group-append c-pointer">
+              <span class="input-group-text">
+                <img
+                  src="assets/icons/arrow-right-white.png"
+                  alt="Arrow Right"
+                />
+              </span>
             </div>
-          </div>
-          <div class="footer__subscribe--description" *ngIf="!newsletterData">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
           </div>
         </div>
       </div>
@@ -161,7 +149,8 @@
       <div class="footer__bottom--left">
         <div class="footer__contact">
           <button class="btn btn-secondary" routerLink="/contact">
-            Contact Seller
+            <i class="bi bi-phone mr-2"></i>
+            Contact Our Sales Team
           </button>
         </div>
       </div>
@@ -178,7 +167,7 @@
               <div class="footer__static-link--item">Cookies</div> -->
         </div>
       </div>
-      <div class="footer__bottom--right">
+      <!-- <div class="footer__bottom--right">
         <div class="footer__social">
           <div class="footer__social--item">
             <img src="assets/icons/facebook.png" alt="Facebook Icon" />
@@ -193,7 +182,7 @@
             <img src="assets/icons/dribbble.png" alt="Dribble Icon" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
