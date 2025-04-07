@@ -1,0 +1,100 @@
+<!-- <div class="container"> -->
+<div class="categories">
+  <div
+    class="categories__item c-pointer"
+    *ngFor="let item of categories; index as i"
+    (click)="openCategoryOverlay(i)"
+  >
+    {{ item.catalogName }}
+
+    <div
+      class="categories__overlay"
+      [ngClass]="
+        i < 4 ? 'categories__overlay--right' : 'categories__overlay--left'
+      "
+    >
+      <!-- <div
+                  class="categories__overlay"
+                  *ngIf="showOverlay && selectedCategoryId === i"
+                > -->
+      <!-- <div class="categories__overlay" *ngIf="!i"> -->
+      <div class="categories__overlay--list">
+        <div
+          class="categories__overlay--item"
+          *ngFor="let subCategoryItem of item.categoryList; index as j"
+          (click)="redirectBySubcategory(subCategoryItem.productCategoryId)"
+        >
+          <div class="categories__overlay--item-icon">
+            <!-- <img src="assets/icons/dummy-category.png" alt="Category icon" /> -->
+            <span>{{
+              subCategoryItem.categoryName
+                ? subCategoryItem.categoryName
+                : subCategoryItem.description
+                ? subCategoryItem.description
+                : subCategoryItem.productCategoryId
+            }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="categories__overlay--media">
+        <ng-container *ngIf="item.categoryList">
+          <img
+            [src]="
+              item.categoryList[0].linkTwoImageUrl
+                ? item.categoryList[0].linkTwoImageUrl.startsWith('http') ||
+                  item.categoryList[0].linkTwoImageUrl.startsWith('https')
+                  ? item.categoryList[0].linkTwoImageUrl
+                  : item.categoryList[0].linkTwoImageUrlS3
+                : defaultProductImage
+            "
+            alt=""
+          />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEGINS: CMS Pages -->
+  <div
+    class="categories__item c-pointer"
+    (click)="openCategoryOverlay(1)"
+    *ngIf="menuCmsData?.length"
+  >
+    More
+
+    <div
+      class="categories__overlay"
+      [ngClass]="
+        categories.length < 5
+          ? 'categories__overlay--right'
+          : 'categories__overlay--left'
+      "
+    >
+      <!-- <div
+                  class="categories__overlay"
+                  *ngIf="showOverlay && selectedCategoryId === i"
+                > -->
+      <!-- <div class="categories__overlay" *ngIf="!i"> -->
+      <div class="categories__overlay--list">
+        <div
+          class="categories__overlay--item"
+          *ngFor="let menuLink of menuCmsData; index as j"
+          (click)="redirectByPageUrl(menuLink.pageUrl)"
+        >
+          <div class="categories__overlay--item-icon">
+            <!-- <img src="assets/icons/dummy-category.png" alt="Category icon" /> -->
+            <span>{{ menuLink.pageTitle | titlecase }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="categories__overlay--media">
+        <!-- <ng-container *ngIf="item.categoryList"> -->
+        <ng-container>
+          <img [src]="defaultProductImage" alt="" />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <!-- ENDS: CMS Pages -->
+</div>
+<!-- </div> -->
