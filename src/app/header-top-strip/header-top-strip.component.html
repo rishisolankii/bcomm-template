@@ -1,0 +1,26 @@
+<div class="strip__wrapper">
+    <div class="container">
+      <div class="strip__title">
+        <img [src]="shippingIcon" alt="Shipping Icon" loading="lazy" />
+        {{ promotionTitle }}
+        <!-- Free shipping for orders over $50 -->
+      </div>
+      <div class="strip__menu">
+        <div
+          class="strip__menu--item c-pointer"
+          (click)="onRedirectDetailsPage(topLink.pageUrl)"
+          *ngFor="let topLink of topCmsData"
+        >
+          {{ topLink.pageTitle | titlecase }}
+        </div>
+        <!-- <div class="strip__menu--item c-pointer" routerLink="/faqs">
+            Help and FAQs
+          </div> -->
+        <div class="strip__menu--item">
+          <img [src]="stripFlagIcon" alt="USA Flag Icon" />
+          EN, $
+        </div>
+      </div>
+    </div>
+  </div>
+  

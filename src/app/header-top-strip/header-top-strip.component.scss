@@ -1,0 +1,75 @@
+@import "../../assets/styles/variables.scss";
+
+.strip {
+  &__wrapper {
+    background: var(--gradient-medium);
+    // background: linear-gradient(270deg, #2f4284 0%, #193492 100%);
+    padding: 8px;
+    .container {
+      display: flex;
+      justify-content: center;
+      color: $color-light;
+      font-family: "Inter", sans-serif;
+      position: relative;
+    }
+  }
+  &__title {
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    img {
+      width: 18px;
+      margin-right: 8px;
+    }
+  }
+  &__menu {
+    font-size: 14px;
+    font-weight: 400;
+    position: absolute;
+    right: 0;
+    margin-top: -1px;
+    display: flex;
+    align-items: center;
+    &--item {
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 16px;
+        border-radius: 16px;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .strip {
+    &__wrapper {
+      .container {
+        justify-content: space-between;
+      }
+    }
+    &__menu {
+      position: relative;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .strip {
+    &__wrapper {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    &__menu {
+      margin-top: 8px;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
