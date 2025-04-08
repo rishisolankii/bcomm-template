@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderCategoriesComponent } from './header-categories/header-categories.component';
 import { FooterCopyrightStripComponent } from './footer-copyright-strip/footer-copyright-strip.component';
 import { HeaderTopStripComponent } from './header-top-strip/header-top-strip.component';
+import { ItemCardComponent } from './item-card/item-card.component';
+import { OfferBannerComponent } from './offer-banner/offer-banner.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { HeaderTopStripComponent } from './header-top-strip/header-top-strip.com
     HeaderCategoriesComponent,
     FooterCopyrightStripComponent,
     HeaderTopStripComponent,
+    ItemCardComponent,
+    OfferBannerComponent,
   ],
   exports: [
     HeaderComponent,
@@ -23,6 +27,8 @@ import { HeaderTopStripComponent } from './header-top-strip/header-top-strip.com
     HeaderCategoriesComponent,
     FooterCopyrightStripComponent,
     HeaderTopStripComponent,
+    ItemCardComponent,
+    OfferBannerComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, NgbModule],
 })
@@ -33,4 +39,6 @@ export {
   HeaderCategoriesComponent,
   FooterCopyrightStripComponent,
   HeaderTopStripComponent,
+  ItemCardComponent,
+  OfferBannerComponent,
 };

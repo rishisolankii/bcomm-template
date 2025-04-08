@@ -3,7 +3,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderCategoriesComponent } from './header-categories/header-categories.component';
 import { FooterCopyrightStripComponent } from './footer-copyright-strip/footer-copyright-strip.component';
-import { HeaderTopStripComponent } from './component.module';
+import {
+  HeaderTopStripComponent,
+  OfferBannerComponent,
+} from './component.module';
+import { ItemCardComponent } from './item-card/item-card.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +29,13 @@ export const routes: Routes = [
   {
     path: 'header-top-strip',
     component: HeaderTopStripComponent,
+  },
+  {
+    path: 'item-card',
+    component: ItemCardComponent,
+  },
+  {
+    path: 'offer-banner',
+    component: OfferBannerComponent,
   },
 ];
