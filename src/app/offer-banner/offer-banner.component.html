@@ -1,0 +1,33 @@
+<div class="banner__wrapper" [ngClass]="bgColor">
+  <div class="banner__media" *ngIf="mediaURL">
+    <img [src]="mediaURL" [alt]="title || subtitle || description" />
+  </div>
+  <div class="banner__info">
+    <div class="banner__info--subtitle">{{ subtitle }}</div>
+    <h1 class="banner__info--title">{{ title }}</h1>
+    <h2 class="banner__info--description">
+      {{ description }}
+    </h2>
+    <div
+      class="banner__info--action c-pointer"
+      *ngIf="ctaType === 'LINK'"
+      (click)="goToBannerURL()"
+    >
+      <span>{{ ctaLabel }}</span>
+      <img src="assets/icons/arrow_right.png" alt="Arrow Right Icon" />
+    </div>
+    <div
+      class="banner__info--action banner__info--action-button"
+      *ngIf="ctaType === 'BUTTON'"
+    >
+      <button
+        class="btn"
+        [ngClass]="bgColor === 'dark' ? 'btn-light' : 'btn-dark'"
+        (click)="goToBannerURL()"
+        *ngIf="bannerData?.urlType"
+      >
+        {{ ctaLabel }}
+      </button>
+    </div>
+  </div>
+</div>
