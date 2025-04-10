@@ -8,6 +8,8 @@ import {
   OfferBannerComponent,
 } from './component.module';
 import { ItemCardComponent } from './item-card/item-card.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   {
@@ -37,5 +39,13 @@ export const routes: Routes = [
   {
     path: 'offer-banner',
     component: OfferBannerComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
 ];

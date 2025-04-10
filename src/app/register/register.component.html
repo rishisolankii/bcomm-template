@@ -1,0 +1,132 @@
+<div class="auth">
+  <div class="auth__form--wrapper">
+    <div class="auth__form--main">
+      <div class="header__wrapper">
+        <div class="header__brand" (click)="onRedirectToHome()">
+          <img fill [ngSrc]="storeLogo" alt="Brand Logo" />
+        </div>
+      </div>
+
+      <div class="auth__form">
+        <form [formGroup]="registerFG">
+          <div class="auth__form--title">Register</div>
+          <!-- <div class="auth__form--social">
+                <div class="auth__form--social-item">
+                  <img src="assets/icons/google-coloured.png" alt="Google Icon" />
+                  <span>Sign up with Google</span>
+                </div>
+                <div class="auth__form--social-item">
+                  <img
+                    src="assets/icons/facebook-coloured.png"
+                    alt="Facebook Icon"
+                  />
+                  <span>Sign up with Facebook</span>
+                </div>
+              </div>
+              <div class="auth__form--divider">Or</div> -->
+
+          <div class="auth__form--input-grp">
+            <div class="auth__form--input">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="First Name"
+                formControlName="USER_FIRST_NAME"
+              />
+            </div>
+            <div class="auth__form--input">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Last Name"
+                formControlName="USER_LAST_NAME"
+              />
+            </div>
+          </div>
+          <!-- <div class="auth__form--input">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter your username"
+                    />
+                  </div> -->
+          <div class="auth__form--input">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter your email"
+              formControlName="CUSTOMER_EMAIL"
+            />
+          </div>
+          <div class="auth__form--input">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Create password"
+              formControlName="PASSWORD"
+            />
+          </div>
+          <div class="auth__form--input">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Confirm password"
+              formControlName="CONFIRM_PASSWORD"
+            />
+          </div>
+          <div class="auth__form--input">
+            <input
+              type="tel"
+              class="form-control"
+              placeholder="Contact number"
+              formControlName="CUSTOMER_HOME_CONTACT"
+            />
+          </div>
+          <!-- <div class="auth__form--input-grp">
+              <div class="auth__form--input">
+                <label>Country*</label>
+                <select class="form-control">
+                  <optgroup label="Select option">
+                    <option value="">Option 1</option>
+                    <option value="">Option 2</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="auth__form--input">
+                <label>How'd you found us?</label>
+                <select class="form-control">
+                  <optgroup label="Select option">
+                    <option value="">Option 1</option>
+                    <option value="">Option 2</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div> -->
+
+          <div class="auth__form--preference">
+            <input type="checkbox" id="rememeber-me" />
+            <label for="rememeber-me"
+              >I have read and agree to the <span>Terms of Use</span> and
+              <span>Privacy Policy</span></label
+            >
+          </div>
+          <div class="auth__form--action">
+            <button class="btn btn-dark" (click)="onRegister()">
+              Create Account
+            </button>
+          </div>
+          <div class="auth__form--action-secondary">
+            Already have an account?
+            <a (click)="onRedirectToLogin()">Login here!</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="auth__form--media">
+      <img
+        src="assets/images/login-illustration.jpg"
+        alt="Login Illustration"
+      />
+    </div>
+  </div>
+</div>
