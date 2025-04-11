@@ -4,12 +4,16 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderCategoriesComponent } from './header-categories/header-categories.component';
 import { FooterCopyrightStripComponent } from './footer-copyright-strip/footer-copyright-strip.component';
 import {
+  BreadcrumbComponent,
   HeaderTopStripComponent,
   OfferBannerComponent,
 } from './component.module';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -47,5 +51,21 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'breadcrumb',
+    component: BreadcrumbComponent,
   },
 ];

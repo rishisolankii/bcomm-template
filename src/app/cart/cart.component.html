@@ -1,0 +1,176 @@
+<div class="container">
+  <app-breadcrumb
+    [inactiveElements]="[{ label: 'Home', redirectUrl: '' }]"
+    [activeElement]="'Cart'"
+    (redirectUrl)="onRedirect($event)"
+  ></app-breadcrumb>
+  <div class="page-title__wrapper">
+    <div class="page-title__heading">Cart</div>
+    <!-- <div class="page-title__description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
+        amet, consectetu
+      </div> -->
+  </div>
+
+  <div class="cart__wrapper" *ngIf="cartDetailsList?.length; else emptyCart">
+    <div class="cart__main">
+      <div class="cart__main--top">
+        <div class="cart__main--header">
+          <div class="cart__main--header-product">Product</div>
+          <div class="cart__main--header-price">Price</div>
+          <div class="cart__main--header-qty">Quantity</div>
+          <div class="cart__main--header-subtotal">Subtotal</div>
+        </div>
+        <div
+          class="cart__main--item"
+          *ngFor="let cartItem of cartDetailsList; index as i"
+        >
+          <div
+            class="cart__main--item-product c-pointer"
+            (click)="goToProductDetails(cartItem.product)"
+          >
+            <div class="cart__main--item-product-media">
+              <img
+                [src]="cartItem.image ? cartItem?.image : cartItem?.s3ImageUrl"
+                alt="Product Image"
+                onerror="this.onerror=null; this.src='assets/images/no-product-image.png'"
+              />
+            </div>
+            <div class="cart__main--item-product-name">
+              {{ cartItem.product.productName || cartItem.product.productId }}
+            </div>
+          </div>
+          <div class="cart__main--item-price">${{ cartItem.price }}</div>
+          <div class="cart__main--item-qty">
+            <div class="cart__main--item-qty-grp">
+              <div
+                class="cart__main--item-qty-decrement"
+                (click)="changeQuantity(cartItem, i, -1)"
+              >
+                <i class="bi bi-dash-lg"></i>
+              </div>
+              <div class="cart__main--item-qty-value">
+                <input
+                  type="number"
+                  [value]="cartItem.quantity"
+                  (change)="updateBulkQuantity($event, cartItem, i)"
+                />
+                <!-- {{ cartItem.quantity }} -->
+              </div>
+              <div
+                class="cart__main--item-qty-decrement"
+                (click)="changeQuantity(cartItem, i, 1)"
+              >
+                <i class="bi bi-plus-lg"></i>
+              </div>
+            </div>
+          </div>
+          <div class="cart__main--item-subtotal">${{ cartItem.subTotal }}</div>
+          <div
+            class="cart__main--item-remove"
+            (click)="changeQuantity(cartItem, i, 0)"
+          >
+            <i class="bi bi-thrash"></i>
+          </div>
+        </div>
+      </div>
+      <div class="cart__main--bottom" routerLink="/">
+        <div>Need more items?</div>
+        <button class="btn btn-primary">Continue Shopping</button>
+      </div>
+    </div>
+    <div class="cart__summary">
+      <div class="cart__summary--header">
+        <p>Promo Code</p>
+        <div class="cart__main--footer-coupon">
+          <div class="cart__main--footer-coupon-input">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Type here..."
+              [formControl]="couponFormCtr"
+              [ngClass]="{
+                'is-invalid': couponFormCtr!.invalid && isCouponApplied
+              }"
+            />
+          </div>
+          <div class="cart__main--footer-coupon-btn" (click)="onApplyCoupon()">
+            <button class="btn btn-primary">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart__summary--subtotal">
+        <div class="cart__summary--subtotal-label">Subtotal</div>
+        <div class="cart__summary--subtotal-value">
+          ${{ subTotal | number : "1.0-2" }}
+        </div>
+      </div>
+      <div class="cart__summary--subtotal" *ngIf="discountTotal">
+        <div class="cart__summary--subtotal-label">Discount</div>
+        <div class="cart__summary--subtotal-value">
+          ${{ discountTotal | number : "1.0-2" }}
+        </div>
+      </div>
+      <!-- <div class="cart__summary--shipping">
+            <div class="cart__summary--shipping-label">Shipping</div>
+            <div class="cart__summary--shipping-value">
+              Lorem ipsum dolor sit amet, iy consectetur adipisicing elit,
+            </div>
+          </div> -->
+      <div class="cart__summary--total">
+        <div class="cart__summary--total-label">Total</div>
+        <div class="cart__summary--total-value">
+          ${{ grandTotalAmount | number : "1.0-2" }}
+        </div>
+      </div>
+      <div class="cart__summary--checkout">
+        <button class="btn btn-primary" (click)="onCheckout()">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div>
+      <app-empty-cart (redirectToHome)="onRedirectToHome()"></app-empty-cart>
+    </div>
+  </ng-template>
+
+  <div class="bestseller" *ngIf="associatedProducts?.length">
+    <div class="bestseller__header justify-content-between">
+      <div class="bestseller__header--info">
+        <div class="bestseller__header--title">You Might Like</div>
+        <!-- <div class="bestseller__header--subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
+            ipsum dolor sit amet, consectetu
+          </div> -->
+      </div>
+      <!-- <div class="bestseller__header--action">
+          <span>Show All</span>
+          <i class="bi bi-arrow-right"></i>
+        </div> -->
+    </div>
+    <div class="bestseller__list">
+      <div
+        class="bestseller__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let item of associatedProducts"
+      >
+        <div class="bestseller__item">
+          <app-item-card [productDetails]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="bestseller__footer">
+        <div class="bestseller__footer--action">
+          <span>View All</span>
+          <img
+            src="../../assets/icons/chevron-right-dark.png"
+            alt="Chevron Right Icon"
+          />
+        </div>
+      </div> -->
+  </div>
+</div>

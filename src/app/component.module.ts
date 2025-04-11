@@ -12,6 +12,11 @@ import { ItemCardComponent } from './item-card/item-card.component';
 import { OfferBannerComponent } from './offer-banner/offer-banner.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { EmptyCartComponent } from './empty-cart/empty-cart.component';
+import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { RegisterComponent } from './register/register.component';
     ItemCardComponent,
     OfferBannerComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
+    EmptyCartComponent,
+    ContactComponent,
+    CartComponent,
+    BreadcrumbComponent
   ],
   exports: [
     HeaderComponent,
@@ -34,7 +44,12 @@ import { RegisterComponent } from './register/register.component';
     ItemCardComponent,
     OfferBannerComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
+    EmptyCartComponent,
+    ContactComponent,
+    CartComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -55,5 +70,10 @@ export {
   ItemCardComponent,
   OfferBannerComponent,
   LoginComponent,
-  RegisterComponent
+  RegisterComponent,
+  ForgotPasswordComponent,
+  EmptyCartComponent,
+  ContactComponent,
+  CartComponent,
+  BreadcrumbComponent
 };

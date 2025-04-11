@@ -1,0 +1,10 @@
+<nav>
+  <ol class="breadcrumb">
+    <ng-container *ngFor="let item of inactiveElements">
+      <li class="breadcrumb__item inactive" *ngIf="item.label">
+        <span (click)="onRedirect(item.redirectUrl)">{{ item.label }}</span>
+      </li>
+    </ng-container>
+    <li class="breadcrumb__item active">{{ activeElement }}</li>
+  </ol>
+</nav>
