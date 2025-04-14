@@ -159,7 +159,11 @@
         *ngFor="let item of associatedProducts"
       >
         <div class="bestseller__item">
-          <app-item-card [productDetails]="item"></app-item-card>
+          <app-item-card
+            (goToProduct)="goToProductDetails($event)"
+            [product]="item"
+            [productDetails]="item"
+          ></app-item-card>
         </div>
       </div>
     </div>

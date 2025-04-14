@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -26,9 +34,7 @@ export class CartComponent {
   @Output() redirectBreadcrumbUrl = new EventEmitter<any>();
   @Output() redirectToHome = new EventEmitter<any>();
   @Output() onCheckoutRedirection = new EventEmitter<any>();
-  constructor() {
-    console.log(this.cartDetailsList);
-  }
+  constructor() {}
 
   goToProductDetails(product: any) {
     this.goToProduct.emit(product);

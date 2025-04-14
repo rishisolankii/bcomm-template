@@ -4,7 +4,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderCategoriesComponent } from './header-categories/header-categories.component';
 import { FooterCopyrightStripComponent } from './footer-copyright-strip/footer-copyright-strip.component';
 import {
+  AllOrdersComponent,
   BreadcrumbComponent,
+  FaqsComponent,
   HeaderTopStripComponent,
   OfferBannerComponent,
 } from './component.module';
@@ -14,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
+import { AccountHeaderComponent } from './account-header/account-header.component';
+import { AccountSidebarComponent } from './account-sidebar/account-sidebar.component';
 
 export const routes: Routes = [
   {
@@ -67,5 +71,21 @@ export const routes: Routes = [
   {
     path: 'breadcrumb',
     component: BreadcrumbComponent,
+  },
+  {
+    path: 'account-header',
+    component: AccountHeaderComponent,
+  },
+  {
+    path: 'account-sidebar',
+    component: AccountSidebarComponent,
+  },
+  {
+    path: 'all-orders',
+    component: AllOrdersComponent,
+  },
+  {
+    path: 'faqs',
+    component: FaqsComponent,
   },
 ];

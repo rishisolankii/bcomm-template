@@ -17,6 +17,10 @@ import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { AccountHeaderComponent } from './account-header/account-header.component';
+import { AccountSidebarComponent } from './account-sidebar/account-sidebar.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
+import { FaqsComponent } from './faqs/faqs.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     EmptyCartComponent,
     ContactComponent,
     CartComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    AccountHeaderComponent,
+    AccountSidebarComponent,
+    AllOrdersComponent,
+    FaqsComponent,
   ],
   exports: [
     HeaderComponent,
@@ -49,7 +57,11 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     EmptyCartComponent,
     ContactComponent,
     CartComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    AccountHeaderComponent,
+    AccountSidebarComponent,
+    AllOrdersComponent,
+    FaqsComponent,
   ],
   imports: [
     CommonModule,
@@ -75,5 +87,9 @@ export {
   EmptyCartComponent,
   ContactComponent,
   CartComponent,
-  BreadcrumbComponent
+  BreadcrumbComponent,
+  AccountHeaderComponent,
+  AccountSidebarComponent,
+  AllOrdersComponent,
+  FaqsComponent,
 };
