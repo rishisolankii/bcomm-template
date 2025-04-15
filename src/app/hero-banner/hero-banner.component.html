@@ -1,0 +1,77 @@
+<ng-container *ngIf="banner.length; else loading">
+  <!-- <ng-container *ngIf="banner.length"> -->
+  <!-- <ng-container> -->
+  <!-- <div
+      class="banner"
+      [style.background-image]="
+        foundBanner?.url
+          ? 'url(' + foundBanner?.url + ')'
+          : 'assets/images/home-banner[bannerIndex].png'
+      "
+    > -->
+  <!-- <div
+      class="banner"
+      [style.background-image]="'url(' + foundBanner?.url + ')'"
+    > -->
+  <div class="banner">
+    <img
+      [ngSrc]="foundBanner?.url"
+      alt="BANNER"
+      fill
+      loading="eager"
+      fetchpriority="high"
+      placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/fb1JwAJRQO3NuvFDAAAAABJRU5ErkJggg==
+        "
+    />
+    <!-- <div class="banner" [style.background-image]="'url(' + banner[bannerIndex].url + ')'"> -->
+    <!-- <div class="banner__media">
+        <img src="assets/images/home-banner[bannerIndex].png" alt="" />
+      </div> -->
+    <div class="banner__info">
+      <div class="banner__info--title">
+        <span>{{ foundBanner?.imageTitle.split(" ")[0] | titlecase }}</span>
+        {{ foundBanner?.imageTitle.split(" ").slice(1).join(" ") }}
+        <!-- <span>Shoes</span> of the best quality -->
+      </div>
+      <div class="banner__info--subtitle">
+        {{ foundBanner?.imageDescription }}
+      </div>
+      <div class="banner__info--action">
+        <button class="btn btn-dark" (click)="goToBannerURL(foundBanner)">
+          Shop Now
+        </button>
+      </div>
+      <!-- <div class="banner__info--seller">
+          <div class="banner__info--seller-label">Sold by:</div>
+          <div class="banner__info--seller-info">
+            <div class="banner__info--seller-media">
+              <img src="assets/images/dummy-seller-avatar.png" alt="" />
+            </div>
+            <div class="banner__info--seller-info-grp">
+              <div class="banner__info--seller-info-name">Peter Mathew</div>
+              <div class="banner__info--seller-info-contact">Contact Now</div>
+            </div>
+            <div class="banner__info--seller-tag">TOP SELLER</div>
+          </div>
+        </div> -->
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="shimer w-100 p-5"></div>
+  <div class="shimer"></div>
+</ng-template>
+
+<!-- <ng-template #loading> -->
+<!-- <ng-container>
+    <div class="banner shimer p-5">
+      <div class="banner__info">
+        <div class="banner__info--title"></div>
+        <div class="banner__info--subtitle"></div>
+        <div class="banner__info--action">
+          <button class="btn btn-dark">Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </ng-container> -->

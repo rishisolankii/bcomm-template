@@ -18,6 +18,9 @@ import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { AccountHeaderComponent } from './account-header/account-header.component';
 import { AccountSidebarComponent } from './account-sidebar/account-sidebar.component';
+import { HeroBannerComponent } from './hero-banner/hero-banner.component';
+import { HeroFullComponent } from './hero-full/hero-full.component';
+import { HeroModernComponent } from './hero-modern/hero-modern.component';
 
 export const routes: Routes = [
   {
@@ -83,6 +86,22 @@ export const routes: Routes = [
   {
     path: 'all-orders',
     component: AllOrdersComponent,
+  },
+  {
+    path: 'home',
+    component: FaqsComponent,
+  },
+  {
+    path: 'hero-banner',
+    component: HeroBannerComponent,
+  },
+  {
+    path: 'hero-full',
+    component: HeroFullComponent,
+  },
+  {
+    path: 'hero-modern',
+    component: HeroModernComponent,
   },
   {
     path: 'faqs',

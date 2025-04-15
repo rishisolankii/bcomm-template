@@ -21,6 +21,10 @@ import { AccountHeaderComponent } from './account-header/account-header.componen
 import { AccountSidebarComponent } from './account-sidebar/account-sidebar.component';
 import { AllOrdersComponent } from './all-orders/all-orders.component';
 import { FaqsComponent } from './faqs/faqs.component';
+import { HeroBannerComponent } from './hero-banner/hero-banner.component';
+import { HeroFullComponent } from './hero-full/hero-full.component';
+import { HomeComponent } from './home/home.component';
+import { HeroModernComponent } from './hero-modern/hero-modern.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { FaqsComponent } from './faqs/faqs.component';
     AccountSidebarComponent,
     AllOrdersComponent,
     FaqsComponent,
+    HeroBannerComponent,
+    HeroFullComponent,
+    HomeComponent,
+    HeroModernComponent,
   ],
   exports: [
     HeaderComponent,
@@ -62,6 +70,10 @@ import { FaqsComponent } from './faqs/faqs.component';
     AccountSidebarComponent,
     AllOrdersComponent,
     FaqsComponent,
+    HeroBannerComponent,
+    HeroFullComponent,
+    HomeComponent,
+    HeroModernComponent,
   ],
   imports: [
     CommonModule,
@@ -92,4 +104,8 @@ export {
   AccountSidebarComponent,
   AllOrdersComponent,
   FaqsComponent,
+  HeroBannerComponent,
+  HeroFullComponent,
+  HomeComponent,
+  HeroModernComponent,
 };

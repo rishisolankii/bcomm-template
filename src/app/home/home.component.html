@@ -1,0 +1,335 @@
+<div class="hero">
+  <app-hero-banner
+    *ngIf="storeTheme === 'THEME_AUTOPARTS'"
+    [banner]="bannersDetail"
+    [foundBanner]="foundBanner"
+    [bannerKey]="'banner1'"
+    (bannerUrl)="goToURL($event)"
+  ></app-hero-banner>
+
+  <!-- *ngIf="heroBannerType === 'FULL'" -->
+  <app-hero-full
+    *ngIf="
+      storeTheme === 'THEME_FURNITURE' ||
+      storeTheme === 'THEME_FASHION' ||
+      storeTheme === 'THEME_JEWELRY' ||
+      storeTheme === 'THEME_PET'
+    "
+    [banner]="bannersDetail"
+    [bannerKey]="'banner1'"
+    [foundBanner]="foundBanner"
+    (bannerUrl)="goToURL($event)"
+  ></app-hero-full>
+
+  <app-hero-modern
+    *ngIf="
+      storeTheme === 'THEME_ELECTRONIC' ||
+      storeTheme === 'THEME_BEAUTY' ||
+      storeTheme === 'THEME_GARDEN' ||
+      storeTheme === 'THEME_SPORTS' ||
+      storeTheme === 'THEME_LIGHTS'
+    "
+    [banner]="bannersDetail"
+    [bannerKey]="'banner1'"
+    [foundBanner]="foundBanner"
+    (bannerUrl)="goToURL($event)"
+  ></app-hero-modern>
+
+  <ng-container *ngIf="showLoading">
+    <div class="shimmer w-100 h-100 p-5"></div>
+  </ng-container>
+</div>
+<div class="container">
+  <div class="category__wrapper" *ngIf="popularCategories">
+    <!-- <div class="category__header">Shop By Category</div> -->
+    <div class="category__list">
+      <!-- <div class="category__item first">
+          <div class="category__item--label">All New Arrivals</div>
+          <div class="category__item--action">
+            <span>Discover</span>
+            <img src="assets/icons/arrow_right.png" alt="Arrow Right Icon" />
+          </div>
+        </div> -->
+      <div
+        class="category__item"
+        *ngFor="let popularCategory of popularCategories; index as i"
+        (click)="goToCategory(popularCategory?.entity?.productCategoryId)"
+      >
+        <div class="category__item--media">
+          <div style="position: relative; width: 100%; height: 200px">
+            <img
+              priority
+              [ngSrc]="
+                popularCategory?.entity?.linkOneImageUrl
+                  ? popularCategory.entity.linkOneImageUrl.startsWith('http') ||
+                    popularCategory.entity.linkOneImageUrl.startsWith('https')
+                    ? popularCategory.entity.linkOneImageUrl
+                    : popularCategory.entity.linkOneImageUrlS3
+                  : 'assets/images/no-product-image.png'
+              "
+              alt="Popular Category Image"
+              fill
+              style="object-fit: cover"
+            />
+          </div>
+        </div>
+        <div class="category__item--title">
+          <span>
+            {{
+              popularCategory.categoryName
+                ? popularCategory?.categoryName
+                : popularCategory?.entity?.productCategoryId
+            }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bestseller" *ngIf="bestsellers?.length">
+    <div class="bestseller__header">
+      <div class="bestseller__header--title">Best Sellers</div>
+      <div
+        class="bestseller__header--action c-pointer"
+        *ngIf="bestsellers?.length >= 4"
+        (click)="goToCategory(promotionCategory)"
+      >
+        <span>View All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+      </div>
+    </div>
+    <div class="bestseller__list">
+      <div
+        class="bestseller__item col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let item of bestsellers?.slice(0, 4)"
+      >
+        <app-item-card
+          [productDetails]="item"
+          [product]="item"
+          (goToProduct)="goToProduct($event)"
+        ></app-item-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-offer-banner
+  [title]="
+    bannerFive?.imageTitle ? bannerFive?.imageTitle : 'Marketing Message Here'
+  "
+  [mediaURL]="bannerFive?.url"
+  [description]="
+    bannerFive?.imageDescription
+      ? bannerFive?.imageDescription
+      : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.'
+  "
+  [ctaLabel]="'Shop Now'"
+  [ctaType]="'LINK'"
+  [bgColor]="'blue'"
+  [bannerData]="bannerFive"
+  (goToBanner)="goToURL()"
+></app-offer-banner>
+
+<div class="container">
+  <div class="top-picks" *ngIf="topPicks?.length">
+    <div class="top-picks__header">
+      <div class="top-picks__header--title">Picks for you</div>
+      <div
+        class="top-picks__header--action c-pointer"
+        *ngIf="topPicks?.length >= 8"
+        (click)="goToCategory(mostPopularCategory)"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+      </div>
+    </div>
+    <div class="top-picks__list">
+      <div
+        class="top-picks__item--wrapper col-sm-6 col-md-6 col-lg-3"
+        *ngFor="let item of topPicks?.slice(0, 8)"
+      >
+        <div class="top-picks__item">
+          <app-item-card
+            [productDetails]="item"
+            [product]="item"
+            (goToProduct)="goToProduct($event)"
+          ></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner">
+    <div class="top-picks__header">
+      <div class="top-picks__header--title">Featured</div>
+      <!-- <div
+          class="top-picks__header--action c-pointer"
+          *ngIf="topPicks?.length >= 8"
+          [routerLink]="'/categories/' + mostPopularCategory"
+        >
+          <span>Show All</span>
+          <i class="bi bi-arrow-right"></i>
+        </div> -->
+    </div>
+    <div class="banner__list">
+      <div class="banner__item--wrapper col-lg-4">
+        <div class="banner__item" *ngIf="!showLoading; else loadingBannerTwo">
+          <div class="banner__item--media">
+            <img
+              loading="lazy"
+              fill
+              [ngSrc]="bannerTwo?.url"
+              alt="Banner Image"
+            />
+            <!-- (error)="bannerTwo.url = 'assets/images/dummy-product-01.png'" -->
+            <!-- <img
+                    [ngSrc]="
+                      bannerTwo?.url
+                        ? bannerTwo?.url
+                        : 'assets/images/dummy-product-01.png'
+                    "
+                    alt="Banner Image"
+                  /> -->
+          </div>
+          <div class="banner__item--info">
+            <div class="banner__item--info-left">
+              <div class="banner__item--info-title">
+                {{
+                  bannerTwo?.imageTitle || "Marketing Message Here" | titlecase
+                }}
+              </div>
+              <div class="banner__item--info-description">
+                {{
+                  bannerTwo?.imageDescription ||
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+                    | titlecase
+                }}
+              </div>
+            </div>
+            <div
+              class="banner__item--info-right c-pointer"
+              (click)="goToBannerURL(bannerTwo)"
+            >
+              <button class="btn btn-dark">Shop Now</button>
+              <!-- <img ngSrc="assets/icons/arrow_right.png" alt="Arrow Right Icon" /> -->
+            </div>
+          </div>
+        </div>
+        <ng-template #loadingBannerTwo>
+          <div class="shimmer w-100 h-100"></div>
+        </ng-template>
+      </div>
+
+      <div class="banner__item--wrapper middle col-lg-4">
+        <div class="banner__item" *ngIf="!showLoading; else loadingBannerThree">
+          <div class="banner__item--media">
+            <img
+              loading="lazy"
+              fill
+              [ngSrc]="bannerThree?.url"
+              alt="Banner Image"
+            />
+          </div>
+          <div class="banner__item--info">
+            <div class="banner__item--info-left">
+              <div class="banner__item--info-title">
+                {{ bannerThree?.imageTitle || "Upto 50% Off" | titlecase }}
+              </div>
+              <div class="banner__item--info-description">
+                {{
+                  bannerThree?.imageDescription ||
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+                    | titlecase
+                }}
+              </div>
+            </div>
+            <div
+              class="banner__item--info-right c-pointer"
+              (click)="goToBannerURL(bannerThree)"
+            >
+              <button class="btn btn-dark">Shop Now</button>
+            </div>
+          </div>
+        </div>
+        <ng-template #loadingBannerThree>
+          <div class="shimmer w-100 h-100"></div>
+        </ng-template>
+      </div>
+
+      <div class="banner__item--wrapper last col-lg-4">
+        <div class="banner__item" *ngIf="!showLoading; else loadingBannerFour">
+          <div class="banner__item--media">
+            <img
+              loading="lazy"
+              fill
+              [ngSrc]="bannerFour?.url"
+              alt="Banner Image"
+            />
+          </div>
+          <div class="banner__item--info">
+            <div class="banner__item--info-left">
+              <div class="banner__item--info-title">
+                {{ bannerFour?.imageTitle || "Upto 50% Off" | titlecase }}
+              </div>
+              <div class="banner__item--info-description">
+                {{
+                  bannerFour?.imageDescription ||
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+                    | titlecase
+                }}
+              </div>
+            </div>
+            <div
+              class="banner__item--info-right c-pointer"
+              (click)="goToBannerURL(bannerFour)"
+            >
+              <button class="btn btn-dark">Shop Now</button>
+            </div>
+          </div>
+        </div>
+        <ng-template #loadingBannerFour>
+          <div class="shimmer w-100 h-100"></div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <app-offer-banner
+    [title]="
+      bannerSix?.imageTitle ? bannerSix?.imageTitle : 'Marketing Message Here'
+    "
+    [mediaURL]="bannerSix?.url"
+    [description]="
+      bannerSix?.imageDescription
+        ? bannerSix?.imageDescription
+        : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.'
+    "
+    [ctaLabel]="'Shop Now'"
+    [ctaType]="'LINK'"
+    [bgColor]="'blue'"
+    [bannerData]="bannerSix"
+    (goToBanner)="goToURL()"
+  ></app-offer-banner>
+
+  <div class="service__wrapper" *ngIf="promotionList && promotionList.length">
+    <div class="service__header">What We Offer</div>
+
+    <div class="service__list">
+      <div
+        class="service__item--wrapper col-sm-6 col-md-6 col-lg-3"
+        *ngFor="let promotionItem of promotionList"
+      >
+        <div class="service__item">
+          <div class="service__item--icon">
+            <img src="assets/icons/shipping.png" alt="Service Icon" />
+          </div>
+          <div class="service__item--title">{{ promotionItem?.promoName }}</div>
+          <div
+            class="service__item--description"
+            [innerHTML]="promotionItem?.promoText"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
