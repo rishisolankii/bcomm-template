@@ -6,6 +6,7 @@ import { FooterCopyrightStripComponent } from './footer-copyright-strip/footer-c
 import {
   AllOrdersComponent,
   BreadcrumbComponent,
+  CmsPageComponent,
   FaqsComponent,
   HeaderTopStripComponent,
   OfferBannerComponent,
@@ -106,5 +107,9 @@ export const routes: Routes = [
   {
     path: 'faqs',
     component: FaqsComponent,
+  },
+  {
+    path: 'cms',
+    component: CmsPageComponent,
   },
 ];

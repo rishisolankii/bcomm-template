@@ -1,0 +1,55 @@
+@import "../../assets/styles/variables.scss";
+
+.page-title {
+  &__wrapper {
+    margin-top: 32px;
+  }
+  &__heading {
+    font-size: 32px;
+  }
+  &__description {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+  }
+}
+
+.faqs__wrapper {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  .accordion-item {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .accordion-button {
+    font-weight: 500;
+    padding-inline: 0;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .accordion-button:not(.collapsed) {
+    background-color: $color-light;
+    color: var(--color-text-secondary);
+  }
+  .accordion-body {
+    padding-inline: 0;
+    color: #515151;
+    font-weight: 300;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .page-title {
+    &__wrapper {
+      margin-top: 24px;
+    }
+    &__heading {
+      font-size: 24px;
+    }
+  }
+  .faqs__wrapper {
+    margin-top: 32px;
+    margin-bottom: 64px;
+  }
+}

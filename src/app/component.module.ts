@@ -25,6 +25,7 @@ import { HeroBannerComponent } from './hero-banner/hero-banner.component';
 import { HeroFullComponent } from './hero-full/hero-full.component';
 import { HomeComponent } from './home/home.component';
 import { HeroModernComponent } from './hero-modern/hero-modern.component';
+import { CmsPageComponent } from './cms-page/cms-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { HeroModernComponent } from './hero-modern/hero-modern.component';
     HeroFullComponent,
     HomeComponent,
     HeroModernComponent,
+    CmsPageComponent,
   ],
   exports: [
     HeaderComponent,
@@ -74,6 +76,7 @@ import { HeroModernComponent } from './hero-modern/hero-modern.component';
     HeroFullComponent,
     HomeComponent,
     HeroModernComponent,
+    CmsPageComponent,
   ],
   imports: [
     CommonModule,
@@ -108,4 +111,5 @@ export {
   HeroFullComponent,
   HomeComponent,
   HeroModernComponent,
+  CmsPageComponent,
 };
