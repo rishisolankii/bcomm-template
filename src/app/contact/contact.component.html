@@ -15,7 +15,8 @@
   <div class="contact__wrapper">
     <div class="contact__main" #contactContainer>
       <!-- <div class="contact__main--header">Get in touch with us!</div> -->
-      <div [innerHTML]="iframeHtml"></div>
+      <div *ngIf="isLoading" class="spinner">Loading...</div>
+      <div *ngIf="!isLoading" [innerHTML]="iframeHtml"></div>
       <ng-container *ngIf="!contactFormData && !isLoading">
         <div class="contact__main--item-grp">
           <div class="contact__main--item">
