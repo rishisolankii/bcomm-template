@@ -547,3 +547,138 @@
     }
   }
 }
+
+
+
+/* Base Skeleton Styles */
+.skeleton-box,
+.skeleton-text,
+.skeleton-card {
+  background-color: #e2e2e2;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+  background-image: linear-gradient(
+    90deg,
+    #e2e2e2 0px,
+    #f0f0f0 40px,
+    #e2e2e2 80px
+  );
+  background-size: 600px 100%;
+  background-repeat: no-repeat;
+}
+
+/* Text Variants */
+.skeleton-text {
+  height: 14px;
+  width: 100%;
+  margin-bottom: 10px;
+
+  &.large {
+    height: 20px;
+  }
+
+  &.medium {
+    height: 16px;
+  }
+
+  &.small {
+    height: 12px;
+  }
+
+  &.w-25 {
+    width: 25%;
+  }
+
+  &.w-50 {
+    width: 50%;
+  }
+
+  &.w-75 {
+    width: 75%;
+  }
+
+  &.w-100 {
+    width: 100%;
+  }
+
+  &.mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  &.mb-3 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Skeleton Card */
+.skeleton-card {
+  height: 320px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* Cart Item Skeleton */
+.cart__main--item.skeleton {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  align-items: center;
+
+  .cart__main--item-product-media {
+    width: 60px;
+    height: 60px;
+    .skeleton-box {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+  }
+
+  .cart__main--item-product-name,
+  .cart__main--item-price,
+  .cart__main--item-qty,
+  .cart__main--item-subtotal,
+  .cart__main--item-remove {
+    flex: 1;
+    .skeleton-text {
+      width: 80%;
+    }
+  }
+}
+
+/* Cart Summary Skeleton */
+.cart__summary.skeleton {
+  .cart__summary--header,
+  .cart__summary--subtotal-label,
+  .cart__summary--subtotal-value,
+  .cart__summary--total-label,
+  .cart__summary--total-value {
+    .skeleton-text {
+      width: 100%;
+      height: 14px;
+    }
+  }
+
+  .cart__summary--checkout {
+    .skeleton-box {
+      width: 100%;
+      height: 50px;
+    }
+  }
+}
+
+/* Example of more specific skeletons */
+.skeleton-box {
+  height: 100%;
+}
+
+.skeleton-text {
+  height: 14px;
+}
+
+.skeleton-card {
+  height: 200px;
+  width: 100%;
+  border-radius: 12px;
+}

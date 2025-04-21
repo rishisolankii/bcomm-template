@@ -36,22 +36,14 @@ export class HomeComponent {
   @Output() goToBanner = new EventEmitter<any>();
   @Output() categoryRedirection = new EventEmitter<any>();
   @Output() productRedirection = new EventEmitter<any>();
+  @Input() themeComponent: 'autoparts' | 'full' | 'modern' | null = null;
 
   ngOnInit() {
     console.log(
       'bannersDetail-',
       this.bannersDetail,
-      'mostPopularCategory-',
-      this.mostPopularCategory,
-      'popularCategories',
-      this.popularCategories,
-      'topPicks',
-      this.topPicks,
-      'bestsellers',
-      this.bestsellers,
-      'storeTheme',
-      this.storeTheme,
-      this.bannerFive
+      'themeComponent-',
+      this.themeComponent
     );
   }
 

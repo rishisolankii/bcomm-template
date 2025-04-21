@@ -21,7 +21,7 @@ export class CartComponent {
   // @Input() modifyCartData: any;
   @Input() bannersDetail: any[] = [];
   @Input() associatedProducts: any[] = [];
-
+  @Input() showLoading: boolean = true;
   @Output() goToProduct = new EventEmitter<any>();
   @Output() changeQty = new EventEmitter<any>();
   @Output() updateBulkQty = new EventEmitter<any>();

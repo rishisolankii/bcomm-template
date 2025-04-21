@@ -1,5 +1,5 @@
 <div class="hero">
-  <app-hero-banner
+  <!-- <app-hero-banner
     *ngIf="storeTheme === 'THEME_AUTOPARTS'"
     [banner]="bannersDetail"
     [foundBanner]="foundBanner"
@@ -7,7 +7,7 @@
     (bannerUrl)="goToURL($event)"
   ></app-hero-banner>
 
-  <!-- *ngIf="heroBannerType === 'FULL'" -->
+
   <app-hero-full
     *ngIf="
       storeTheme === 'THEME_FURNITURE' ||
@@ -33,8 +33,33 @@
     [bannerKey]="'banner1'"
     [foundBanner]="foundBanner"
     (bannerUrl)="goToURL($event)"
-  ></app-hero-modern>
+  ></app-hero-modern> -->
 
+  <ng-container [ngSwitch]="themeComponent">
+    <app-hero-banner
+      *ngSwitchCase="'autoparts'"
+      [banner]="bannersDetail"
+      [bannerKey]="'banner1'"
+      [foundBanner]="foundBanner"
+      (bannerUrl)="goToURL($event)"
+    ></app-hero-banner>
+
+    <app-hero-full
+      *ngSwitchCase="'full'"
+      [banner]="bannersDetail"
+      [bannerKey]="'banner1'"
+      [foundBanner]="foundBanner"
+      (bannerUrl)="goToURL($event)"
+    ></app-hero-full>
+
+    <app-hero-modern
+      *ngSwitchCase="'modern'"
+      [banner]="bannersDetail"
+      [bannerKey]="'banner1'"
+      [foundBanner]="foundBanner"
+      (bannerUrl)="goToURL($event)"
+    ></app-hero-modern>
+  </ng-container>
   <ng-container *ngIf="showLoading">
     <div class="shimmer w-100 h-100 p-5"></div>
   </ng-container>
@@ -173,16 +198,16 @@
     </div>
     <div class="banner__list">
       <div class="banner__item--wrapper col-lg-4">
-        <div class="banner__item" *ngIf="!showLoading; else loadingBannerTwo">
+        <!-- <div class="banner__item" *ngIf="!showLoading; else loadingBannerTwo">
           <div class="banner__item--media">
             <img
               loading="lazy"
               fill
               [ngSrc]="bannerTwo?.url"
               alt="Banner Image"
-            />
-            <!-- (error)="bannerTwo.url = 'assets/images/dummy-product-01.png'" -->
-            <!-- <img
+            /> -->
+        <!-- (error)="bannerTwo.url = 'assets/images/dummy-product-01.png'" -->
+        <!-- <img
                     [ngSrc]="
                       bannerTwo?.url
                         ? bannerTwo?.url
@@ -190,7 +215,7 @@
                     "
                     alt="Banner Image"
                   /> -->
-          </div>
+        <!-- </div>
           <div class="banner__item--info">
             <div class="banner__item--info-left">
               <div class="banner__item--info-title">
@@ -210,18 +235,24 @@
               class="banner__item--info-right c-pointer"
               (click)="goToBannerURL(bannerTwo)"
             >
-              <button class="btn btn-dark">Shop Now</button>
-              <!-- <img ngSrc="assets/icons/arrow_right.png" alt="Arrow Right Icon" /> -->
-            </div>
+              <button class="btn btn-dark">Shop Now</button> -->
+        <!-- <img ngSrc="assets/icons/arrow_right.png" alt="Arrow Right Icon" /> -->
+        <!-- </div>
           </div>
-        </div>
+        </div> -->
+        <ng-container *ngIf="!showLoading; else loadingBannerTwo">
+          <app-banner-item
+            [banner]="bannerTwo"
+            (goToBanner)="goToBannerURL($event)"
+          ></app-banner-item>
+        </ng-container>
         <ng-template #loadingBannerTwo>
           <div class="shimmer w-100 h-100"></div>
         </ng-template>
       </div>
 
       <div class="banner__item--wrapper middle col-lg-4">
-        <div class="banner__item" *ngIf="!showLoading; else loadingBannerThree">
+        <!-- <div class="banner__item" *ngIf="!showLoading; else loadingBannerThree">
           <div class="banner__item--media">
             <img
               loading="lazy"
@@ -250,14 +281,20 @@
               <button class="btn btn-dark">Shop Now</button>
             </div>
           </div>
-        </div>
+        </div> -->
+        <ng-container *ngIf="!showLoading; else loadingBannerThree">
+          <app-banner-item
+            [banner]="bannerThree"
+            (goToBanner)="goToBannerURL($event)"
+          ></app-banner-item>
+        </ng-container>
         <ng-template #loadingBannerThree>
           <div class="shimmer w-100 h-100"></div>
         </ng-template>
       </div>
 
       <div class="banner__item--wrapper last col-lg-4">
-        <div class="banner__item" *ngIf="!showLoading; else loadingBannerFour">
+        <!-- <div class="banner__item" *ngIf="!showLoading; else loadingBannerFour">
           <div class="banner__item--media">
             <img
               loading="lazy"
@@ -286,7 +323,13 @@
               <button class="btn btn-dark">Shop Now</button>
             </div>
           </div>
-        </div>
+        </div> -->
+        <ng-container *ngIf="!showLoading; else loadingBannerFour">
+          <app-banner-item
+            [banner]="bannerFour"
+            (goToBanner)="goToBannerURL($event)"
+          ></app-banner-item>
+        </ng-container>
         <ng-template #loadingBannerFour>
           <div class="shimmer w-100 h-100"></div>
         </ng-template>
@@ -298,7 +341,7 @@
     [title]="
       bannerSix?.imageTitle ? bannerSix?.imageTitle : 'Marketing Message Here'
     "
-    [mediaURL]="bannerSix?.url||'assets/images/dummy-product-01.png'"
+    [mediaURL]="bannerSix?.url || 'assets/images/dummy-product-01.png'"
     [description]="
       bannerSix?.imageDescription
         ? bannerSix?.imageDescription
