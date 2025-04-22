@@ -84,14 +84,7 @@
           <div style="position: relative; width: 100%; height: 200px">
             <img
               priority
-              [ngSrc]="
-                popularCategory?.entity?.linkOneImageUrl
-                  ? popularCategory.entity.linkOneImageUrl.startsWith('http') ||
-                    popularCategory.entity.linkOneImageUrl.startsWith('https')
-                    ? popularCategory.entity.linkOneImageUrl
-                    : popularCategory.entity.linkOneImageUrlS3
-                  : 'assets/images/no-product-image.png'
-              "
+              [ngSrc]="popularCategory.imageUrl"
               alt="Popular Category Image"
               fill
               style="object-fit: cover"
