@@ -291,7 +291,8 @@
       <div class="bestseller--action--wrapper">
         <div ngbDropdown class="d-inline-block" #dropdown="ngbDropdown">
           <button type="button" class="btn btn-dark" ngbDropdownToggle>
-            {{ getLabel(selectedSorting) }}
+            <!-- {{ getLabel(selectedSorting) }} -->
+            {{sortingLabel}}
           </button>
           <div ngbDropdownMenu>
             <button

@@ -49,6 +49,10 @@ export class CategoriesComponent {
   @Output() productId = new EventEmitter<any>();
   @Output() goToProduct = new EventEmitter<any>();
   @Output() redirectBreadcrumbUrl = new EventEmitter<any>();
+  @Output() changeFilter$: EventEmitter<any> = new EventEmitter<any>();
+  @Output() getLabel$: EventEmitter<any> = new EventEmitter<any>();
+  @Input() sortingLabel!: any;
+
   onRedirectToUrl(url: any) {
     this.redirectBreadcrumbUrl.emit(url);
   }
@@ -85,19 +89,39 @@ export class CategoriesComponent {
     this.onApplyFilter$.emit();
   }
 
+  // onChangeFilter($event: any, productFeatureId: string) {
+  //   const checked = ($event.target as HTMLInputElement).checked;
+  //   if (checked) {
+  //     this.selectedFilters[productFeatureId] = productFeatureId;
+  //   } else {
+  //     delete this.selectedFilters[productFeatureId];
+  //   }
+  // }
+
+  // getLabel(value: any): any {
+  //   const match = this.sortingOptions.find((opt: any) => opt.value === value);
+  //   return match ? match.label : '';
+  // }
+
   onChangeFilter($event: any, productFeatureId: string) {
-    const checked = ($event.target as HTMLInputElement).checked;
-    if (checked) {
-      this.selectedFilters[productFeatureId] = productFeatureId;
-    } else {
-      delete this.selectedFilters[productFeatureId];
-    }
+    this.changeFilter$.emit({ $event, productFeatureId });
+    // const checked = ($event.target as HTMLInputElement).checked;
+    // if (checked) {
+    //   this.selectedFilters[productFeatureId] = productFeatureId;
+    // } else {
+    //   delete this.selectedFilters[productFeatureId];
+    // }
   }
 
-  getLabel(value: any): any {
-    const match = this.sortingOptions.find((opt: any) => opt.value === value);
-    return match ? match.label : '';
-  }
+  // getLabel(value: any): any {
+  //   const match = this.sortingOptions.find((opt: any) => opt.value === value);
+  //   return match ? match.label : "";
+  // }
+  // getLabel(value: any): any {
+  //   this.getLabel$.emit(value);
+  //   // const match = this.sortingOptions.find((opt: any) => opt.value === value);
+  //   // return match ? match.label : "";
+  // }
 
   selectSorting(value: string) {
     this.selectSorting$.emit(value);
