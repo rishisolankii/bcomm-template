@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './item-card.component.scss',
 })
 export class ItemCardComponent {
-  @Input() product: any;
+  @Input() product!: any;
   @Input() isLoading: boolean = false;
   @Input() isSearch = false;
-  @Input() productDetails: any;
+  @Input() productDetails!: any;
 
   @Output() goToProduct = new EventEmitter<any>();
 

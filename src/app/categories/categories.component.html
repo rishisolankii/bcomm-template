@@ -1,0 +1,460 @@
+<!-- BEGINS: Hero Section -->
+<div class="hero__wrapper" [ngClass]="bgColor">
+  <div class="hero__media" *ngIf="mediaURL">
+    <img [src]="mediaURL" alt="Offers Banner" />
+  </div>
+  <div class="hero__info">
+    <div class="hero__info--subtitle">{{ subtitle }}</div>
+    <h1 class="hero__info--title">{{ title }}</h1>
+    <div class="hero__info--description">
+      {{ description }}
+    </div>
+    <div
+      class="hero__info--action c-pointer"
+      *ngIf="ctaType === 'LINK'"
+      (click)="goToBannerURL()"
+    >
+      <span>{{ ctaLabel }}</span>
+      <img src="assets/icons/arrow_right.png" alt="Arrow Right Icon" />
+    </div>
+    <div
+      class="hero__info--action hero__info--action-button"
+      *ngIf="ctaType === 'BUTTON'"
+    >
+      <button
+        class="btn"
+        [ngClass]="bgColor === 'dark' ? 'btn-light' : 'btn-dark'"
+        (click)="goToBannerURL()"
+        *ngIf="bannerData?.urlType"
+      >
+        {{ ctaLabel }}
+      </button>
+    </div>
+  </div>
+</div>
+<!-- ENDS: Hero Section -->
+<div class="container">
+  <app-breadcrumb
+    [inactiveElements]="[{ label: 'Home', redirectUrl: '' }]"
+    [activeElement]="categoryName ? categoryName : ''"
+    (redirectUrl)="onRedirectToUrl($event)"
+  ></app-breadcrumb>
+
+  <div class="category__wrapper" *ngIf="!showLoading; else bannerLoading">
+    <div class="category__header">
+      <div class="category__header--info">
+        <!-- <div class="category__header--info-title">
+                {{
+                  categoryName
+                    ? (categoryName | titlecase)
+                    : categoryDescription
+                    ? (categoryDescription | titlecase)
+                    : (categoryId | titlecase)
+                }}
+              </div> -->
+        <!-- <div class="category__header--info-description">
+            {{ categoryDescription | titlecase }}
+          </div> -->
+      </div>
+      <div class="category__header--search-wrapper">
+        <div class="category__header--search">
+          <img src="assets/icons/search-dark.png" alt="Search Icon" />
+          <input
+            type="search"
+            class="form-control"
+            [placeholder]="'Search in ' + searchPlaceHolder"
+            [(ngModel)]="searchText"
+            (keyup.enter)="fetchProducts(true)"
+            (ngModelChange)="onChange($event)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- TODO:: Test & Remove after confirmation -->
+    <!-- <app-offer-banner
+        *ngIf="!showLoading; else bannerLoading"
+        [title]="categoryName ? categoryName : 'Category Name'"
+        [subtitle]="'Explore products from'"
+        [mediaURL]="
+          categoryBanner ? categoryBanner : 'assets/images/no-product-image.png'
+        "
+        [description]="categoryDescription ? categoryDescription : ''"
+        [ctaLabel]="''"
+        [ctaType]="''"
+        [bgColor]="'grey'"
+      ></app-offer-banner> -->
+
+    <div class="category__list--title" *ngIf="subCategories?.length">
+      Discover All Categories
+    </div>
+    <div class="category__list" *ngIf="subCategories?.length">
+      <div
+        *ngFor="let subCategory of subCategories; index as i"
+        class="category__item"
+        (click)="onRedirectToProduct(subCategory?.entity?.productCategoryId)"
+      >
+        <div class="category__item--media">
+          <img
+            [src]="subCategory.entity.displayImage"
+            [alt]="subCategory?.categoryName"
+          />
+        </div>
+        <div class="category__item--title">
+          <span>{{ subCategory?.categoryName }}</span>
+        </div>
+      </div>
+
+      <!-- <swiper-container
+          [config]="swiperOptions"
+          [breakpoints]="{
+            '320': {
+              slidesPerView: 1,
+              spaceBetween: 10
+            },
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 20
+            },
+            '1024': {
+              slidesPerView: 4,
+              spaceBetween: 20
+            },
+            '1200': {
+              slidesPerView: 5,
+              spaceBetween: 20
+            }
+          }"
+          bulletActiveClass="categories-swiper-bullet-active"
+          el="categories-swiper-pagination"
+          class="categories-swiper"
+        >
+          <swiper-slide *ngFor="let subCategory of subCategories; index as i">
+            <div
+              class="category__item"
+              [routerLink]="'/categories/' + subCategory.entity.productCategoryId"
+            >
+              <div class="category__item--media">
+                <img
+                  [src]="
+                    subCategory.entity.linkOneImageUrl
+                      ? subCategory.entity.linkOneImageUrl.startsWith('http') ||
+                        subCategory.entity.linkOneImageUrl.startsWith('https')
+                        ? subCategory.entity.linkOneImageUrl
+                        : subCategory.entity.linkOneImageUrlS3
+                      : 'assets/images/no-product-image.png'
+                  "
+                  alt="Category Image"
+                />
+              </div>
+              <div class="category__item--title">
+                <span>{{ subCategory?.categoryName }}</span>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container> -->
+
+      <!-- <div
+              class="category__item"
+              *ngFor="let item of [].constructor(5); index as i"
+            >
+              <div class="category__item--media">
+                <img
+                  src="assets/images/dummy-product-03.png"
+                  alt="Category Image"
+                />
+              </div>
+              <div class="category__item--title">
+                <span> Category {{ i + 1 }} </span>
+              </div>
+            </div> -->
+    </div>
+  </div>
+
+  <ng-template #bannerLoading>
+    <div class="bestseller__item--wrapper col-12">
+      <div class="bestseller__item">
+        <app-item-card [isLoading]="true"></app-item-card>
+      </div>
+    </div>
+  </ng-template>
+  <!-- <app-offer-banner
+          [title]="categoryName ? categoryName : 'Category Name'"
+          [subtitle]="'Explore products from'"
+          [mediaURL]="bannerFive?.url"
+          [description]="
+            categoryDescription
+              ? categoryDescription
+              : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetu'
+          "
+          [ctaLabel]="'Shop Now'"
+          [ctaType]="'BUTTON'"
+          [bgColor]="'grey'"
+        ></app-offer-banner> -->
+
+  <div class="bestseller">
+    <div class="sidebar">
+      <div class="sidebar--filter">
+        <div class="sidebar--filter-title">Filters</div>
+        <div class="sidebar--filter-header">
+          <img
+            src="assets/icons/shopping-bag.png"
+            alt="Bag Icon"
+            class="sidebar--filter--header-img"
+          />
+          <span style="padding: 6px !important">Price</span>
+        </div>
+        <div class="sidebar--filter-item d-flex align-items-center gap-2">
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            placeholder="Min"
+            [formControl]="minPrice"
+            min="0"
+          />
+          <span>To</span>
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            placeholder="Max"
+            [formControl]="maxPrice"
+            min="0"
+          />
+        </div>
+        <!-- <div class="text-danger mt-1" *ngIf="isMinGreaterThanMax">
+            Minimum price should not be greater than maximum price.
+          </div> -->
+        <!-- Inner Accordion: Expandable Filter Groups -->
+        <div ngbAccordion>
+          <div
+            *ngFor="let filter of filters; let i = index"
+            ngbAccordionItem
+            [collapsed]="i !== 0"
+          >
+            <div ngbAccordionHeader class="sidebar--filter-header">
+              <button ngbAccordionButton>
+                <img
+                  src="assets/icons/shopping-bag.png"
+                  alt="Bag Icon"
+                  class="sidebar--filter--header-img"
+                />
+                {{ filter.label }}
+              </button>
+            </div>
+            <div ngbAccordionCollapse style="margin-left: 20px">
+              <div
+                ngbAccordionBody
+                *ngFor="let item of filter.filters"
+                class="sidebar--filter-item"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [value]="item.productFeatureId"
+                  [name]="filter.label"
+                  [id]="item.productFeatureId"
+                  (change)="onChangeFilter($event, item.productFeatureId)"
+                  [checked]="selectedFilters[item.productFeatureId]"
+                />
+
+                <label class="form-check-label" [for]="item.productFeatureId">
+                  {{ item.description }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-3">
+          <button class="btn btn-primary btn-sm" (click)="onApplyFilter()">
+            Apply
+          </button>
+          <button class="btn btn-secondary btn-sm ms-2" (click)="clearFilter()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="bestseller__header">
+            <div class="bestseller__header--title">Shop Best Seller</div>
+            <div class="bestseller__header--action">
+              <span>Show All</span>
+              <img
+                src="assets/icons/arrow_right_purple.png"
+                alt="Arrow Right Icon"
+              />
+            </div>
+          </div> -->
+    <div class="bestSellerContentWrapper">
+      <div class="bestseller--action--wrapper">
+        <div ngbDropdown class="d-inline-block" #dropdown="ngbDropdown">
+          <button type="button" class="btn btn-dark" ngbDropdownToggle>
+            {{ getLabel(selectedSorting) }}
+          </button>
+          <div ngbDropdownMenu>
+            <button
+              *ngFor="let option of sortingOptions"
+              ngbDropdownItem
+              [class.active]="selectedSorting === option.value"
+              (click)="selectSorting(option.value)"
+            >
+              {{ option.label }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="products.length; else poductNotFound">
+        <div class="bestseller__list">
+          <ng-container *ngIf="!showLoading; else loading">
+            <div
+              class="bestseller__item--wrapper col-sm-6 col-md-4 col-lg-3"
+              *ngFor="let product of products"
+            >
+              <div class="bestseller__item">
+                <app-item-card
+                  (goToProduct)="goToProductDetails($event)"
+                  [product]="product"
+                  [productDetails]="product"
+                ></app-item-card>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #loading>
+            <div
+              class="bestseller__item--wrapper col-sm-6 col-md-4 col-lg-3"
+              *ngFor="let product of [].constructor(4)"
+            >
+              <div class="bestseller__item">
+                <app-item-card [isLoading]="true"></app-item-card>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="bestseller__footer" *ngIf="!reachedMaximum">
+          <div class="bestseller__footer--action" (click)="fetchMoreProducts()">
+            <span>View More</span>
+            <img
+              src="assets/icons/chevron-right-dark.png"
+              alt="Chevron Right Icon"
+            />
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #poductNotFound>
+      <div class="bestseller__list--noData">Item not found</div>
+    </ng-template>
+  </div>
+
+  <!-- <div class="bestseller">
+          <div class="bestseller__header">
+            <div class="bestseller__header--title">Shop Best Seller</div>
+            <div class="bestseller__header--action">
+              <span>Show All</span>
+              <img
+                src="assets/icons/arrow_right_purple.png"
+                alt="Arrow Right Icon"
+              />
+            </div>
+          </div>
+          <div class="bestseller__list">
+            <div
+              class="bestseller__item--wrapper col-sm-6 col-md-4 col-lg-3"
+              *ngFor="let item of [].constructor(4)"
+            >
+              <div class="bestseller__item">
+                <app-item-card></app-item-card>
+              </div>
+            </div>
+          </div>
+          <div class="bestseller__footer">
+            <div class="bestseller__footer--action">
+              <span>View All</span>
+              <img
+                src="assets/icons/chevron-right-dark.png"
+                alt="Chevron Right Icon"
+              />
+            </div>
+          </div>
+        </div> -->
+
+  <!-- <app-offer-banner
+      [subtitle]="''"
+      [title]="categoryName ? categoryName : 'Category'"
+      [description]="
+        categoryDescription
+          ? categoryDescription
+          : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetu'
+      "
+      [ctaLabel]="''"
+      [ctaType]="''"
+      [bgColor]="'dark'"
+    ></app-offer-banner> -->
+
+  <!-- <div class="bestseller">
+          <div class="bestseller__header">
+            <div class="bestseller__header--title">Shop Best Seller</div>
+            <div class="bestseller__header--action">
+              <span>Show All</span>
+              <img
+                src="assets/icons/arrow_right_purple.png"
+                alt="Arrow Right Icon"
+              />
+            </div>
+          </div>
+          <div class="bestseller__list">
+            <div
+              class="bestseller__item--wrapper col-sm-6 col-md-4 col-lg-3"
+              *ngFor="let item of [].constructor(4)"
+            >
+              <div class="bestseller__item">
+                <app-item-card></app-item-card>
+              </div>
+            </div>
+          </div>
+          <div class="bestseller__footer">
+            <div class="bestseller__footer--action">
+              <span>View All</span>
+              <img
+                src="assets/icons/chevron-right-dark.png"
+                alt="Chevron Right Icon"
+              />
+            </div>
+          </div>
+        </div> -->
+</div>
+
+<div class="category-pop">
+  <div class="category-pop__item" *ngFor="let item of featuredPorducts">
+    <div class="category-pop__item--info">
+      <!-- <div class="category-pop__item--info-title">
+                {{
+                  item.product.productName.length > 30
+                    ? item.product.productName.slice(0, 30) + "..."
+                    : item.product.productName
+                }}
+              </div> -->
+      <div
+        class="category-pop__item--info-subtitle"
+        [innerHTML]="item.displayDescription"
+      >
+        <!-- {{
+                  item.product.description.length > 60
+                    ? item.product.description.slice(0, 60) + "..."
+                    : item.product.description
+                }} -->
+      </div>
+      <button
+        class="btn btn-dark"
+        (click)="redirectToDetails(item.product.productId)"
+      >
+        Shop Now
+      </button>
+    </div>
+    <div class="category-pop__item--media">
+      <img [src]="item.displayImage" [alt]="item.imageAlt" />
+    </div>
+  </div>
+</div>

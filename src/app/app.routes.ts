@@ -22,6 +22,7 @@ import { AccountSidebarComponent } from './account-sidebar/account-sidebar.compo
 import { HeroBannerComponent } from './hero-banner/hero-banner.component';
 import { HeroFullComponent } from './hero-full/hero-full.component';
 import { HeroModernComponent } from './hero-modern/hero-modern.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 export const routes: Routes = [
   {
@@ -111,5 +112,9 @@ export const routes: Routes = [
   {
     path: 'cms',
     component: CmsPageComponent,
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
   },
 ];

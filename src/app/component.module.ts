@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { HeroModernComponent } from './hero-modern/hero-modern.component';
 import { CmsPageComponent } from './cms-page/cms-page.component';
 import { BannerItemComponent } from './banner-item/banner-item.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { BannerItemComponent } from './banner-item/banner-item.component';
     HeroModernComponent,
     CmsPageComponent,
     BannerItemComponent,
+    CategoriesComponent,
   ],
   exports: [
     HeaderComponent,
@@ -80,6 +82,7 @@ import { BannerItemComponent } from './banner-item/banner-item.component';
     HeroModernComponent,
     CmsPageComponent,
     BannerItemComponent,
+    CategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -116,4 +119,5 @@ export {
   HeroModernComponent,
   CmsPageComponent,
   BannerItemComponent,
+  CategoriesComponent,
 };

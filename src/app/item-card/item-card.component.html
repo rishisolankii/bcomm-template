@@ -19,7 +19,7 @@
           "
           onerror="this.onerror=null; this.src='assets/images/no-product-image.png'"
           [alt]="
-            productDetails.description || productDetails.name || productDetails.id
+            productDetails?.description || productDetails?.name || productDetails?.id
           "
         />
         <div
