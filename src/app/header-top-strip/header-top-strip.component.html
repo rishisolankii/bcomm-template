@@ -11,7 +11,7 @@
           (click)="onRedirectDetailsPage(topLink.pageUrl)"
           *ngFor="let topLink of topCmsData"
         >
-          {{ topLink.pageTitle | titlecase }}
+          {{ topLink?.pageTitle | titlecase }}
         </div>
         <!-- <div class="strip__menu--item c-pointer" routerLink="/faqs">
             Help and FAQs

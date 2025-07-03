@@ -13,18 +13,18 @@
             </div> -->
         <img
           [src]="
-            productDetails.image
-              ? productDetails.image
+            productDetails?.image
+              ? productDetails?.image
               : 'assets/images/no-product-image.png'
           "
           onerror="this.onerror=null; this.src='assets/images/no-product-image.png'"
           [alt]="
-            productDetails.description || productDetails.name || productDetails.id
+            productDetails?.description || productDetails?.name || productDetails?.id
           "
         />
         <div
           class="item-card__media--more-options"
-          *ngIf="productDetails.displayMoreOption"
+          *ngIf="productDetails?.displayMoreOption"
         >
           MORE OPTIONS
         </div>
@@ -42,10 +42,10 @@
         <h2
           class="item-card__info--description"
           [title]="
-            productDetails.description || productDetails.name || productDetails.id
+            productDetails?.description || productDetails?.name || productDetails?.id
           "
           [innerHTML]="
-            productDetails.description || productDetails.name || productDetails.id
+            productDetails?.description || productDetails?.name || productDetails?.id
           "
         ></h2>
         <!-- <div

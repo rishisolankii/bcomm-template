@@ -1,0 +1,21 @@
+<div class="header">
+    <div class="header__wrapper">
+      <div class="header__user">
+        <div class="header__user--media">
+          <img src="assets/images/dummy-user.png" />
+          <i class="bi bi-patch-check-fill"></i>
+        </div>
+        <div class="header__user--info">
+          <p>
+            {{ profileUserData?.firstName | titlecase }}
+            {{ profileUserData?.middleName | titlecase }}
+            {{ profileUserData?.lastName | titlecase }}
+          </p>
+          <ng-container *ngFor="let email of emailDataList">
+            <p>{{ email?.infoString }}</p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  

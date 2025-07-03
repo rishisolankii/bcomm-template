@@ -1,0 +1,13 @@
+<div class="sidebar">
+    <div class="sidebar__wrapper">
+      <div
+      class="sidebar__item"
+      *ngFor="let item of sidebarOptions"
+      (click)="onRedirection(item.url); activeUrl = item.url"
+      [class.active]="activeUrl === item.url"
+    >
+      {{ item.label }}
+    </div>
+    </div>
+  </div>
+  

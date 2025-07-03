@@ -1,0 +1,40 @@
+<div class="order__wrapper">
+    <div class="order__list">
+      <div class="order__item" *ngIf="!ordersList?.length">
+        <div class="card text-center p-5">
+          Looks like you do not have any orders!
+        </div>
+      </div>
+      <div class="order__item" *ngFor="let order of ordersList">
+        <div class="card">
+          <div class="card-body">
+            <div class="order__item--action">
+              <div class="order__item--status">
+                <div [ngClass]="
+                    order.orderStatusDescription === 'Created'
+                      ? 'order__item--status-info'
+                      : 'order__item--status-success'
+                  ">
+                  <i class="bi" [ngClass]="
+                      order.orderStatusDescription === 'Approved'
+                        ? 'bi-clock'
+                        : 'bi-check-circle'
+                    "></i>
+                  {{ order.orderStatusDescription }}
+                </div>
+              </div>
+              <div class="order__item--return" *ngIf="order.orderStatusDescription === 'Completed'">
+                <a class="card-link text-primary" (click)="onOpenReturnOrderModal(order.orderId)" *ngIf="!order.returnItems?.length">Return Request</a>
+                <a class="card-link text-primary" (click)="onOpenReturnDetailsModal(order.returnItems)" *ngIf="order.returnItems?.length">View Return</a>
+              </div>
+            </div>
+            <h5 class="card-title">Order No: {{ order.orderId }}</h5>
+            <div class="order__item--date">{{ order.orderDate | date }}</div>
+            <a class="card-link text-primary" (click)="onOpenOrderDetails(order.orderId)">View Details</a>
+            <a class="card-link text-dark" (click)="onDownloadPDF(order.orderId)">Download Invoice</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

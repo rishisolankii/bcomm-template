@@ -1,0 +1,26 @@
+<div class="container">
+    <app-breadcrumb
+      [inactiveElements]="[{ label: 'Home', redirectUrl: '' }]"
+      [activeElement]="cmsDetails ? (cmsDetails[0]?.pageTitle | titlecase) : ''"
+      (redirectUrl)="onRedirectToUrl($event)"
+    ></app-breadcrumb>
+  
+    <div class="page-title__wrapper">
+      <div class="page-title__heading">
+        {{ cmsDetails ? (cmsDetails[0]?.pageTitle | titlecase) : "" }}
+      </div>
+      <div
+        class="page-title__description"
+        [innerHTML]="cmsDetails ? cmsDetails[0]?.pageContent : ''"
+      >
+        <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
+            amet, consectetu -->
+      </div>
+    </div>
+  
+    <div class="faqs__wrapper"></div>
+  </div>
+  
+
+  

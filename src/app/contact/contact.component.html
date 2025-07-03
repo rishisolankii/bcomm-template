@@ -1,0 +1,114 @@
+<div class="container">
+  <app-breadcrumb
+    [inactiveElements]="[{ label: 'Home', redirectUrl: '' }]"
+    [activeElement]="'Contact Us '"
+    (redirectUrl)="onRedirect($event)"
+  ></app-breadcrumb>
+  <div class="page-title__wrapper">
+    <div class="page-title__heading">Contact Us</div>
+    <div class="page-title__description">
+      Questions? Comments? Get in touch with us by filling out the email form
+      below. We will get back to you as soon as we can!
+    </div>
+  </div>
+
+  <div class="contact__wrapper">
+    <div class="contact__main" #contactContainer>
+      <!-- <div class="contact__main--header">Get in touch with us!</div> -->
+      <div *ngIf="isLoading" class="spinner">Loading...</div>
+      <div *ngIf="!isLoading" [innerHTML]="iframeHtml"></div>
+      <ng-container *ngIf="!contactFormData && !isLoading">
+        <div class="contact__main--item-grp">
+          <div class="contact__main--item">
+            <label>First Name</label>
+            <input type="text" class="form-control" placeholder="Max" />
+          </div>
+          <div class="contact__main--item">
+            <label>Last Name</label>
+            <input type="text" class="form-control" placeholder="Luca" />
+          </div>
+        </div>
+        <div class="contact__main--item-grp">
+          <div class="contact__main--item">
+            <label>Email</label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="max.luca@gmail.com"
+            />
+          </div>
+          <div class="contact__main--item">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              placeholder="+1 (555) 000-0000"
+            />
+          </div>
+        </div>
+        <div class="contact__main--item-grp">
+          <div class="contact__main--item message">
+            <label>Your message</label>
+            <textarea
+              rows="3"
+              class="form-control"
+              placeholder="Your query here"
+            ></textarea>
+          </div>
+        </div>
+        <div class="contact__main--footer">
+          <div class="contact__main--footer-coupon"></div>
+          <div class="contact__main--footer-shopping">
+            <button class="btn btn-dark">Send Message</button>
+          </div>
+        </div>
+      </ng-container>
+      <!-- <img src="assets/images/dummy-product-03.png" alt=""> -->
+    </div>
+    <div class="contact__info">
+      <!-- <div class="contact__info--header">Contact Details</div> -->
+      <div class="contact__info--item">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div class="contact__info--item-label">Address</div>
+        <div class="contact__info--item-value" *ngIf="companyAddress">
+          <div>
+            {{ companyAddress?.address1 }}, {{ companyAddress?.address2 }}
+          </div>
+          <div>
+            {{ companyAddress?.city }}, {{ companyAddress?.countryGeoId }},
+            {{ companyAddress?.postalCode }}
+          </div>
+        </div>
+        <div class="contact__info--item-value" *ngIf="!companyAddress">
+          <div>Company Address Goes Here</div>
+        </div>
+      </div>
+      <div class="contact__info--item">
+        <i class="bi bi-telephone-fill"></i>
+        <div class="contact__info--item-label">Phone</div>
+        <div class="contact__info--item-value" *ngIf="companyContact">
+          {{ companyContact.countryCode }}-{{ companyContact.areaCode }}-{{
+            companyContact.contactNumber
+          }}
+        </div>
+        <div class="contact__info--item-value" *ngIf="!companyContact">
+          123-456-7890
+        </div>
+      </div>
+      <div class="contact__info--item">
+        <i class="bi bi-envelope-fill"></i>
+        <div class="contact__info--item-label">Email</div>
+        <div class="contact__info--item-value">
+          {{ companyEmail ? companyEmail : "company@email.com" }}
+        </div>
+      </div>
+      <div class="contact__info--item">
+        <i class="bi bi-clock-fill"></i>
+        <div class="contact__info--item-label">Timings</div>
+        <div class="contact__info--item-value">
+          8:00AM - 10:00PM, Sunday Close
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
