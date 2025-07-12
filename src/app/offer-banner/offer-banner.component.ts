@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-offer-banner',
   templateUrl: './offer-banner.component.html',
-  styleUrl: './offer-banner.component.scss'
+  styleUrl: './offer-banner.component.scss',
 })
 export class OfferBannerComponent {
   @Input() title!: string;
