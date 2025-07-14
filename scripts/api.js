@@ -213,46 +213,49 @@ function extractMethods(classNode, sourceFile) {
  * @returns {{errors: {file: string, message: string}[], warnings: {file: string, message: string}[], success: boolean}}
  */
 function validate(projectDir, schemaPath) {
-  let schema;
-  try {
-    const absoluteProjectDir = path.resolve(projectDir);
-    if (!fs.existsSync(absoluteProjectDir) || !fs.statSync(absoluteProjectDir).isDirectory()) {
-      return {
-        errors: [{ file: projectDir, message: "Project directory does not exist or is not a directory." }],
-        warnings: [],
-        success: false,
-      };
-    }
-    const absoluteSchemaPath = path.resolve(schemaPath);
-     if (!fs.existsSync(absoluteSchemaPath) || fs.statSync(absoluteSchemaPath).isDirectory()) {
-      return {
-        errors: [{ file: schemaPath, message: "Schema file does not exist or is a directory." }],
-        warnings: [],
-        success: false,
-      };
-    }
-    schema = JSON.parse(fs.readFileSync(absoluteSchemaPath, "utf8"));
-  } catch (error) {
-    return {
-      errors: [{ file: schemaPath, message: `Error reading or parsing schema file: ${error.message}` }],
-      warnings: [],
-      success: false,
-    };
-  }
-
-  const componentFiles = findComponentFiles(projectDir);
   const allErrors = [];
   const allWarnings = [];
 
-  if (componentFiles.length === 0) {
-    if (Object.keys(schema).length > 0) {
-      allWarnings.push({
-        file: projectDir,
-        message: "Schema is not empty, but no component files were found in the project directory.",
-      });
-    }
-    return { errors: allErrors, warnings: allWarnings, success: true };
+  // Validate root project and schema paths
+  const absoluteProjectDir = path.resolve(projectDir);
+  if (!fs.existsSync(absoluteProjectDir) || !fs.statSync(absoluteProjectDir).isDirectory()) {
+    allErrors.push({ file: projectDir, message: "Project directory does not exist or is not a directory." });
+    return { errors: allErrors, warnings: [], success: false };
   }
+
+  const absoluteSchemaPath = path.resolve(schemaPath);
+  if (!fs.existsSync(absoluteSchemaPath) || fs.statSync(absoluteSchemaPath).isDirectory()) {
+    allErrors.push({ file: schemaPath, message: "Schema file does not exist or is a directory." });
+    return { errors: allErrors, warnings: [], success: false };
+  }
+
+  // Check for src directory existence
+  const srcPath = path.join(absoluteProjectDir, "src");
+  if (!fs.existsSync(srcPath) || !fs.statSync(srcPath).isDirectory()) {
+    allErrors.push({ file: "src", message: "The 'src' directory does not exist or is not a directory." });
+  }
+
+  // Check for package.json existence
+  const packageJsonPath = path.join(absoluteProjectDir, 'package.json');
+  if (!fs.existsSync(packageJsonPath) || !fs.statSync(packageJsonPath).isFile()) {
+    allErrors.push({ file: 'package.json', message: 'Template package.json does not exist.' });
+  }
+
+  // Check for angular.json existence
+  const angularJsonPath = path.join(absoluteProjectDir, 'angular.json');
+  if (!fs.existsSync(angularJsonPath) || !fs.statSync(angularJsonPath).isFile()) {
+    allErrors.push({ file: 'angular.json', message: 'Template angular.json does not exist.' });
+  }
+
+  let schema;
+  try {
+    schema = JSON.parse(fs.readFileSync(absoluteSchemaPath, "utf8"));
+  } catch (error) {
+    allErrors.push({ file: schemaPath, message: `Error reading or parsing schema file: ${error.message}` });
+    return { errors: allErrors, warnings: allWarnings, success: false };
+  }
+
+  const componentFiles = findComponentFiles(projectDir);
 
   for (const filePath of componentFiles) {
     const absoluteProjectDir = path.resolve(projectDir);
