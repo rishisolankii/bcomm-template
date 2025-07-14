@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 scripts/node_modules
+scripts/uploads
