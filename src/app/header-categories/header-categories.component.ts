@@ -11,9 +11,9 @@ export class HeaderCategoriesComponent {
   @Input() categories: any;
   @Input() menuCmsData: any;
   @Input() defaultProductImage: any;
-  @Output() categoryOverlayId: EventEmitter<any> = new EventEmitter<any>();
-  @Output() subcategoryId: EventEmitter<any> = new EventEmitter<any>();
-  @Output() pageUrl: EventEmitter<any> = new EventEmitter<any>();
+  @Output() categoryOverlayId = new EventEmitter<any>();
+  @Output() subcategoryId = new EventEmitter<any>();
+  @Output() pageUrl = new EventEmitter<any>();
 
   // showOverlay = false;
   // selectedCategoryId!: number;

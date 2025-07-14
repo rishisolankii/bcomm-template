@@ -36,21 +36,21 @@ export class CategoriesComponent {
   @Output() goToBanner = new EventEmitter<any>();
   @Input() filters: any = {};
   @Input() selectedFilters: any = {};
-  @Output() deselectRadioBtn$: EventEmitter<{}> = new EventEmitter<{}>();
-  @Output() onApplyFilter$: EventEmitter<void> = new EventEmitter<void>();
-  @Output() clearFilter$: EventEmitter<void> = new EventEmitter<void>();
+  @Output() deselectRadioBtn$ = new EventEmitter<{}>();
+  @Output() onApplyFilter$ = new EventEmitter<void>();
+  @Output() clearFilter$ = new EventEmitter<void>();
   objectKeys = Object.keys;
   @Input() minPrice: any = new FormControl();
   @Input() maxPrice: any = new FormControl();
   @Input() sortingOptions: any = [];
   @Input() selectedSorting: any = 'SortKeywordRelevancy';
-  @Output() selectSorting$: EventEmitter<any> = new EventEmitter<any>();
+  @Output() selectSorting$ = new EventEmitter<any>();
   @Output() subCategoryProductId = new EventEmitter<any>();
   @Output() productId = new EventEmitter<any>();
   @Output() goToProduct = new EventEmitter<any>();
   @Output() redirectBreadcrumbUrl = new EventEmitter<any>();
-  @Output() changeFilter$: EventEmitter<any> = new EventEmitter<any>();
-  @Output() getLabel$: EventEmitter<any> = new EventEmitter<any>();
+  @Output() changeFilter$ = new EventEmitter<any>();
+  @Output() getLabel$ = new EventEmitter<any>();
   @Input() sortingLabel!: any;
 
   onRedirectToUrl(url: any) {

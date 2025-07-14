@@ -1,136 +1,361 @@
 {
-  "src/app/account-header/account-header.component.ts": {
-    "selector": "app-account-header",
-    "inputs": [
-      {
-        "name": "profileUserData",
-        "type": "any"
-      },
-      {
-        "name": "emailDataList",
-        "type": "any"
-      }
-    ],
-    "outputs": [],
-    "methods": []
-  },
-  "src/app/account-sidebar/account-sidebar.component.ts": {
-    "selector": "app-account-sidebar",
-    "inputs": [
-      {
-        "name": "sidebarOptions",
-        "type": "any[]"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "onRedirectURL",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onRedirection",
-        "parameters": [
-          {
-            "name": "url",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/all-orders/all-orders.component.ts": {
-    "selector": "app-all-orders",
-    "inputs": [
-      {
-        "name": "ordersList",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "openOrderDetails",
-        "type": "any"
-      },
-      {
-        "name": "downloadPDF",
-        "type": "any"
-      },
-      {
-        "name": "openReturnOrderModal",
-        "type": "any"
-      },
-      {
-        "name": "openReturnDetailsModal",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onOpenOrderDetails",
-        "parameters": [
-          {
-            "name": "orderId",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "onDownloadPDF",
-        "parameters": [
-          {
-            "name": "orderId",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "onOpenReturnOrderModal",
-        "parameters": [
-          {
-            "name": "orderId",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "onOpenReturnDetailsModal",
-        "parameters": [
-          {
-            "name": "returnItems",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
   "src/app/app.component.ts": {
     "selector": "app-root",
     "inputs": [],
     "outputs": [],
     "methods": []
   },
-  "src/app/banner-item/banner-item.component.ts": {
-    "selector": "app-banner-item",
+  "src/app/register/register.component.ts": {
+    "selector": "app-register",
+    "inputs": [
+      {
+        "name": "registerFG",
+        "type": "FormGroup"
+      },
+      {
+        "name": "storeLogo",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "redirectToLogin",
+        "type": "any"
+      },
+      {
+        "name": "redirectToHome",
+        "type": "any"
+      },
+      {
+        "name": "register",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onRegister",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToHome",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToLogin",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/offer-banner/offer-banner.component.ts": {
+    "selector": "app-offer-banner",
+    "inputs": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "ctaType",
+        "type": "string"
+      },
+      {
+        "name": "ctaLabel",
+        "type": "string"
+      },
+      {
+        "name": "mediaURL",
+        "type": "string"
+      },
+      {
+        "name": "bgColor",
+        "type": "string"
+      },
+      {
+        "name": "bannerData",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "goToBanner",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "goToBannerURL",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/login/login.component.ts": {
+    "selector": "app-login",
+    "inputs": [
+      {
+        "name": "loginFormGroup",
+        "type": "FormGroup"
+      },
+      {
+        "name": "storeLogo",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "login",
+        "type": "any"
+      },
+      {
+        "name": "redirectToRegister",
+        "type": "any"
+      },
+      {
+        "name": "redirectToHome",
+        "type": "any"
+      },
+      {
+        "name": "onForgotPassword",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onLogin",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToHome",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onForgot",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToRegister",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/item-card/item-card.component.ts": {
+    "selector": "app-item-card",
+    "inputs": [
+      {
+        "name": "product",
+        "type": "any"
+      },
+      {
+        "name": "isLoading",
+        "type": "boolean"
+      },
+      {
+        "name": "isSearch",
+        "type": "any"
+      },
+      {
+        "name": "productDetails",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "goToProduct",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "goToProductDetails",
+        "parameters": [
+          {
+            "name": "product",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/home/home.component.ts": {
+    "selector": "app-home",
+    "inputs": [
+      {
+        "name": "heroBannerType",
+        "type": "any"
+      },
+      {
+        "name": "bannersDetail",
+        "type": "any"
+      },
+      {
+        "name": "foundBanner",
+        "type": "any"
+      },
+      {
+        "name": "storeTheme",
+        "type": "any"
+      },
+      {
+        "name": "mostPopularCategory",
+        "type": "any"
+      },
+      {
+        "name": "promotionCategory",
+        "type": "any"
+      },
+      {
+        "name": "popularCategories",
+        "type": "any"
+      },
+      {
+        "name": "topPicks",
+        "type": "any"
+      },
+      {
+        "name": "bestsellers",
+        "type": "any"
+      },
+      {
+        "name": "showLoading",
+        "type": "any"
+      },
+      {
+        "name": "mediaBaseUrl",
+        "type": "any"
+      },
+      {
+        "name": "promotionList",
+        "type": "any"
+      },
+      {
+        "name": "bannerOne",
+        "type": "any"
+      },
+      {
+        "name": "bannerTwo",
+        "type": "any"
+      },
+      {
+        "name": "bannerThree",
+        "type": "any"
+      },
+      {
+        "name": "bannerFour",
+        "type": "any"
+      },
+      {
+        "name": "bannerFive",
+        "type": "any"
+      },
+      {
+        "name": "bannerSix",
+        "type": "any"
+      },
+      {
+        "name": "themeComponent",
+        "type": "'autoparts' | 'full' | 'modern' | null"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bannerUrl",
+        "type": "any"
+      },
+      {
+        "name": "goToBanner",
+        "type": "any"
+      },
+      {
+        "name": "categoryRedirection",
+        "type": "any"
+      },
+      {
+        "name": "productRedirection",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "goToBannerURL",
+        "parameters": [
+          {
+            "name": "banner",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "goToURL",
+        "parameters": [
+          {
+            "name": "item",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "goToCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "goToProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/hero-modern/hero-modern.component.ts": {
+    "selector": "app-hero-modern",
     "inputs": [
       {
         "name": "banner",
         "type": "any"
       },
       {
-        "name": "bannerDescription",
-        "type": "Boolean"
+        "name": "foundBanner",
+        "type": "any"
+      },
+      {
+        "name": "bannerKey",
+        "type": "string"
       }
     ],
     "outputs": [
       {
-        "name": "goToBanner",
+        "name": "bannerUrl",
         "type": "any"
       }
     ],
@@ -147,21 +372,427 @@
       }
     ]
   },
-  "src/app/breadcrumb/breadcrumb.component.ts": {
-    "selector": "app-breadcrumb",
+  "src/app/hero-full/hero-full.component.ts": {
+    "selector": "app-hero-full",
     "inputs": [
       {
-        "name": "inactiveElements",
+        "name": "banner",
         "type": "any"
       },
       {
-        "name": "activeElement",
+        "name": "foundBanner",
+        "type": "any"
+      },
+      {
+        "name": "bannerKey",
+        "type": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bannerUrl",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "goToBannerURL",
+        "parameters": [
+          {
+            "name": "banner",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/hero-banner/hero-banner.component.ts": {
+    "selector": "app-hero-banner",
+    "inputs": [
+      {
+        "name": "banner",
+        "type": "any"
+      },
+      {
+        "name": "foundBanner",
+        "type": "any"
+      },
+      {
+        "name": "bannerKey",
+        "type": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bannerUrl",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "goToBannerURL",
+        "parameters": [
+          {
+            "name": "banner",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/header-top-strip/header-top-strip.component.ts": {
+    "selector": "app-header-top-strip",
+    "inputs": [
+      {
+        "name": "promotionTitle",
+        "type": "any"
+      },
+      {
+        "name": "topCmsData",
+        "type": "any"
+      },
+      {
+        "name": "stripFlagIcon",
+        "type": "any"
+      },
+      {
+        "name": "shippingIcon",
         "type": "any"
       }
     ],
     "outputs": [
       {
-        "name": "redirectUrl",
+        "name": "pageUrl",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onRedirectDetailsPage",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/header-categories/header-categories.component.ts": {
+    "selector": "app-header-categories",
+    "inputs": [
+      {
+        "name": "showOverlay",
+        "type": "any"
+      },
+      {
+        "name": "selectedCategoryId",
+        "type": "any"
+      },
+      {
+        "name": "categories",
+        "type": "any"
+      },
+      {
+        "name": "menuCmsData",
+        "type": "any"
+      },
+      {
+        "name": "defaultProductImage",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "categoryOverlayId",
+        "type": "any"
+      },
+      {
+        "name": "subcategoryId",
+        "type": "any"
+      },
+      {
+        "name": "pageUrl",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "openCategoryOverlay",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "redirectBySubcategory",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "redirectByPageUrl",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/header/header.component.ts": {
+    "selector": "app-header",
+    "inputs": [
+      {
+        "name": "isLogin",
+        "type": "boolean"
+      },
+      {
+        "name": "userFirstName",
+        "type": "any"
+      },
+      {
+        "name": "userType",
+        "type": "any"
+      },
+      {
+        "name": "searchText",
+        "type": "any"
+      },
+      {
+        "name": "cartItemCount",
+        "type": "number"
+      },
+      {
+        "name": "storeLogo",
+        "type": "any"
+      },
+      {
+        "name": "cmsData",
+        "type": "any"
+      },
+      {
+        "name": "defaultStoreLogoUrl",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "search",
+        "type": "any"
+      },
+      {
+        "name": "logout",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "searchProducts",
+        "parameters": [
+          {
+            "name": "e",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onLogout",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/forgot-password/forgot-password.component.ts": {
+    "selector": "app-forgot-password",
+    "inputs": [
+      {
+        "name": "resetFG",
+        "type": "FormGroup"
+      },
+      {
+        "name": "storeLogo",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "sendEmail",
+        "type": "any"
+      },
+      {
+        "name": "redirectToHome",
+        "type": "any"
+      },
+      {
+        "name": "redirectToLogin",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onSendEmail",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToHome",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToLogin",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/footer-copyright-strip/footer-copyright-strip.component.ts": {
+    "selector": "app-footer-copyright-strip",
+    "inputs": [
+      {
+        "name": "companyName",
+        "type": "string"
+      }
+    ],
+    "outputs": [],
+    "methods": []
+  },
+  "src/app/footer/footer.component.ts": {
+    "selector": "app-footer",
+    "inputs": [
+      {
+        "name": "storeLogo",
+        "type": "any"
+      },
+      {
+        "name": "categories",
+        "type": "any"
+      },
+      {
+        "name": "companyName",
+        "type": "any"
+      },
+      {
+        "name": "companyAddress",
+        "type": "any"
+      },
+      {
+        "name": "companyEmail",
+        "type": "any"
+      },
+      {
+        "name": "companyContact",
+        "type": "any"
+      },
+      {
+        "name": "newsletterData",
+        "type": "any"
+      },
+      {
+        "name": "bottomCmsData",
+        "type": "any"
+      },
+      {
+        "name": "footerCmsData",
+        "type": "any"
+      },
+      {
+        "name": "iframeHtml",
+        "type": "any"
+      }
+    ],
+    "outputs": [],
+    "methods": []
+  },
+  "src/app/faqs/faqs.component.ts": {
+    "selector": "app-faqs",
+    "inputs": [
+      {
+        "name": "faqs",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onRedirectUrl",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onRedirection",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/empty-cart/empty-cart.component.ts": {
+    "selector": "app-empty-cart",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "redirectToHome",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onRedirectToHome",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/contact/contact.component.ts": {
+    "selector": "app-contact",
+    "inputs": [
+      {
+        "name": "isLoading",
+        "type": "any"
+      },
+      {
+        "name": "companyAddress",
+        "type": "any"
+      },
+      {
+        "name": "companyContact",
+        "type": "any"
+      },
+      {
+        "name": "companyEmail",
+        "type": "any"
+      },
+      {
+        "name": "contactFormData",
+        "type": "FormGroup"
+      },
+      {
+        "name": "iframeHtml",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "redirectBreadcrumbUrl",
         "type": "any"
       }
     ],
@@ -171,7 +802,325 @@
         "parameters": [
           {
             "name": "url",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/cms-page/cms-page.component.ts": {
+    "selector": "app-cms-page",
+    "inputs": [
+      {
+        "name": "cmsDetails",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "redirectBreadcrumbUrl",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onRedirectToUrl",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/categories/categories.component.ts": {
+    "selector": "app-categories",
+    "inputs": [
+      {
+        "name": "categoryId",
+        "type": "string"
+      },
+      {
+        "name": "subCategories",
+        "type": "any[]"
+      },
+      {
+        "name": "products",
+        "type": "object[]"
+      },
+      {
+        "name": "categoryBanner",
+        "type": "any"
+      },
+      {
+        "name": "categoryName",
+        "type": "any"
+      },
+      {
+        "name": "categoryDescription",
+        "type": "any"
+      },
+      {
+        "name": "swiperOptions",
+        "type": "any"
+      },
+      {
+        "name": "searchText",
+        "type": "any"
+      },
+      {
+        "name": "reachedMaximum",
+        "type": "any"
+      },
+      {
+        "name": "showLoading",
+        "type": "any"
+      },
+      {
+        "name": "featuredPorducts",
+        "type": "any"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "ctaType",
+        "type": "string"
+      },
+      {
+        "name": "ctaLabel",
+        "type": "string"
+      },
+      {
+        "name": "mediaURL",
+        "type": "string"
+      },
+      {
+        "name": "bgColor",
+        "type": "string"
+      },
+      {
+        "name": "bannerData",
+        "type": "any"
+      },
+      {
+        "name": "searchPlaceHolder",
+        "type": "any"
+      },
+      {
+        "name": "filters",
+        "type": "any"
+      },
+      {
+        "name": "selectedFilters",
+        "type": "any"
+      },
+      {
+        "name": "minPrice",
+        "type": "any"
+      },
+      {
+        "name": "maxPrice",
+        "type": "any"
+      },
+      {
+        "name": "sortingOptions",
+        "type": "any"
+      },
+      {
+        "name": "selectedSorting",
+        "type": "any"
+      },
+      {
+        "name": "sortingLabel",
+        "type": "any"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "getProducts",
+        "type": "any"
+      },
+      {
+        "name": "getMoreProducts",
+        "type": "any"
+      },
+      {
+        "name": "searchTextChanged",
+        "type": "any"
+      },
+      {
+        "name": "goToBanner",
+        "type": "any"
+      },
+      {
+        "name": "deselectRadioBtn$",
+        "type": "{}"
+      },
+      {
+        "name": "onApplyFilter$",
+        "type": "void"
+      },
+      {
+        "name": "clearFilter$",
+        "type": "void"
+      },
+      {
+        "name": "selectSorting$",
+        "type": "any"
+      },
+      {
+        "name": "subCategoryProductId",
+        "type": "any"
+      },
+      {
+        "name": "productId",
+        "type": "any"
+      },
+      {
+        "name": "goToProduct",
+        "type": "any"
+      },
+      {
+        "name": "redirectBreadcrumbUrl",
+        "type": "any"
+      },
+      {
+        "name": "changeFilter$",
+        "type": "any"
+      },
+      {
+        "name": "getLabel$",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "onRedirectToUrl",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "goToBannerURL",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "goToProductDetails",
+        "parameters": [
+          {
+            "name": "product",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "fetchProducts",
+        "parameters": [
+          {
+            "name": "isSearch",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "fetchMoreProducts",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onChange",
+        "parameters": [
+          {
+            "name": "e",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "deselectRadioBtn",
+        "parameters": [
+          {
+            "name": "filterKey",
             "type": "string"
+          },
+          {
+            "name": "selectedValue",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "clearFilter",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onApplyFilter",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onChangeFilter",
+        "parameters": [
+          {
+            "name": "$event",
+            "type": "any"
+          },
+          {
+            "name": "productFeatureId",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "selectSorting",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onRedirectToProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "redirectToDetails",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "any"
           }
         ],
         "returnType": "any"
@@ -326,355 +1275,21 @@
       }
     ]
   },
-  "src/app/categories/categories.component.ts": {
-    "selector": "app-categories",
+  "src/app/breadcrumb/breadcrumb.component.ts": {
+    "selector": "app-breadcrumb",
     "inputs": [
       {
-        "name": "categoryId",
-        "type": "string"
-      },
-      {
-        "name": "subCategories",
-        "type": "any[]"
-      },
-      {
-        "name": "products",
-        "type": "object[]"
-      },
-      {
-        "name": "categoryBanner",
+        "name": "inactiveElements",
         "type": "any"
       },
       {
-        "name": "categoryName",
-        "type": "any"
-      },
-      {
-        "name": "categoryDescription",
-        "type": "any"
-      },
-      {
-        "name": "swiperOptions",
-        "type": "any"
-      },
-      {
-        "name": "searchText",
-        "type": "any"
-      },
-      {
-        "name": "reachedMaximum",
-        "type": "any"
-      },
-      {
-        "name": "showLoading",
-        "type": "any"
-      },
-      {
-        "name": "featuredPorducts",
-        "type": "any"
-      },
-      {
-        "name": "title",
-        "type": "string"
-      },
-      {
-        "name": "subtitle",
-        "type": "string"
-      },
-      {
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "name": "ctaType",
-        "type": "string"
-      },
-      {
-        "name": "ctaLabel",
-        "type": "string"
-      },
-      {
-        "name": "mediaURL",
-        "type": "string"
-      },
-      {
-        "name": "bgColor",
-        "type": "string"
-      },
-      {
-        "name": "bannerData",
-        "type": "any"
-      },
-      {
-        "name": "searchPlaceHolder",
-        "type": "any"
-      },
-      {
-        "name": "filters",
-        "type": "any"
-      },
-      {
-        "name": "selectedFilters",
-        "type": "any"
-      },
-      {
-        "name": "minPrice",
-        "type": "any"
-      },
-      {
-        "name": "maxPrice",
-        "type": "any"
-      },
-      {
-        "name": "sortingOptions",
-        "type": "any"
-      },
-      {
-        "name": "selectedSorting",
-        "type": "any"
-      },
-      {
-        "name": "sortingLabel",
+        "name": "activeElement",
         "type": "any"
       }
     ],
     "outputs": [
       {
-        "name": "getProducts",
-        "type": "any"
-      },
-      {
-        "name": "getMoreProducts",
-        "type": "any"
-      },
-      {
-        "name": "searchTextChanged",
-        "type": "any"
-      },
-      {
-        "name": "goToBanner",
-        "type": "any"
-      },
-      {
-        "name": "deselectRadioBtn$",
-        "type": "EventEmitter<{}>"
-      },
-      {
-        "name": "onApplyFilter$",
-        "type": "EventEmitter<void>"
-      },
-      {
-        "name": "clearFilter$",
-        "type": "EventEmitter<void>"
-      },
-      {
-        "name": "selectSorting$",
-        "type": "EventEmitter<any>"
-      },
-      {
-        "name": "subCategoryProductId",
-        "type": "any"
-      },
-      {
-        "name": "productId",
-        "type": "any"
-      },
-      {
-        "name": "goToProduct",
-        "type": "any"
-      },
-      {
-        "name": "redirectBreadcrumbUrl",
-        "type": "any"
-      },
-      {
-        "name": "changeFilter$",
-        "type": "EventEmitter<any>"
-      },
-      {
-        "name": "getLabel$",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onRedirectToUrl",
-        "parameters": [
-          {
-            "name": "url",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "goToBannerURL",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "goToProductDetails",
-        "parameters": [
-          {
-            "name": "product",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "fetchProducts",
-        "parameters": [
-          {
-            "name": "isSearch",
-            "type": "boolean"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "fetchMoreProducts",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onChange",
-        "parameters": [
-          {
-            "name": "e",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "deselectRadioBtn",
-        "parameters": [
-          {
-            "name": "filterKey",
-            "type": "string"
-          },
-          {
-            "name": "selectedValue",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "clearFilter",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onApplyFilter",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onChangeFilter",
-        "parameters": [
-          {
-            "name": "$event",
-            "type": "any"
-          },
-          {
-            "name": "productFeatureId",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "selectSorting",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToProduct",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "redirectToDetails",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/cms-page/cms-page.component.ts": {
-    "selector": "app-cms-page",
-    "inputs": [
-      {
-        "name": "cmsDetails",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "redirectBreadcrumbUrl",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onRedirectToUrl",
-        "parameters": [
-          {
-            "name": "url",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/contact/contact.component.ts": {
-    "selector": "app-contact",
-    "inputs": [
-      {
-        "name": "isLoading",
-        "type": "any"
-      },
-      {
-        "name": "companyAddress",
-        "type": "any"
-      },
-      {
-        "name": "companyContact",
-        "type": "any"
-      },
-      {
-        "name": "companyEmail",
-        "type": "any"
-      },
-      {
-        "name": "contactFormData",
-        "type": "FormGroup"
-      },
-      {
-        "name": "iframeHtml",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "redirectBreadcrumbUrl",
+        "name": "redirectUrl",
         "type": "any"
       }
     ],
@@ -684,6 +1299,37 @@
         "parameters": [
           {
             "name": "url",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/banner-item/banner-item.component.ts": {
+    "selector": "app-banner-item",
+    "inputs": [
+      {
+        "name": "banner",
+        "type": "any"
+      },
+      {
+        "name": "bannerDescription",
+        "type": "Boolean"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "goToBanner",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "goToBannerURL",
+        "parameters": [
+          {
+            "name": "banner",
             "type": "any"
           }
         ],
@@ -691,34 +1337,86 @@
       }
     ]
   },
-  "src/app/empty-cart/empty-cart.component.ts": {
-    "selector": "app-empty-cart",
-    "inputs": [],
+  "src/app/all-orders/all-orders.component.ts": {
+    "selector": "app-all-orders",
+    "inputs": [
+      {
+        "name": "ordersList",
+        "type": "any"
+      }
+    ],
     "outputs": [
       {
-        "name": "redirectToHome",
+        "name": "openOrderDetails",
+        "type": "any"
+      },
+      {
+        "name": "downloadPDF",
+        "type": "any"
+      },
+      {
+        "name": "openReturnOrderModal",
+        "type": "any"
+      },
+      {
+        "name": "openReturnDetailsModal",
         "type": "any"
       }
     ],
     "methods": [
       {
-        "name": "onRedirectToHome",
-        "parameters": [],
+        "name": "onOpenOrderDetails",
+        "parameters": [
+          {
+            "name": "orderId",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onDownloadPDF",
+        "parameters": [
+          {
+            "name": "orderId",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onOpenReturnOrderModal",
+        "parameters": [
+          {
+            "name": "orderId",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onOpenReturnDetailsModal",
+        "parameters": [
+          {
+            "name": "returnItems",
+            "type": "any"
+          }
+        ],
         "returnType": "any"
       }
     ]
   },
-  "src/app/faqs/faqs.component.ts": {
-    "selector": "app-faqs",
+  "src/app/account-sidebar/account-sidebar.component.ts": {
+    "selector": "app-account-sidebar",
     "inputs": [
       {
-        "name": "faqs",
-        "type": "any"
+        "name": "sidebarOptions",
+        "type": "any[]"
       }
     ],
     "outputs": [
       {
-        "name": "onRedirectUrl",
+        "name": "onRedirectURL",
         "type": "any"
       }
     ],
@@ -735,717 +1433,19 @@
       }
     ]
   },
-  "src/app/footer-copyright-strip/footer-copyright-strip.component.ts": {
-    "selector": "app-footer-copyright-strip",
+  "src/app/account-header/account-header.component.ts": {
+    "selector": "app-account-header",
     "inputs": [
       {
-        "name": "companyName",
-        "type": "string"
-      }
-    ],
-    "outputs": [],
-    "methods": []
-  },
-  "src/app/footer/footer.component.ts": {
-    "selector": "app-footer",
-    "inputs": [
-      {
-        "name": "storeLogo",
+        "name": "profileUserData",
         "type": "any"
       },
       {
-        "name": "categories",
-        "type": "any"
-      },
-      {
-        "name": "companyName",
-        "type": "any"
-      },
-      {
-        "name": "companyAddress",
-        "type": "any"
-      },
-      {
-        "name": "companyEmail",
-        "type": "any"
-      },
-      {
-        "name": "companyContact",
-        "type": "any"
-      },
-      {
-        "name": "newsletterData",
-        "type": "any"
-      },
-      {
-        "name": "bottomCmsData",
-        "type": "any"
-      },
-      {
-        "name": "footerCmsData",
-        "type": "any"
-      },
-      {
-        "name": "iframeHtml",
+        "name": "emailDataList",
         "type": "any"
       }
     ],
     "outputs": [],
     "methods": []
-  },
-  "src/app/forgot-password/forgot-password.component.ts": {
-    "selector": "app-forgot-password",
-    "inputs": [
-      {
-        "name": "resetFG",
-        "type": "FormGroup"
-      },
-      {
-        "name": "storeLogo",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "sendEmail",
-        "type": "any"
-      },
-      {
-        "name": "redirectToHome",
-        "type": "any"
-      },
-      {
-        "name": "redirectToLogin",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onSendEmail",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToHome",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToLogin",
-        "parameters": [],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/header-categories/header-categories.component.ts": {
-    "selector": "app-header-categories",
-    "inputs": [
-      {
-        "name": "showOverlay",
-        "type": "any"
-      },
-      {
-        "name": "selectedCategoryId",
-        "type": "any"
-      },
-      {
-        "name": "categories",
-        "type": "any"
-      },
-      {
-        "name": "menuCmsData",
-        "type": "any"
-      },
-      {
-        "name": "defaultProductImage",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "categoryOverlayId",
-        "type": "EventEmitter<any>"
-      },
-      {
-        "name": "subcategoryId",
-        "type": "EventEmitter<any>"
-      },
-      {
-        "name": "pageUrl",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "openCategoryOverlay",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "redirectBySubcategory",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "redirectByPageUrl",
-        "parameters": [
-          {
-            "name": "url",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/header-top-strip/header-top-strip.component.ts": {
-    "selector": "app-header-top-strip",
-    "inputs": [
-      {
-        "name": "promotionTitle",
-        "type": "any"
-      },
-      {
-        "name": "topCmsData",
-        "type": "any"
-      },
-      {
-        "name": "stripFlagIcon",
-        "type": "any"
-      },
-      {
-        "name": "shippingIcon",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "pageUrl",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onRedirectDetailsPage",
-        "parameters": [
-          {
-            "name": "url",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/header/header.component.ts": {
-    "selector": "app-header",
-    "inputs": [
-      {
-        "name": "isLogin",
-        "type": "boolean"
-      },
-      {
-        "name": "userFirstName",
-        "type": "any"
-      },
-      {
-        "name": "userType",
-        "type": "any"
-      },
-      {
-        "name": "searchText",
-        "type": "any"
-      },
-      {
-        "name": "cartItemCount",
-        "type": "number"
-      },
-      {
-        "name": "storeLogo",
-        "type": "any"
-      },
-      {
-        "name": "cmsData",
-        "type": "any"
-      },
-      {
-        "name": "defaultStoreLogoUrl",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "search",
-        "type": "any"
-      },
-      {
-        "name": "logout",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "searchProducts",
-        "parameters": [
-          {
-            "name": "e",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "onLogout",
-        "parameters": [],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/hero-banner/hero-banner.component.ts": {
-    "selector": "app-hero-banner",
-    "inputs": [
-      {
-        "name": "banner",
-        "type": "any"
-      },
-      {
-        "name": "foundBanner",
-        "type": "any"
-      },
-      {
-        "name": "bannerKey",
-        "type": "string"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "bannerUrl",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "goToBannerURL",
-        "parameters": [
-          {
-            "name": "banner",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/hero-full/hero-full.component.ts": {
-    "selector": "app-hero-full",
-    "inputs": [
-      {
-        "name": "banner",
-        "type": "any"
-      },
-      {
-        "name": "foundBanner",
-        "type": "any"
-      },
-      {
-        "name": "bannerKey",
-        "type": "string"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "bannerUrl",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "goToBannerURL",
-        "parameters": [
-          {
-            "name": "banner",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/hero-modern/hero-modern.component.ts": {
-    "selector": "app-hero-modern",
-    "inputs": [
-      {
-        "name": "banner",
-        "type": "any"
-      },
-      {
-        "name": "foundBanner",
-        "type": "any"
-      },
-      {
-        "name": "bannerKey",
-        "type": "string"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "bannerUrl",
-        "type": "EventEmitter<any>"
-      }
-    ],
-    "methods": [
-      {
-        "name": "goToBannerURL",
-        "parameters": [
-          {
-            "name": "banner",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/home/home.component.ts": {
-    "selector": "app-home",
-    "inputs": [
-      {
-        "name": "heroBannerType",
-        "type": "any"
-      },
-      {
-        "name": "bannersDetail",
-        "type": "any"
-      },
-      {
-        "name": "foundBanner",
-        "type": "any"
-      },
-      {
-        "name": "storeTheme",
-        "type": "any"
-      },
-      {
-        "name": "mostPopularCategory",
-        "type": "any"
-      },
-      {
-        "name": "promotionCategory",
-        "type": "any"
-      },
-      {
-        "name": "popularCategories",
-        "type": "any"
-      },
-      {
-        "name": "topPicks",
-        "type": "any"
-      },
-      {
-        "name": "bestsellers",
-        "type": "any"
-      },
-      {
-        "name": "showLoading",
-        "type": "any"
-      },
-      {
-        "name": "mediaBaseUrl",
-        "type": "any"
-      },
-      {
-        "name": "promotionList",
-        "type": "any"
-      },
-      {
-        "name": "bannerOne",
-        "type": "any"
-      },
-      {
-        "name": "bannerTwo",
-        "type": "any"
-      },
-      {
-        "name": "bannerThree",
-        "type": "any"
-      },
-      {
-        "name": "bannerFour",
-        "type": "any"
-      },
-      {
-        "name": "bannerFive",
-        "type": "any"
-      },
-      {
-        "name": "bannerSix",
-        "type": "any"
-      },
-      {
-        "name": "themeComponent",
-        "type": "'autoparts' | 'full' | 'modern' | null"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "bannerUrl",
-        "type": "EventEmitter<any>"
-      },
-      {
-        "name": "goToBanner",
-        "type": "any"
-      },
-      {
-        "name": "categoryRedirection",
-        "type": "any"
-      },
-      {
-        "name": "productRedirection",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "ngOnInit",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "goToBannerURL",
-        "parameters": [
-          {
-            "name": "banner",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "goToURL",
-        "parameters": [
-          {
-            "name": "item",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "goToCategory",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "string"
-          }
-        ],
-        "returnType": "any"
-      },
-      {
-        "name": "goToProduct",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/item-card/item-card.component.ts": {
-    "selector": "app-item-card",
-    "inputs": [
-      {
-        "name": "product",
-        "type": "any"
-      },
-      {
-        "name": "isLoading",
-        "type": "boolean"
-      },
-      {
-        "name": "isSearch",
-        "type": "any"
-      },
-      {
-        "name": "productDetails",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "goToProduct",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "goToProductDetails",
-        "parameters": [
-          {
-            "name": "product",
-            "type": "any"
-          }
-        ],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/login/login.component.ts": {
-    "selector": "app-login",
-    "inputs": [
-      {
-        "name": "loginFormGroup",
-        "type": "FormGroup"
-      },
-      {
-        "name": "storeLogo",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "login",
-        "type": "any"
-      },
-      {
-        "name": "redirectToRegister",
-        "type": "any"
-      },
-      {
-        "name": "redirectToHome",
-        "type": "any"
-      },
-      {
-        "name": "onForgotPassword",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onLogin",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToHome",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onForgot",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToRegister",
-        "parameters": [],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/offer-banner/offer-banner.component.ts": {
-    "selector": "app-offer-banner",
-    "inputs": [
-      {
-        "name": "title",
-        "type": "string"
-      },
-      {
-        "name": "subtitle",
-        "type": "string"
-      },
-      {
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "name": "ctaType",
-        "type": "string"
-      },
-      {
-        "name": "ctaLabel",
-        "type": "string"
-      },
-      {
-        "name": "mediaURL",
-        "type": "string"
-      },
-      {
-        "name": "bgColor",
-        "type": "string"
-      },
-      {
-        "name": "bannerData",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "goToBanner",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "goToBannerURL",
-        "parameters": [],
-        "returnType": "any"
-      }
-    ]
-  },
-  "src/app/register/register.component.ts": {
-    "selector": "app-register",
-    "inputs": [
-      {
-        "name": "registerFG",
-        "type": "FormGroup"
-      },
-      {
-        "name": "storeLogo",
-        "type": "any"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "redirectToLogin",
-        "type": "any"
-      },
-      {
-        "name": "redirectToHome",
-        "type": "any"
-      },
-      {
-        "name": "register",
-        "type": "any"
-      }
-    ],
-    "methods": [
-      {
-        "name": "onRegister",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToHome",
-        "parameters": [],
-        "returnType": "any"
-      },
-      {
-        "name": "onRedirectToLogin",
-        "parameters": [],
-        "returnType": "any"
-      }
-    ]
   }
 }

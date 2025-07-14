@@ -147,7 +147,14 @@ function extractInputsAndOutputs(classNode, sourceFile) {
           if (decoratorName === "Input") {
             inputs.push({ name: propertyName, type: propertyType });
           } else if (decoratorName === "Output") {
-            outputs.push({ name: propertyName, type: propertyType });
+            let outputType = "any"; // Default for outputs
+            if (propertyType.includes("EventEmitter")) {
+              const match = propertyType.match(/EventEmitter<([^>]+)>/);
+              if (match && match[1]) {
+                outputType = match[1].trim();
+              }
+            }
+            outputs.push({ name: propertyName, type: outputType });
           }
         }
       }

@@ -10,7 +10,7 @@ export class AllOrdersComponent {
   @Output() openOrderDetails = new EventEmitter<any>();
   @Output() downloadPDF = new EventEmitter<any>();
   @Output() openReturnOrderModal = new EventEmitter<any>();
-  @Output() openReturnDetailsModal: EventEmitter<any> = new EventEmitter<any>();
+  @Output() openReturnDetailsModal = new EventEmitter<any>();
 
   onOpenOrderDetails(orderId: any) {
     this.openOrderDetails.emit(orderId);

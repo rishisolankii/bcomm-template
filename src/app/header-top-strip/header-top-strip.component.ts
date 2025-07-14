@@ -10,7 +10,7 @@ export class HeaderTopStripComponent {
   @Input() topCmsData!: any;
   @Input() stripFlagIcon: any = 'assets/images/flags/USA.png';
   @Input() shippingIcon: any = 'assets/icons/shipping.png';
-  @Output() pageUrl: EventEmitter<any> = new EventEmitter<any>();
+  @Output() pageUrl = new EventEmitter<any>();
   onRedirectDetailsPage(url: string) {
     this.pageUrl.emit(url);
   }

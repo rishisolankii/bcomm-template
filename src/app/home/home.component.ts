@@ -32,7 +32,7 @@ export class HomeComponent {
   @Input() bannerFive: any;
   @Input() bannerSix: any;
 
-  @Output() bannerUrl: EventEmitter<any> = new EventEmitter<any>();
+  @Output() bannerUrl = new EventEmitter<any>();
   @Output() goToBanner = new EventEmitter<any>();
   @Output() categoryRedirection = new EventEmitter<any>();
   @Output() productRedirection = new EventEmitter<any>();

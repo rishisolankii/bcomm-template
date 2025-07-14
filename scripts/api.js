@@ -134,7 +134,7 @@ function extractInputsAndOutputs(classNode, sourceFile) {
       } else if (ts.isPropertyDeclaration(member) && member.initializer && ts.isNewExpression(member.initializer)) {
         const initializer = member.initializer;
         if (initializer.expression.getText(sourceFile) === 'EventEmitter' && initializer.typeArguments) {
-          propertyType = `EventEmitter<${initializer.typeArguments[0].getText(sourceFile)}>`;
+          propertyType = `${initializer.typeArguments[0].getText(sourceFile)}`;
         }
       }
 
@@ -148,9 +148,9 @@ function extractInputsAndOutputs(classNode, sourceFile) {
             if (propertyType === 'any' && ts.isPropertyDeclaration(member) && member.initializer && ts.isNewExpression(member.initializer)) {
                 const initializer = member.initializer;
                 if (initializer.expression.getText(sourceFile) === 'EventEmitter' && initializer.typeArguments) {
-                    propertyType = `EventEmitter<${initializer.typeArguments[0].getText(sourceFile)}>`;
+                    propertyType = `${initializer.typeArguments[0].getText(sourceFile)}`;
                 } else if (initializer.expression.getText(sourceFile) === 'EventEmitter') {
-                    propertyType = 'EventEmitter<any>';
+                    propertyType = 'any';
                 }
             }
             outputs.push({ name: propertyName, type: propertyType });

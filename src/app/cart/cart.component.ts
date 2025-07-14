@@ -25,7 +25,7 @@ export class CartComponent {
   @Output() goToProduct = new EventEmitter<any>();
   @Output() changeQty = new EventEmitter<any>();
   @Output() updateBulkQty = new EventEmitter<any>();
-  @Output() applyCoupon = new EventEmitter<void>();
+  @Output() applyCoupon = new EventEmitter<any>();
   @Input() couponFormCtr!: FormControl;
   @Input() isCouponApplied: boolean = false;
   @Input() discountTotal: number = 0;

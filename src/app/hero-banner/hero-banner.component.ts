@@ -9,10 +9,10 @@ export class HeroBannerComponent {
   @Input() banner!: any;
   @Input() foundBanner!: any;
   @Input() bannerKey: string = 'banner1';
-  @Output() bannerUrl: EventEmitter<any> = new EventEmitter<any>();
+  @Output() bannerUrl = new EventEmitter<any>();
   goToBannerURL(banner?: any) {
     console.log(banner);
-    
-    this.bannerUrl.emit(banner||true);
+
+    this.bannerUrl.emit(banner || true);
   }
 }
