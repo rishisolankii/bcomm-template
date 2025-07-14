@@ -1,0 +1,15 @@
+{
+  "name": "lasio-template",
+  "version": "1.0.0",
+  "description": "Angular template validation utility",
+  "main": "scripts/validate-template.js",
+  "scripts": {
+    "validate": "node scripts/validate-template.js <project_directory> <schema_path>"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^10.3.10",
+    "typescript": "^5.4.5"
+  }
+}

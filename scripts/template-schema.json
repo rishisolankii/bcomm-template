@@ -30,7 +30,7 @@
     ],
     "methods": [
       {
-        "name": "onRedirections",
+        "name": "onRedirection",
         "parameters": [
           {
             "name": "url",

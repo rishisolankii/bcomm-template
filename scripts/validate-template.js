@@ -157,6 +157,50 @@ function extractInputsAndOutputs(classNode, sourceFile) {
 }
 
 /**
+ * Extracts method signatures from a component's class node.
+ * @param {ts.ClassDeclaration} classNode The AST node for the component class.
+ * @param {ts.SourceFile} sourceFile The source file for context.
+ * @returns {{name: string, parameters: {name: string, type: string}[], returnType: string}[]}
+ */
+function extractMethods(classNode, sourceFile) {
+  const methods = [];
+  if (!classNode.members) {
+    return methods;
+  }
+
+  for (const member of classNode.members) {
+    if (ts.isMethodDeclaration(member)) {
+      if (member.name && member.name.getText(sourceFile) === "constructor") {
+        continue;
+      }
+
+      const methodName = member.name
+        ? member.name.getText(sourceFile)
+        : "[AnonymousMethod]";
+
+      const parameters = member.parameters.map((param) => {
+        const paramName = param.name.getText(sourceFile);
+        const paramType = param.type
+          ? param.type.getText(sourceFile).trim()
+          : "any";
+        return { name: paramName, type: paramType };
+      });
+
+      const returnType = member.type
+        ? member.type.getText(sourceFile).trim()
+        : "any";
+
+      methods.push({
+        name: methodName,
+        parameters: parameters,
+        returnType: returnType,
+      });
+    }
+  }
+  return methods;
+}
+
+/**
  * Main validation function.
  * @param {string} projectDir Path to the Angular project.
  * @param {string} schemaPath Path to the template-schema.json file.
@@ -231,6 +275,7 @@ function validateProject(projectDir, schemaPath) {
           const actualSelector = getComponentSelector(node, sourceFile);
           const { inputs: actualInputs, outputs: actualOutputs } =
             extractInputsAndOutputs(node, sourceFile);
+          const actualMethods = extractMethods(node, sourceFile);
 
           // Defensive check, this was the point of the previous failed update
           if (!componentSchemaData) {
@@ -331,6 +376,70 @@ function validateProject(projectDir, schemaPath) {
               );
             }
           });
+
+          // --- Method Validation ---
+          console.log("    Validating Methods...");
+          (componentSchemaData.methods || []).forEach((schemaMethod) => {
+            const actualMethod = actualMethods.find(
+              (m) => m.name === schemaMethod.name
+            );
+            if (!actualMethod) {
+              allErrors.push({
+                file: relativeFilePath,
+                message: `Method '${schemaMethod.name}' is missing.`,
+              });
+              return;
+            }
+
+            // Validate return type
+            if (actualMethod.returnType !== schemaMethod.returnType) {
+              allErrors.push({
+                file: relativeFilePath,
+                message: `Method '${schemaMethod.name}' return type mismatch. Expected: '${schemaMethod.returnType}', Found: '${actualMethod.returnType}'.`,
+              });
+            }
+
+            // Validate parameter counts
+            if (
+              actualMethod.parameters.length !==
+              schemaMethod.parameters.length
+            ) {
+              allErrors.push({
+                file: relativeFilePath,
+                message: `Method '${schemaMethod.name}' parameter count mismatch. Expected: ${schemaMethod.parameters.length}, Found: ${actualMethod.parameters.length}.`,
+              });
+              return; // Skip further param checks if counts differ
+            }
+
+            // Validate individual parameters
+            schemaMethod.parameters.forEach((schemaParam, index) => {
+              const actualParam = actualMethod.parameters[index];
+              if (
+                actualParam.name !== schemaParam.name ||
+                actualParam.type !== schemaParam.type
+              ) {
+                allErrors.push({
+                  file: relativeFilePath,
+                  message: `Method '${schemaMethod.name}' parameter mismatch at index ${index}. Expected: '${schemaParam.name}: ${schemaParam.type}', Found: '${actualParam.name}: ${actualParam.type}'.`,
+                });
+              }
+            });
+            console.log(
+              `      - Method '${schemaMethod.name}' (Matches schema)`
+            );
+          });
+
+          actualMethods.forEach((actualMethod) => {
+            if (
+              !(componentSchemaData.methods || []).find(
+                (sm) => sm.name === actualMethod.name
+              )
+            ) {
+              console.warn(
+                `      - Warning: Found new Method '${actualMethod.name}' not defined in schema for ${relativeFilePath}.`
+              );
+            }
+          });
         }
       }
     });
@@ -386,5 +495,6 @@ module.exports = {
   parseTypeScriptFile,
   getComponentSelector,
   extractInputsAndOutputs,
+  extractMethods,
   validateProject,
 };

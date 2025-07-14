@@ -10,6 +10,6 @@ export class AccountSidebarComponent {
   @Output() onRedirectURL = new EventEmitter<any>();
   activeUrl!: string;
   onRedirection(url: string) {
-    // this.onRedirectURL.emit(url);
+    this.onRedirectURL.emit(url);
   }
 }
