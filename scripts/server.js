@@ -4,9 +4,10 @@ const yauzl = require("yauzl");
 const fs = require("fs");
 const path = require("path");
 const { validate } = require("./api");
-
+const cors = require("cors");
 const app = express();
 app.use(express.json());
+app.use(cors("*"));
 
 const port = 3000;
 
@@ -31,6 +32,8 @@ const upload = multer({
 });
 
 app.post("/upload", upload.single("zipfile"), (req, res) => {
+  console.log("HIT");
+
   if (!req.file) {
     return res.status(400).json({
       success: false,
@@ -82,7 +85,10 @@ app.post("/upload", upload.single("zipfile"), (req, res) => {
       const result = validate(extractPath, schemaPath);
 
       if (result.success) {
-        res.json({ success: true, message: "File uploaded and validated successfully" });
+        res.json({
+          success: true,
+          message: "File uploaded and validated successfully",
+        });
       } else {
         fs.rm(extractPath, { recursive: true, force: true }, (err) => {
           if (err) {
