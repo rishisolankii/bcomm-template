@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class AccountHeaderComponent {
   @Input() profileUserData: any;
-  // @Input() emailDataList: any;
+  @Input() emailDataList: any;
 }
