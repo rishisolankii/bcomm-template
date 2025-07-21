@@ -1,24 +1,24 @@
 @import "../../assets/styles/variables.scss";
 .item-card {
   position: relative;
-  background-color: #f5f5f5;
+  // background-color: #f5f5f5;
   border-radius: 8px;
-  padding: 8px;
-  min-height: 358px;
+  min-height: 348px;
   overflow: hidden;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.07);
   &:hover {
-    // box-shadow: 0 0 16px rgba(0, 0, 0, 0.07);
-    // span {
-    //   font-size: 18px;
-    // }
     .item-card__media {
       transform: scale(1.02);
+    }
+    .item-card__media--view {
+      display: flex;
     }
   }
   &__media {
     position: relative;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
     img,
     .shimmer {
       width: 100%;
@@ -30,16 +30,38 @@
       object-fit: contain;
     }
     &--more-options {
-      background-color: #efebeb;
       color: #666363;
-      position: relative;
-      margin: 0px 12%;
-      padding: 2px;
+      position: absolute;
+      bottom: -8px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      top: 13px;
-      padding-left: 2%;
-      padding-right: 2%;
-      border-radius: 5px;
+      border-radius: 4px;
+      font-size: 10px;
+      span {
+        background-color: #efebeb;
+        padding: 2px 8px;
+      }
+    }
+    &--view {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      span {
+        background-color: $color-brand;
+        color: #efebeb;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 2px;
+      }
     }
   }
   &__tag {
@@ -77,7 +99,7 @@
   }
   &__info {
     margin-top: 16px;
-    padding: 0 6px;
+    padding: 0 8px;
     &--title {
       font-size: 22px;
       color: var(--color-dark);
@@ -131,6 +153,8 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      border-top: 1px solid #e8e8e8;
+      margin-top: 8px;
     }
   }
   &__colors {

@@ -1,124 +1,124 @@
 <div class="item-card__wrapper" *ngIf="!isLoading; else loading">
-    <div class="item-card">
-      <!-- <div class="item-card__favorite">
+  <div class="item-card">
+    <!-- <div class="item-card__favorite">
         <img src="assets/icons/heart-dark.png" alt="" />
       </div> -->
-      <div
-        class="item-card__media c-pointer"
-        (click)="goToProductDetails(productDetails)"
-      >
-        <!-- <div class="item-card__tag">
+    <div
+      class="item-card__media c-pointer"
+      (click)="goToProductDetails(productDetails)"
+    >
+      <!-- <div class="item-card__tag">
               <div class="item-card__tag--item">New</div>
               <div class="item-card__tag--item">Concious</div>
             </div> -->
-        <img
-          [src]="
-            productDetails?.image
-              ? productDetails?.image
-              : 'assets/images/no-product-image.png'
-          "
-          onerror="this.onerror=null; this.src='assets/images/no-product-image.png'"
-          [alt]="
-            productDetails?.description || productDetails?.name || productDetails?.id
-          "
-        />
-        <div
-          class="item-card__media--more-options"
-          *ngIf="productDetails?.displayMoreOption"
-        >
-          MORE OPTIONS
-        </div>
-      </div>
+      <img
+        [src]="
+          productDetails?.image
+            ? productDetails?.image
+            : 'assets/images/no-product-image.png'
+        "
+        onerror="this.onerror=null; this.src='assets/images/no-product-image.png'"
+        [alt]="
+          productDetails?.description ||
+          productDetails?.name ||
+          productDetails?.id
+        "
+      />
       <div
-        class="item-card__info c-pointer"
-        (click)="goToProductDetails(productDetails)"
+        class="item-card__media--more-options"
+        *ngIf="productDetails?.displayMoreOption"
       >
-        <!-- <div
+        <span>More Options</span>
+      </div>
+      <div class="item-card__media--view">
+        <span>View</span>
+      </div>
+    </div>
+    <div
+      class="item-card__info c-pointer"
+      (click)="goToProductDetails(productDetails)"
+    >
+      <!-- <div
               class="item-card__info--title"
               [title]="productDetails.name || productDetails.id"
             >
               {{ productDetails.name || productDetails.id || "" }}
             </div> -->
-        <h2
-          class="item-card__info--description"
-          [title]="
-            productDetails?.description || productDetails?.name || productDetails?.id
-          "
-          [innerHTML]="
-            productDetails?.description || productDetails?.name || productDetails?.id
-          "
-        ></h2>
-        <!-- <div
-              class="item-card__info--description"
-              [title]="productDetails.description"
-              *ngIf="!productDetails.description?.startsWith('<')"
-            >
-              {{ productDetails.description || "Product Description" }}
-            </div>
-            <div
-              class="item-card__info--description"
-              [title]="productDetails.description"
-              *ngIf="productDetails.description?.startsWith('<')"
-            >
-              {{ productDetails.name || productDetails.id || "Product Description" }}
-            </div> -->
-        <div class="item-card__info--footer">
-          <div class="item-card__info--price">
-            ${{ product?.productSummary?.price?.price || "-" }}
-            <span
-              *ngIf="
-                product?.productSummary?.price?.price <
-                  product?.productSummary?.price?.listPrice ||
-                product?.productSummary?.price?.price <
-                  product?.productSummary?.price?.defaultPrice
-              "
-              >${{
-                (product?.productSummary?.price?.listPrice | number : "1.0-2") ||
-                  (product?.productSummary?.price?.defaultPrice
-                    | number : "1.0-2")
-              }}</span
-            >
-          </div>
-          <div class="item-card__info--rating">
-            <span>{{
-              product?.productSummary?.averageRating | number : "1.0-2"
-            }}</span>
-            <ngb-rating
-              *ngIf="product?.productSummary?.averageRating"
-              [rate]="product?.productSummary?.averageRating"
-              [max]="5"
-              [disabled]="true"
-            />
-          </div>
+      <h2
+        class="item-card__info--description"
+        [title]="
+          productDetails?.description ||
+          productDetails?.name ||
+          productDetails?.id
+        "
+        [innerHTML]="
+          productDetails?.description ||
+          productDetails?.name ||
+          productDetails?.id
+        "
+      ></h2>
+      <div class="item-card__info--footer">
+        <div class="item-card__info--price">
+          ${{ product?.productSummary?.price?.price || "-" }}
+          <span
+            *ngIf="
+              product?.productSummary?.price?.price <
+                product?.productSummary?.price?.listPrice ||
+              product?.productSummary?.price?.price <
+                product?.productSummary?.price?.defaultPrice
+            "
+            >${{
+              (product?.productSummary?.price?.listPrice | number : "1.0-2") ||
+                (product?.productSummary?.price?.defaultPrice
+                  | number : "1.0-2")
+            }}</span
+          >
+        </div>
+        <div class="item-card__info--rating">
+          <span>{{
+            product?.productSummary?.averageRating | number : "1.0-1"
+          }}</span>
+          <ngb-rating
+            *ngIf="product?.productSummary?.averageRating"
+            [rate]="1"
+            [max]="1"
+            [disabled]="true"
+          />
+          <!-- <ngb-rating
+            *ngIf="product?.productSummary?.averageRating"
+            [rate]="product?.productSummary?.averageRating"
+            [max]="5"
+            [disabled]="true"
+          /> -->
         </div>
       </div>
-      <!-- <div class="item-card__colors">
+    </div>
+    <!-- <div class="item-card__colors">
             <div
               class="item-card__colors--item"
               *ngFor="let item of [].constructor(3)"
             ></div>
           </div> -->
-    </div>
   </div>
-  
-  <ng-template #loading>
-    <div class="item-card__wrapper">
-      <div class="item-card">
-        <div class="item-card__media">
-          <div class="shimmer w-100"></div>
+</div>
+
+<ng-template #loading>
+  <div class="item-card__wrapper">
+    <div class="item-card">
+      <div class="item-card__media">
+        <div class="shimmer w-100"></div>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__info--title">
+          <div class="shimmer w-100 p-2"></div>
         </div>
-        <div class="item-card__info">
-          <div class="item-card__info--title">
-            <div class="shimmer w-100 p-2"></div>
-          </div>
-          <div class="item-card__info--description">
-            <div class="shimmer w-100 p-2"></div>
-          </div>
-          <div class="item-card__info--price">
-            <div class="shimmer w-50 p-2"></div>
-          </div>
+        <div class="item-card__info--description">
+          <div class="shimmer w-100 p-2"></div>
+        </div>
+        <div class="item-card__info--price">
+          <div class="shimmer w-50 p-2"></div>
         </div>
       </div>
     </div>
-  </ng-template>
-  
+  </div>
+</ng-template>

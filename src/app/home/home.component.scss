@@ -252,18 +252,20 @@
   }
   &__header {
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
   &__item {
     border: 1px solid rgba(0, 0, 0, 0.07);
     padding: 20px;
-    min-height: 300px;
+    min-height: 220px;
     height: 100%;
+    position: relative;
+    border-radius: 16px;
     &:hover {
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
     }
     &--wrapper {
-      padding: 20px;
+      padding: 16px;
     }
     &--icon {
       background: var(--color-brand);
@@ -273,16 +275,21 @@
       padding: 16px;
       outline: 4px solid var(--color-brand-light);
       margin: 40px auto 32px;
+      position: absolute;
+      top: -72px;
+      left: calc(50% - 30px);
       img {
         width: 100%;
       }
     }
     &--title {
-      font-size: 22px;
-      margin-bottom: 16px;
+      font-size: 20px;
+      margin-top: 24px;
+      margin-bottom: 12px;
     }
     &--description {
       color: #7d7d7d;
+      font-size: 14px;
     }
   }
 }
