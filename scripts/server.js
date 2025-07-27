@@ -5,6 +5,11 @@ const fs = require("fs");
 const path = require("path");
 const { validate } = require("./api");
 const cors = require("cors");
+const connectDB = require("./db");
+const Template = require("./models/template");
+
+connectDB();
+
 const app = express();
 app.use(express.json());
 app.use(cors("*"));
@@ -31,8 +36,33 @@ const upload = multer({
   limits: { fileSize: 20 * 1024 * 1024 },
 });
 
-app.post("/upload", upload.single("zipfile"), (req, res) => {
-  console.log("HIT");
+app.post("/upload", upload.single("zipfile"), async (req, res) => {
+  const { templateName } = req.body;
+
+  if (!templateName) {
+    return res.status(400).json({
+      success: false,
+      errors: [{ message: "Template name is required" }],
+      warnings: [],
+    });
+  }
+
+  try {
+    const existingTemplate = await Template.findOne({ templateName });
+    if (existingTemplate) {
+      return res.status(400).json({
+        success: false,
+        errors: [{ message: "Template with this name already exists" }],
+        warnings: [],
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      errors: [{ message: "Error checking for existing template" }],
+      warnings: [],
+    });
+  }
 
   if (!req.file) {
     return res.status(400).json({
@@ -85,10 +115,72 @@ app.post("/upload", upload.single("zipfile"), (req, res) => {
       const result = validate(extractPath, schemaPath);
 
       if (result.success) {
-        res.json({
-          success: true,
-          message: "File uploaded and validated successfully",
-        });
+        const { exec } = require("child_process");
+        exec(
+          `cd ${extractPath} && npm install && ng build`,
+          (err, stdout, stderr) => {
+            if (err) {
+              console.error("Error building project:", stderr);
+              fs.rm(extractPath, { recursive: true, force: true }, (err) => {
+                if (err) {
+                  console.error("Error deleting extracted folder:", err);
+                }
+              });
+              return res.status(500).json({
+                success: false,
+                errors: [{ message: "Failed to build project" }],
+                warnings: [],
+              });
+            }
+            const nginxConfig = `
+location /${templateName}/ {
+  alias /home/ubuntu/lasio-template/dist/lasio-${templateName}/;
+  index index.html;
+  try_files $uri $uri/ /${templateName}/index.html;
+}
+`;
+            fs.appendFile("temp.conf", nginxConfig, (err) => {
+              if (err) {
+                console.error("Error writing nginx config:", err);
+                return res.status(500).json({
+                  success: false,
+                  errors: [{ message: "Failed to write nginx config" }],
+                  warnings: [],
+                });
+              }
+              const newTemplate = new Template({
+                templateName,
+                urlPath: `/${templateName}/`,
+              });
+              newTemplate
+                .save()
+                .then(() => {
+                  res.json({
+                    success: true,
+                    message:
+                      "File uploaded, validated, built, and nginx configured successfully",
+                  });
+                })
+                .catch((err) => {
+                  console.error("Error saving template to db:", err);
+                  fs.rm(
+                    extractPath,
+                    { recursive: true, force: true },
+                    (err) => {
+                      if (err) {
+                        console.error("Error deleting extracted folder:", err);
+                      }
+                    }
+                  );
+                  res.status(500).json({
+                    success: false,
+                    errors: [{ message: "Failed to save template to db" }],
+                    warnings: [],
+                  });
+                });
+            });
+          }
+        );
       } else {
         fs.rm(extractPath, { recursive: true, force: true }, (err) => {
           if (err) {

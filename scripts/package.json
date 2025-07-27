@@ -9,11 +9,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "glob": "^10.3.10",
-    "typescript": "^5.4.5",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
+    "glob": "^10.3.10",
+    "mongoose": "^8.16.5",
     "multer": "^2.0.1",
-    "yauzl": "^3.2.0",
-    "cors": "^2.8.5"
+    "typescript": "^5.4.5",
+    "yauzl": "^3.2.0"
   }
 }

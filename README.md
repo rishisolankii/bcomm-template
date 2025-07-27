@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+npm run build --base-href /template/
+
+sudo rsync -r -e "ssh -i Skulocity-Dev-FrontEnd.pem" dist/lasio-template/ ubuntu@107.22.33.15:/home/ubuntu/lasio-template/dist/lasio-template/
+To connect
