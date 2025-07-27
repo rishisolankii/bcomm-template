@@ -117,7 +117,7 @@ app.post("/upload", upload.single("zipfile"), async (req, res) => {
       if (result.success) {
         const { exec } = require("child_process");
         exec(
-          `cd ${extractPath} && npm install && ng build`,
+          `cd ${extractPath} && npm install && npm run build -- --base-href /${templateName}/`,
           (err, stdout, stderr) => {
             if (err) {
               console.error("Error building project:", stderr);
