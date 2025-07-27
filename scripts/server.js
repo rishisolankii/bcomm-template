@@ -170,7 +170,7 @@ location /${templateName}/ {
                   });
                 }
 
-                exec("nginx -s reload", (err, stdout, stderr) => {
+                exec("sudo nginx -s reload", (err, stdout, stderr) => {
                   if (err) {
                     console.error("Error reloading nginx:", stderr);
                   }
