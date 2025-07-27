@@ -234,6 +234,19 @@ app.post("/validate", (req, res) => {
   res.json(result);
 });
 
+app.get("/templates", async (req, res) => {
+  try {
+    const templates = await Template.find();
+    res.json({ success: true, data: templates });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      errors: [{ message: "Failed to fetch templates" }],
+      warnings: [],
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Validation server listening at http://localhost:${port}`);
 });
