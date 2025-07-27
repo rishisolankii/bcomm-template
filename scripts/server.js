@@ -159,55 +159,51 @@ location /${templateName}/ {
   try_files $uri $uri/ /${templateName}/index.html;
 }
 `;
-              fs.appendFile(
-                "/etc/nginx/conf.d/templates.conf",
-                nginxConfig,
-                (err) => {
-                  if (err) {
-                    console.error("Error writing nginx config:", err);
-                    return res.status(500).json({
+              fs.appendFile("templates.conf", nginxConfig, (err) => {
+                if (err) {
+                  console.error("Error writing nginx config:", err);
+                  return res.status(500).json({
+                    success: false,
+                    errors: [{ message: "Failed to write nginx config" }],
+                    warnings: [],
+                  });
+                }
+
+                const newTemplate = new Template({
+                  templateName,
+                  urlPath: `/${templateName}/`,
+                });
+
+                newTemplate
+                  .save()
+                  .then(() => {
+                    res.json({
+                      success: true,
+                      message:
+                        "File uploaded, validated, built, and nginx configured successfully",
+                    });
+                  })
+                  .catch((err) => {
+                    console.error("Error saving template to db:", err);
+                    fs.rm(
+                      extractPath,
+                      { recursive: true, force: true },
+                      (err) => {
+                        if (err) {
+                          console.error(
+                            "Error deleting extracted folder:",
+                            err
+                          );
+                        }
+                      }
+                    );
+                    res.status(500).json({
                       success: false,
-                      errors: [{ message: "Failed to write nginx config" }],
+                      errors: [{ message: "Failed to save template to db" }],
                       warnings: [],
                     });
-                  }
-
-                  const newTemplate = new Template({
-                    templateName,
-                    urlPath: `/${templateName}/`,
                   });
-
-                  newTemplate
-                    .save()
-                    .then(() => {
-                      res.json({
-                        success: true,
-                        message:
-                          "File uploaded, validated, built, and nginx configured successfully",
-                      });
-                    })
-                    .catch((err) => {
-                      console.error("Error saving template to db:", err);
-                      fs.rm(
-                        extractPath,
-                        { recursive: true, force: true },
-                        (err) => {
-                          if (err) {
-                            console.error(
-                              "Error deleting extracted folder:",
-                              err
-                            );
-                          }
-                        }
-                      );
-                      res.status(500).json({
-                        success: false,
-                        errors: [{ message: "Failed to save template to db" }],
-                        warnings: [],
-                      });
-                    });
-                }
-              );
+              });
             });
           }
         );
