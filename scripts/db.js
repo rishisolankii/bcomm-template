@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb://localhost:27017/marketplace-template-db",
+      "mongodb://127.0.0.1:27017/marketplace-template-db",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
