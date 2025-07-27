@@ -6,6 +6,11 @@ const StoreTemplateSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  tenantId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   templateUrl: {
     type: String,
     required: true,

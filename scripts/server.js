@@ -249,36 +249,50 @@ app.get("/templates", async (req, res) => {
 });
 
 app.post("/api/store-template", async (req, res) => {
-  const { productStoreId, templateUrl } = req.body;
+  const { productStoreId, templateUrl, tenantId } = req.body;
 
-  if (!productStoreId || !templateUrl) {
+  if (!productStoreId || !templateUrl || !tenantId) {
     return res.status(400).json({
       success: false,
-      errors: [{ message: "productStoreId and templateUrl are required" }],
+      errors: [
+        { message: "productStoreId, templateUrl, and tenantId are required" },
+      ],
       warnings: [],
     });
   }
 
   try {
-    const newStoreTemplate = new StoreTemplate({
+    // Check if combination of tenantId and productStoreId already exists
+    const existingStoreTemplate = await StoreTemplate.findOne({
       productStoreId,
-      templateUrl,
+      tenantId,
     });
 
-    await newStoreTemplate.save();
+    if (existingStoreTemplate) {
+      // Update existing entry
+      existingStoreTemplate.templateUrl = templateUrl;
+      await existingStoreTemplate.save();
 
-    res.json({
-      success: true,
-      message: "Store template map saved successfully",
-    });
-  } catch (error) {
-    if (error.code === 11000) {
-      return res.status(400).json({
-        success: false,
-        errors: [{ message: "productStoreId must be unique" }],
-        warnings: [],
+      res.json({
+        success: true,
+        message: "Store template map updated successfully",
+      });
+    } else {
+      // Create new entry
+      const newStoreTemplate = new StoreTemplate({
+        productStoreId,
+        templateUrl,
+        tenantId,
+      });
+
+      await newStoreTemplate.save();
+
+      res.json({
+        success: true,
+        message: "Store template map created successfully",
       });
     }
+  } catch (error) {
     res.status(500).json({
       success: false,
       errors: [{ message: "Failed to save store template map" }],
