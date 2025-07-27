@@ -170,6 +170,12 @@ location /${templateName}/ {
                   });
                 }
 
+                exec("nginx -s reload", (err, stdout, stderr) => {
+                  if (err) {
+                    console.error("Error reloading nginx:", stderr);
+                  }
+                });
+
                 const newTemplate = new Template({
                   templateName,
                   urlPath: `/${templateName}/`,
