@@ -7,6 +7,7 @@ const { validate } = require("./api");
 const cors = require("cors");
 const connectDB = require("./db");
 const Template = require("./models/template");
+const StoreTemplate = require("./models/storeTemplate");
 
 connectDB();
 
@@ -242,6 +243,71 @@ app.get("/templates", async (req, res) => {
     res.status(500).json({
       success: false,
       errors: [{ message: "Failed to fetch templates" }],
+      warnings: [],
+    });
+  }
+});
+
+app.post("/api/store-template", async (req, res) => {
+  const { productStoreId, templateUrl } = req.body;
+
+  if (!productStoreId || !templateUrl) {
+    return res.status(400).json({
+      success: false,
+      errors: [{ message: "productStoreId and templateUrl are required" }],
+      warnings: [],
+    });
+  }
+
+  try {
+    const newStoreTemplate = new StoreTemplate({
+      productStoreId,
+      templateUrl,
+    });
+
+    await newStoreTemplate.save();
+
+    res.json({
+      success: true,
+      message: "Store template map saved successfully",
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        errors: [{ message: "productStoreId must be unique" }],
+        warnings: [],
+      });
+    }
+    res.status(500).json({
+      success: false,
+      errors: [{ message: "Failed to save store template map" }],
+      warnings: [],
+    });
+  }
+});
+
+app.get("/api/store-template/:productStoreId", async (req, res) => {
+  try {
+    const { productStoreId } = req.params;
+    const storeTemplate = await StoreTemplate.findOne({ productStoreId });
+
+    if (!storeTemplate) {
+      return res.status(404).json({
+        success: false,
+        errors: [{ message: "Template not found for this productStoreId" }],
+        warnings: [],
+      });
+    }
+
+    res.json({
+      success: true,
+      data: { templateUrl: storeTemplate.templateUrl },
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      errors: [{ message: "Failed to fetch template" }],
       warnings: [],
     });
   }
