@@ -132,52 +132,82 @@ app.post("/upload", upload.single("zipfile"), async (req, res) => {
                 warnings: [],
               });
             }
-            const nginxConfig = `
+
+            const sourcePath = path.join(extractPath, "dist", "lasio-template");
+            const destinationPath = path.join(
+              "/home",
+              "ubuntu",
+              "lasio-template",
+              "dist",
+              templateName
+            );
+
+            fs.rename(sourcePath, destinationPath, (err) => {
+              if (err) {
+                console.error("Error moving directory:", err);
+                return res.status(500).json({
+                  success: false,
+                  errors: [{ message: "Failed to move project directory" }],
+                  warnings: [],
+                });
+              }
+
+              const nginxConfig = `
 location /${templateName}/ {
-  alias /home/ubuntu/lasio-template/dist/lasio-${templateName}/;
+  alias ${destinationPath}/;
   index index.html;
   try_files $uri $uri/ /${templateName}/index.html;
 }
 `;
-            fs.appendFile("temp.conf", nginxConfig, (err) => {
-              if (err) {
-                console.error("Error writing nginx config:", err);
-                return res.status(500).json({
-                  success: false,
-                  errors: [{ message: "Failed to write nginx config" }],
-                  warnings: [],
-                });
-              }
-              const newTemplate = new Template({
-                templateName,
-                urlPath: `/${templateName}/`,
-              });
-              newTemplate
-                .save()
-                .then(() => {
-                  res.json({
-                    success: true,
-                    message:
-                      "File uploaded, validated, built, and nginx configured successfully",
+              fs.appendFile(
+                "/etc/nginx/conf.d/templates.conf",
+                nginxConfig,
+                (err) => {
+                  if (err) {
+                    console.error("Error writing nginx config:", err);
+                    return res.status(500).json({
+                      success: false,
+                      errors: [{ message: "Failed to write nginx config" }],
+                      warnings: [],
+                    });
+                  }
+
+                  const newTemplate = new Template({
+                    templateName,
+                    urlPath: `/${templateName}/`,
                   });
-                })
-                .catch((err) => {
-                  console.error("Error saving template to db:", err);
-                  fs.rm(
-                    extractPath,
-                    { recursive: true, force: true },
-                    (err) => {
-                      if (err) {
-                        console.error("Error deleting extracted folder:", err);
-                      }
-                    }
-                  );
-                  res.status(500).json({
-                    success: false,
-                    errors: [{ message: "Failed to save template to db" }],
-                    warnings: [],
-                  });
-                });
+
+                  newTemplate
+                    .save()
+                    .then(() => {
+                      res.json({
+                        success: true,
+                        message:
+                          "File uploaded, validated, built, and nginx configured successfully",
+                      });
+                    })
+                    .catch((err) => {
+                      console.error("Error saving template to db:", err);
+                      fs.rm(
+                        extractPath,
+                        { recursive: true, force: true },
+                        (err) => {
+                          if (err) {
+                            console.error(
+                              "Error deleting extracted folder:",
+                              err
+                            );
+                          }
+                        }
+                      );
+                      res.status(500).json({
+                        success: false,
+                        errors: [{ message: "Failed to save template to db" }],
+                        warnings: [],
+                      });
+                    });
+                }
+              );
             });
           }
         );
