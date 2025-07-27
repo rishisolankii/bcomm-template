@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors("*"));
 
-const port = 3000;
+const port = 6000;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
