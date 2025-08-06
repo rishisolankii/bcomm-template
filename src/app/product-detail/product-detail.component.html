@@ -1,0 +1,857 @@
+<!-- <div class="position-fixed top-0 left-0 bg-danger px-1">
+  <small>TODO::Loaded from Template</small>
+</div> -->
+<div class="container">
+  <app-breadcrumb
+    [inactiveElements]="[
+      { label: 'Home', redirectUrl: '' },
+      {
+        label: breadcrumbLabel,
+        redirectUrl: breadcrumbURL
+      }
+    ]"
+    [activeElement]="product?.title | titlecase"
+  ></app-breadcrumb>
+
+  <div class="product-details">
+    <div class="product-details__gallery">
+      <div class="product-details__gallery--spotlight">
+        <div
+          class="product-details__gallery--spotlight-arrow-up"
+          (click)="spotlightUP()"
+        >
+          <img src="assets/icons/arrow-up.png" alt="Arrow Up" />
+        </div>
+        <div
+          class="product-details__gallery--spotlight-arrow-down"
+          (click)="spotlightDown()"
+        >
+          <img src="assets/icons/arrow-down.png" alt="Arrow Down" />
+        </div>
+        <ng-container *ngIf="!showLoading">
+          <img
+            *ngIf="!spotlightImg"
+            [src]="productImage"
+            alt="Product Image"
+            (error)="onError($event)"
+          />
+          <img
+            *ngIf="spotlightImg"
+            [src]="additionalImages[spotlightImg - 1]"
+            alt="Product Image"
+            (error)="onError($event)"
+          />
+        </ng-container>
+        <ng-container *ngIf="showLoading">
+          <div class="shimmer w-100 h-100" *ngIf="showLoading"></div>
+        </ng-container>
+      </div>
+      <div class="product-details__gallery--thumbnail-list">
+        <div
+          class="product-details__gallery--thumbnail-item"
+          *ngIf="!showLoading"
+        >
+          <img
+            [src]="productImage"
+            alt="Product Image"
+            class="c-pointer"
+            [ngClass]="0 === spotlightImg ? 'active' : ''"
+            (click)="onChangeImage(0)"
+            (error)="onError($event)"
+          />
+        </div>
+        <ng-container *ngIf="showLoading">
+          <div class="product-details__gallery--thumbnail-item">
+            <div class="shimmer w-100 h-100"></div>
+          </div>
+        </ng-container>
+        <div
+          class="product-details__gallery--thumbnail-item"
+          *ngFor="let additionalImageItem of additionalImages; index as i"
+        >
+          <img
+            [src]="additionalImageItem"
+            alt="Product Image"
+            class="c-pointer"
+            [ngClass]="i + 1 === spotlightImg ? 'active' : ''"
+            (click)="onChangeImage(i + 1)"
+            (error)="onError($event)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="product-details__info">
+      <ng-container *ngIf="!showLoading; else loading">
+        <!-- <div class="product-details__info--store">Blue Pennylandy Store</div> -->
+        <h1
+          class="product-details__info--title"
+          [innerHTML]="productDetailsInfo"
+        ></h1>
+
+        <div class="product-details__info--price">
+          <span *ngIf="configPrice">{{ configPrice }}</span>
+          <ng-container *ngIf="!variantPrice && displayPrice">
+            <span class="product-details__info--price-new"
+              >${{ displayPrice.price }}</span
+            >
+            <ng-container *ngIf="displayPrice.hasDiscount">
+              <span class="product-details__info--price-old"
+                >${{ displayPrice.oldPrice }}</span
+              >
+              <span
+                class="product-details__info--price-discount badge bg-danger"
+              >
+                {{ displayPrice.discountPercent }}% Off</span
+              >
+            </ng-container>
+          </ng-container>
+
+          <!-- TODO: Simplify -->
+          <!-- Variant Price -->
+          <ng-container *ngIf="variantPrice && displayVariantPrice">
+            <span class="product-details__info--price-new"
+              >${{ displayVariantPrice.price }}</span
+            >
+            <ng-container *ngIf="displayVariantPrice.hasDiscount">
+              <span class="product-details__info--price-old"
+                >${{ displayVariantPrice.oldPrice }}</span
+              >
+              <span
+                class="product-details__info--price-discount badge badge-danger"
+                >- {{ displayVariantPrice.discountPercent }}%</span
+              >
+            </ng-container>
+          </ng-container>
+        </div>
+        <!-- BEGINS: Variant Section -->
+        <!-- <ng-container *ngFor="let featureItem of features">
+            <div
+              class="product-details__info--color"
+              *ngIf="featureItem.toLowerCase().indexOf('color') > -1"
+            >
+              <div class="product-details__info--color-title">Colors</div>
+              <div class="product-details__info--color-list">
+                <div
+                  class="product-details__info--color-item"
+                  [ngClass]="selectedVariant.key === color ? 'active' : ''"
+                  (click)="selectVariantHandler('key', color)"
+                  *ngFor="let color of variantSampleKeys; index as i"
+                >
+                  <span [style]="'background-color:' + color + ';'"></span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngFor="let featureItem of features">
+            <div
+              class="product-details__info--size"
+              *ngIf="featureItem.toLowerCase().indexOf('size') > -1"
+            >
+              <div class="product-details__info--size-title">Sizes</div>
+              <div class="product-details__info--size-grp">
+                <div class="product-details__info--size-list">
+                  <div
+                    class="product-details__info--size-item"
+                    [ngClass]="
+                      selectedVariant.skuName === size.key ? 'active' : ''
+                    "
+                    (click)="selectVariantItemHandler(size.key, size.value)"
+                    *ngFor="
+                      let size of variantTree
+                        | ProductVariant : selectedVariant.key;
+                      index as i
+                    "
+                  >
+                    {{ size.key }}
+                  </div>
+                </div>
+                <div class="product-details__info--size-action c-pointer">
+                  Size Guide
+                </div>
+              </div>
+            </div>
+          </ng-container> -->
+
+        <!-- TODO: Handle generic dropdown based on variant data -->
+        <ng-container *ngFor="let featureItem of features; index as j">
+          <div class="product-details__info--color" *ngIf="!j">
+            <div class="product-details__info--color-title">
+              {{ featureItem }}
+            </div>
+            <select
+              class="form-control"
+              #featureOne
+              (change)="selectVariantHandler('key', featureOne.value)"
+              [(ngModel)]="selectedFeatureOne"
+            >
+              <option value="">Select</option>
+              <option
+                [value]="variantItem"
+                *ngFor="let variantItem of variantSampleKeys; index as i"
+              >
+                {{ variantItem }}
+              </option>
+            </select>
+            <!-- <div class="product-details__info--color-list">
+                <div
+                  class="product-details__info--color-item"
+                  [ngClass]="selectedVariant.key === color ? 'active' : ''"
+                  (click)="selectVariantHandler('key', color)"
+                  *ngFor="let color of variantSampleKeys; index as i"
+                >
+                  <span>{{ color }}</span>
+                </div>
+              </div> -->
+          </div>
+        </ng-container>
+
+        <ng-container *ngFor="let featureItem of features; index as k">
+          <div class="product-details__info--size" *ngIf="k">
+            <!-- <div
+              class="product-details__info--size"
+              *ngIf="
+                featureItem.toLowerCase().indexOf('color') === -1 &&
+                featureItem.toLowerCase().indexOf('size') === -1
+              "
+            > -->
+            <div class="product-details__info--size-title">
+              {{ featureItem }}
+            </div>
+            <div class="product-details__info--size-grp">
+              <select
+                class="form-control"
+                #featureTwo
+                (change)="selectVariantItemHandler(featureTwo.value)"
+                [(ngModel)]="selectedFeatureTwo"
+              >
+                <option value="">Select</option>
+                <!-- <option value="">TODO:: Fix Custom Pipe Issue</option> -->
+                <!-- TODO:: Fix Custom Pipe Issue -->
+                <!-- <option
+                  [value]="size.key + '++' + size.value"
+                  *ngFor="
+                    let size of variantTree
+                      | ProductVariant : selectedVariant.key;
+                    index as i
+                  "
+                >
+                  {{ size.key }}
+                </option> -->
+                <option
+                  [value]="size.key + '++' + size.value"
+                  *ngFor="let size of variantTree; index as i"
+                >
+                  {{ size.key }}
+                </option>
+              </select>
+
+              <!-- <div class="product-details__info--size-list">
+                  <div
+                    class="product-details__info--size-item"
+                    [ngClass]="
+                      selectedVariant.skuName === size.key ? 'active' : ''
+                    "
+                    (click)="selectVariantItemHandler(size.key, size.value)"
+                    *ngFor="
+                      let size of variantTree
+                        | ProductVariant : selectedVariant.key;
+                      index as i
+                    "
+                  >
+                    {{ size.key }}
+                  </div>
+                </div> -->
+            </div>
+          </div>
+        </ng-container>
+        <!-- ENDS: Variant Section -->
+
+        <!-- BEGINS: Configurable Section -->
+        <div *ngIf="quesList">
+          <div id="Conf" *ngFor="let conf of quesList; let i = index">
+            <div
+              *ngIf="conf.options?.length === 1 && conf.isSingleChoice"
+              style="display: block"
+            >
+              <div>
+                <label for="">{{ conf.question }}</label>
+              </div>
+              <div>
+                {{ conf.options[i]["description"] }}
+              </div>
+              <div style="margin-top: 10px">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="comment[i]"
+                  name="Comment"
+                  value="Comment"
+                />
+              </div>
+            </div>
+
+            <div
+              *ngIf="conf.options?.length > 1 && conf.isSingleChoice"
+              style="display: block"
+            >
+              <div>
+                <label for="">{{ conf.question }}</label>
+              </div>
+
+              <div>
+                <select
+                  class="form-control"
+                  id="{{ 'dropdown' + i }}"
+                  name="confDropdowns[i]"
+                  (change)="
+                    selectProductDetails(
+                      confDropdowns[i],
+                      i,
+                      conf.isSingleChoice,
+                      null
+                    )
+                  "
+                >
+                  <option
+                    *ngFor="let option of conf.options"
+                    [attr.value]="option.description"
+                    [attr.selected]="option.isSelected === true ? true : null"
+                  >
+                    {{ option.description }}
+                  </option>
+                </select>
+              </div>
+              <div style="margin-top: 10px">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="CommentDrop"
+                  [(ngModel)]="comment[i]"
+                  value="Comment"
+                />
+              </div>
+            </div>
+
+            <div *ngIf="!conf.isSingleChoice" style="display: block">
+              <div>
+                <label for="">{{ conf.question }}</label>
+              </div>
+              <div
+                *ngFor="let option of conf.options; let y = index"
+                style="margin-top: 10px"
+              >
+                <div>
+                  <input
+                    type="checkbox"
+                    id="{{ 'checkbox' + i + '_' + y }}"
+                    name="checkbox-name"
+                    [checked]="
+                      conf.options[y]['isSelected'] === true ? true : null
+                    "
+                    style="height: 16px; width: 10%"
+                    (click)="
+                      selectProductDetails(
+                        confDropdowns[i],
+                        i,
+                        conf.isSingleChoice,
+                        y
+                      )
+                    "
+                  />
+                  <span>{{ conf.options[y]["description"] }}</span>
+                </div>
+                <div style="margin-top: 10px">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="CommentCheck"
+                    [(ngModel)]="commentCheckBox[y]"
+                    value="Comment"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ENDS: Conigurable Section -->
+
+        <div
+          class="product-details__info--subtitle"
+          *ngIf="!product?.product?.description?.startsWith('<')"
+        >
+          <img
+            *ngIf="product?.product?.description"
+            src="assets/icons/map.png"
+            alt="Eye Icon"
+          />
+          <!-- <span [innerHTML]="product?.product?.description"></span> -->
+          <span>{{ product?.product?.description?.substr(0, 41) }}</span>
+        </div>
+        <div
+          class="product-details__info--description"
+          [innerHTML]="product?.product?.description"
+        >
+          <!-- {{
+              product?.product?.description ||
+                "Lorem ipsum dolor sit amet, consectetuer adipi scing elit, sed diamnonummy nibh euismod tincidunt ut laoreet dolore magn."
+            }} -->
+        </div>
+        <!-- <div class="product-details__info--shipping">
+            <img src="assets/icons/map.png" alt="Shipping Icon" />
+            <span>Free worldwide shipping on all orders over $100</span>
+          </div>
+          <div class="product-details__info--shipping">
+            <img src="assets/icons/map.png" alt="Delivery Icon" />
+            <span class="c-pointer"
+              >Delivers in: 3-7 Working Days <span>Shipping & Return</span></span
+            >
+          </div> -->
+        <div class="product-details__info--ratings">
+          <img
+            src="assets/icons/star.png"
+            alt="Star Icon"
+            *ngIf="product?.averageRating"
+          />
+          <span
+            class="product-details__info--ratings-average"
+            *ngIf="product?.averageRating"
+            >{{ product?.averageRating | number : "1.1-1" }}</span
+          >
+          <span class="product-details__info--ratings-reviews">{{
+            reviewText
+          }}</span>
+        </div>
+        <div class="product-details__info--stock">
+          <div class="product-details__info--stock-icon"></div>
+          In stock, ready to ship
+        </div>
+        <div class="product-details__info--button">
+          <div class="product-details__info--button-grp">
+            <div class="product-details__info--button-quantity-wrapper">
+              <div>Quantity</div>
+              <div class="product-details__info--button-quantity">
+                <span
+                  class="product-details__info--button-quantity-decrement"
+                  [ngClass]="{ disabled: quantity === 1 }"
+                  (click)="onChangeQuantity(-1)"
+                  >-</span
+                >
+                <span>{{ quantity }}</span>
+                <span
+                  class="product-details__info--button-quantity-increment"
+                  (click)="onChangeQuantity(1)"
+                  >+</span
+                >
+              </div>
+            </div>
+            <!-- <div class="product-details__info--button-cart">
+                <button class="btn btn-dark" (click)="addToCart(quantity, false)">
+                  Add to Cart
+                </button>
+              </div>
+              <div class="product-details__info--button-favorite">
+                <img src="assets/icons/favorite-grey.png" alt="" />
+              </div> -->
+          </div>
+          <div class="product-details__info--button-grp">
+            <button class="btn btn-dark" (click)="addToCart(quantity, false)">
+              Add to Cart
+            </button>
+            <button
+              class="btn btn-outline-secondary"
+              (click)="addToCart(quantity, true)"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+
+        <div class="product-details__info--payment">
+          <div class="product-details__info--payment-title">
+            Guaranteed Safe Checkout
+          </div>
+          <div class="product-details__info--payment-list">
+            <div
+              class="product-details__info--payment-item"
+              *ngFor="let paymentMethod of paymentMethods"
+            >
+              <img [src]="paymentMethod.icon" [alt]="paymentMethod.title" />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #loading>
+        <div class="shimmer w-50 p-2"></div>
+        <div class="shimmer w-100 p-3"></div>
+        <div class="shimmer w-50 p-2"></div>
+        <div class="shimmer w-75 p-3"></div>
+        <div
+          class="shimmer w-100 p-2"
+          *ngFor="let item of [].constructor(5)"
+        ></div>
+        <div class="shimmer w-75 p-3"></div>
+        <div class="shimmer w-75 p-3"></div>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="additional-details">
+    <div class="add-review" *ngIf="userIsLoggedIn">
+      Liked this product? Please tell us more.
+      <span (click)="openReviewModal('createReviewContent')">
+        Write a review
+      </span>
+    </div>
+    <ul ngbNav #nav="ngbNav" [activeId]="3" class="nav-tabs">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>Product details & Care</a>
+        <ng-template ngbNavContent>
+          <div [innerHTML]="product?.product?.longDescription || ''"></div>
+          <div>
+            <div
+              class="additional-details__specifications"
+              *ngIf="downloadProdContents.length"
+            >
+              <div
+                *ngFor="let product of downloadProdContents"
+                class="additional-details__specifications--pdf"
+                (click)="
+                  openProductSpecificationsPDF(
+                    product.productId,
+                    product.contentId
+                  )
+                "
+              >
+                <i class="bi bi-file-earmark-pdf"></i>
+                {{ product.contentName }}
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>Delivery & Returns</a>
+        <ng-template ngbNavContent>
+          <p>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
+            skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+            single-origin coffee nulla assumenda shoreditch et. Nihil anim
+            keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+            sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth
+            nesciunt you probably haven't heard of them accusamus labore
+            sustainable VHS.
+          </p>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="3">
+        <a ngbNavLink>Ratings & Reviews</a>
+        <ng-template ngbNavContent>
+          <div class="review__summary">
+            <!-- {{
+                  (product?.averageRating * 100 -
+                    ((product?.averageRating * 100) % 100)) /
+                    100
+                }}
+                /
+                {{ (product?.averageRating * 100) % 100 }} -->
+            <i
+              class="bi bi-star-fill"
+              *ngFor="let stars of [].constructor(avgRatingsFill)"
+            ></i>
+            <i
+              class="bi bi-star-half"
+              *ngIf="(product?.averageRating * 100) % 100"
+            ></i>
+            <span
+              class="review__summary--average"
+              *ngIf="product?.averageRating"
+              >{{ product?.averageRating | number : "1.1-1" }}</span
+            >
+            <span class="review__summary--reviews">{{ reviewText }}</span>
+          </div>
+
+          <div class="review__note">
+            Only customers who have purchased this item can review
+          </div>
+          <ng-container *ngIf="product?.averageRating">
+            <div class="review__media--count">15 Customer photos</div>
+            <div class="review__media">
+              <img
+                src="assets/images/dummy-product-03.png"
+                alt="Review Image"
+                *ngFor="let reviewImage of [].constructor(3)"
+              />
+              <div>All Photos</div>
+            </div>
+
+            <div class="review__title">Most recent</div>
+          </ng-container>
+
+          <div
+            class="review__item"
+            *ngFor="let reviewItem of product?.productReviews"
+          >
+            <div class="review__item--header">
+              <div class="review__item--header-info">
+                <div class="review__item--header-info-rating">
+                  <img
+                    src="assets/icons/star-grey.png"
+                    alt="Star Icon"
+                    *ngFor="
+                      let reviewStarItem of [].constructor(
+                        reviewItem.productRating
+                      )
+                    "
+                  />
+                </div>
+                <div class="review__item--header-info-title">
+                  {{ reviewItem.userLoginId }}
+                </div>
+              </div>
+              <div class="review__item--header-timestamp">
+                {{ reviewItem.createdStamp | date }}
+              </div>
+            </div>
+            <div class="review__item--media">
+              <img
+                src="assets/images/dummy-product-05.png"
+                alt="Review Image"
+                *ngFor="let reviewImage of [].constructor(3)"
+              />
+            </div>
+            <div class="review__item--comment">
+              {{ reviewItem.productReview }}
+            </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+
+  <div
+    class="product"
+    *ngIf="crossSellProducts?.length || upSellProducts?.length"
+  >
+    <div class="product__header">
+      <div class="product__header--title">Similar Items</div>
+      <div
+        class="product__header--action"
+        *ngIf="crossSellProducts.length > 4"
+        (click)="toggleShowSimilar()"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
+      </div>
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="
+          let item of crossSellProducts.slice(
+            0,
+            showAllSimilarItems ? crossSellProducts.length : 4
+          )
+        "
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let item of upSellProducts"
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product" *ngIf="alsoBoughtProducts?.length">
+    <div class="product__header">
+      <div class="product__header--title">Also Bought Items</div>
+      <div
+        class="product__header--action"
+        *ngIf="alsoBoughtProducts.length > 4"
+        (click)="toggleShowAlsoBought()"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
+      </div>
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="
+          let item of alsoBoughtProducts.slice(
+            0,
+            showAllAlsoBoughtItems ? alsoBoughtProducts.length : 4
+          )
+        "
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product" *ngIf="obsoleteProducts?.length">
+    <div class="product__header">
+      <div class="product__header--title">Obsolete Items</div>
+      <div
+        class="product__header--action"
+        *ngIf="obsoleteProducts.length > 4"
+        (click)="toggleShowObsolete()"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
+      </div>
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="
+          let item of alsoBoughtProducts.slice(
+            0,
+            showAllAlsoBoughtItems ? alsoBoughtProducts.length : 4
+          )
+        "
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product" *ngIf="accessoryProducts?.length">
+    <div class="product__header">
+      <div class="product__header--title">Accessory Items</div>
+      <div
+        class="product__header--action"
+        *ngIf="accessoryProducts.length > 4"
+        (click)="toggleShowAccessory()"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
+      </div>
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="
+          let item of accessoryProducts.slice(
+            0,
+            showAllAccessoryItems ? accessoryProducts.length : 4
+          )
+        "
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product" *ngIf="revisionProducts?.length">
+    <div class="product__header">
+      <div class="product__header--title">Revision Items</div>
+      <div
+        class="product__header--action"
+        *ngIf="revisionProducts.length > 4"
+        (click)="toggleShowRevision()"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
+      </div>
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="
+          let item of accessoryProducts.slice(
+            0,
+            showAllAccessoryItems ? accessoryProducts.length : 4
+          )
+        "
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product" *ngIf="substituteProducts?.length">
+    <div class="product__header">
+      <div class="product__header--title">Substitutue Items</div>
+      <div
+        class="product__header--action"
+        *ngIf="substituteProducts.length > 4"
+        (click)="toggleShowSubstitute()"
+      >
+        <span>Show All</span>
+        <!-- <i class="bi bi-arrow-right"></i> -->
+        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
+      </div>
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="
+          let item of accessoryProducts.slice(
+            0,
+            showAllAccessoryItems ? accessoryProducts.length : 4
+          )
+        "
+      >
+        <div class="product__item">
+          <app-item-card [product]="item"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product" *ngIf="lastViewedProducts?.length">
+    <div class="product__header">
+      <div class="product__header--title">Recently Viewed</div>
+      <!-- <div class="product__header--action">
+          <span>Show All</span>
+          <i class="bi bi-arrow-right"></i>
+        </div> -->
+    </div>
+    <div class="product__list">
+      <div
+        class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let lastViewedItem of lastViewedProducts.slice(0, 8)"
+      >
+        <div class="product__item">
+          <app-item-card [product]="lastViewedItem"></app-item-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-offer-banner
+  [title]="bannerFive?.imageTitle ? bannerFive?.imageTitle : ''"
+  [mediaURL]="bannerFive?.url ? bannerFive?.url : ''"
+  [description]="
+    bannerFive?.imageDescription ? bannerFive?.imageDescription : ''
+  "
+  [ctaLabel]="''"
+  [ctaType]="''"
+  [bgColor]="'blue'"
+></app-offer-banner>

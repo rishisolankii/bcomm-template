@@ -23,6 +23,7 @@ import { HeroBannerComponent } from './hero-banner/hero-banner.component';
 import { HeroFullComponent } from './hero-full/hero-full.component';
 import { HeroModernComponent } from './hero-modern/hero-modern.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 export const routes: Routes = [
   {
@@ -116,5 +117,9 @@ export const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent,
+  },
+  {
+    path: 'product-detail',
+    component: ProductDetailComponent,
   },
 ];
