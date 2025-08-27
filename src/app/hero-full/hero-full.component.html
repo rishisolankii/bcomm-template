@@ -1,95 +1,68 @@
-<ng-container *ngIf="banner.length; else loading">
-    <!-- <div
-      class="banner"
-      [style.background-image]="
-        foundBanner?.url
-          ? 'url(' + foundBanner?.url + ')'
-          : 'assets/images/home-banner[bannerIndex].png'
-      "
-    > -->
-    <!-- <div
-      class="banner"
-      
-      [style.background-image]="'url(' + foundBanner?.url + ')'"
-    > -->
-    <div class="banner">
+<ng-container *ngIf="banner; else loading">
+  <div class="banner">
+    <!-- CASE 1::If Media Type is IMAGE -->
+    <ng-container *ngIf="banner?.type === 'banner'">
       <img
-        [ngSrc]="foundBanner?.url"
+        [ngSrc]="banner?.urls[0]"
         alt="BANNER"
         fill
         loading="eager"
         fetchpriority="high"
         placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/fb1JwAJRQO3NuvFDAAAAABJRU5ErkJggg==
-        "
+          "
       />
-      <div class="banner__info">
-        <div class="banner__info--title">
-          {{
-            foundBanner?.imageTitle || "Furniture of the best quality" | titlecase
-          }}
-        </div>
-        <!-- <div class="banner__info--title">
-          <span>{{
-            foundBanner?.imageTitle.split(" ")[0] || "Shoes" | titlecase
-          }}</span>
-          {{
-            foundBanner?.imageTitle.split(" ").slice(1).join(" ") ||
-              "of the best quality"
-          }}
-        </div> -->
-        <div class="banner__info--subtitle">
-          {{ foundBanner?.imageDescription | titlecase }}
-        </div>
-        <div class="banner__info--action">
-          <button class="btn btn-dark" (click)="goToBannerURL(foundBanner)">Shop Now</button>
-        </div>
-        <!-- <div class="banner__info--seller">
-            <div class="banner__info--seller-label">Sold by:</div>
-            <div class="banner__info--seller-info">
-              <div class="banner__info--seller-media">
-                <img src="assets/images/dummy-seller-avatar.png" alt="" />
-              </div>
-              <div class="banner__info--seller-info-grp">
-                <div class="banner__info--seller-info-name">Peter Mathew</div>
-                <div class="banner__info--seller-info-contact">Contact Now</div>
-              </div>
-              <div class="banner__info--seller-tag">TOP SELLER</div>
-            </div>
-          </div> -->
+    </ng-container>
+    <!-- CASE 2::If Media Type is VIDEO -->
+    <ng-container *ngIf="banner?.type === 'video'">
+      <video
+        #bannerVideo
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        [src]="banner?.urls[0]"
+      ></video>
+    </ng-container>
+    <!-- CASE 3::If Media Type is CAROUSEL -->
+    <ng-container
+      *ngIf="banner?.type === 'slider'"
+      [ngTemplateOutlet]="carousel"
+    ></ng-container>
+    <div class="banner__info">
+      <div class="banner__info--title">
+        {{ banner?.title | titlecase }}
+      </div>
+      <div class="banner__info--subtitle">
+        {{ banner?.description | titlecase }}
+      </div>
+      <div class="banner__info--action">
+        <button class="btn btn-dark" (click)="goToBannerURL(banner)">
+          Shop Now
+        </button>
       </div>
     </div>
-  </ng-container>
-  
-  <ng-template #loading>
-    <!-- <div
-      class="banner"
-      [style.background-image]="'url(assets/images/full-banner.jpeg)'"
-    > -->
-    <div class="banner">
-      <!-- <div class="banner" [style.background-image]="'url(' + banner[bannerIndex].url + ')'"> -->
-      <!-- <div class="banner__media">
-          <img src="assets/images/home-banner[bannerIndex].png" alt="" />
-        </div> -->
-      <div class="banner__info">
-        <div class="banner__info--title"></div>
-        <div class="banner__info--subtitle"></div>
-        <div class="banner__info--action">
-          <button class="btn btn-dark">Shop Now</button>
-        </div>
-        <!-- <div class="banner__info--seller">
-            <div class="banner__info--seller-label">Sold by:</div>
-            <div class="banner__info--seller-info">
-              <div class="banner__info--seller-media">
-                <img src="assets/images/dummy-seller-avatar.png" alt="" />
-              </div>
-              <div class="banner__info--seller-info-grp">
-                <div class="banner__info--seller-info-name">Peter Mathew</div>
-                <div class="banner__info--seller-info-contact">Contact Now</div>
-              </div>
-              <div class="banner__info--seller-tag">TOP SELLER</div>
-            </div>
-          </div> -->
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="banner">
+    <div class="banner__info">
+      <div class="banner__info--title"></div>
+      <div class="banner__info--subtitle"></div>
+      <div class="banner__info--action">
+        <button class="btn btn-dark">Shop Now</button>
       </div>
     </div>
-  </ng-template>
-  
+  </div>
+</ng-template>
+
+<ng-template #carousel>
+  <ngb-carousel class="carousel">
+    <ng-template ngbSlide *ngFor="let slide of banner?.urls; index as i">
+      <div class="carousel__img-wrapper">
+        <img [src]="slide" alt="Banner Title" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</ng-template>

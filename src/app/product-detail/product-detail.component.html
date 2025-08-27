@@ -846,11 +846,9 @@
 </div>
 
 <app-offer-banner
-  [title]="bannerFive?.imageTitle ? bannerFive?.imageTitle : ''"
-  [mediaURL]="bannerFive?.url ? bannerFive?.url : ''"
-  [description]="
-    bannerFive?.imageDescription ? bannerFive?.imageDescription : ''
-  "
+  [title]="bannerFive?.title"
+  [mediaURL]="bannerFive?.urls"
+  [description]="bannerFive?.description"
   [ctaLabel]="''"
   [ctaType]="''"
   [bgColor]="'blue'"

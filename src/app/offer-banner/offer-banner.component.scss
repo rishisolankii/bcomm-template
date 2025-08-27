@@ -1,106 +1,107 @@
 @import "../../assets/styles/variables.scss";
 
 .banner {
-    &__wrapper {
-      display: flex;
-      align-items: center;
-      margin-top: 80px;
-      border-radius: 4px;
-      position: relative;
-      &.blue {
-        background: var(--gradient-banner);
-      }
-      &.grey {
-        background: var(--gradient-banner-medium);
-      }
-      &.dark {
-        background: var(--color-dark);
-        .banner__info {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding-block: 60px;
-          &--title {
-            color: $color-light;
-          }
-          &--subtitle {
-            color: #ececec;
-          }
-          &--description {
-            color: #f4f4f4;
-            text-align: center;
-          }
-          button {
-            background-color: $color-light;
-          }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+    border-radius: 4px;
+    position: relative;
+    &.blue {
+      background: var(--gradient-banner);
+    }
+    &.grey {
+      background: var(--gradient-banner-medium);
+    }
+    &.dark {
+      background: var(--color-dark);
+      .banner__info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-block: 60px;
+        &--title {
+          color: $color-light;
+        }
+        &--subtitle {
+          color: #ececec;
+        }
+        &--description {
+          color: #f4f4f4;
+          text-align: center;
+        }
+        button {
+          background-color: $color-light;
         }
       }
     }
-    &__info {
-      width: 50%;
-      padding: 20px 80px;
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
+  }
+  &__info {
+    width: 50%;
+    padding: 20px 80px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    &--title {
+      font-size: 36px;
+    }
+    &--subtitle {
+      font-size: 16px;
+      color: #737373;
+    }
+    &--description {
+      font-size: 16px;
+      font-weight: 400;
+      padding: 12px 0 24px;
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+    &--action {
       display: flex;
+      align-items: center;
+      min-width: 144px;
+      button {
+        padding: 10px 22px;
+        background-color: var(--color-dark);
+      }
+      span {
+        font-size: 24px;
+        padding-right: 8px;
+      }
+      img {
+        width: 24px;
+      }
+    }
+  }
+  &__media {
+    width: 100%;
+    min-height: 300px;
+    img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .banner {
+    &__wrapper {
       flex-direction: column;
-      justify-content: center;
-      background-color: rgba(255, 255, 255, 0.9);
-      &--title {
-        font-size: 36px;
-      }
-      &--subtitle {
-        font-size: 16px;
-        color: #737373;
-      }
-      &--description {
-        font-size: 16px;
-        font-weight: 400;
-        padding: 12px 0 24px;
-        color: var(--color-text-secondary);
-        margin: 0;
-      }
-      &--action {
-        display: flex;
-        align-items: center;
-        min-width: 144px;
-        button {
-          padding: 10px 22px;
-          background-color: var(--color-dark);
-        }
-        span {
-          font-size: 24px;
-          padding-right: 8px;
-        }
-        img {
-          width: 24px;
-        }
-      }
+    }
+    &__info {
+      width: 100%;
+      padding: 16px;
     }
     &__media {
       width: 100%;
-      img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 0 4px 4px 0;
-      }
     }
   }
-  
-  @media (max-width: 575.98px) {
-    .banner {
-      &__wrapper {
-        flex-direction: column;
-      }
-      &__info {
-        width: 100%;
-        padding: 16px;
-      }
-      &__media {
-        width: 100%;
-      }
-    }
-  }
+}

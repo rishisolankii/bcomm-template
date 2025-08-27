@@ -1,6 +1,30 @@
 <div class="banner__wrapper" [ngClass]="bgColor">
   <div class="banner__media" *ngIf="mediaURL">
-    <img [src]="mediaURL" [alt]="title || subtitle || description" />
+    <ng-container
+      *ngIf="bannerData?.type === 'banner' || mediaType === 'banner'"
+    >
+      <img
+        loading="lazy"
+        [src]="mediaURL[0]"
+        [alt]="title || subtitle || description"
+      />
+    </ng-container>
+    <!-- CASE 2::If Media Type is VIDEO -->
+    <ng-container *ngIf="bannerData?.type === 'video' || mediaType === 'video'">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        [src]="mediaURL[0]"
+      ></video>
+    </ng-container>
+    <!-- CASE 3::If Media Type is CAROUSEL -->
+    <ng-container
+      *ngIf="bannerData?.type === 'slider' || mediaType === 'slider'"
+      [ngTemplateOutlet]="carousel"
+    ></ng-container>
   </div>
   <div class="banner__info">
     <div class="banner__info--subtitle">{{ subtitle }}</div>
@@ -31,3 +55,13 @@
     </div>
   </div>
 </div>
+
+<ng-template #carousel>
+  <ngb-carousel class="carousel">
+    <ng-template ngbSlide *ngFor="let slide of mediaURL; index as i">
+      <div class="carousel__img-wrapper">
+        <img [src]="slide" alt="Banner Title" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</ng-template>

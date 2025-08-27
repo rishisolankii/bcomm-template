@@ -1,12 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -14,12 +6,13 @@ import { FormControl } from '@angular/forms';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   @Input() cartDetailsList: any;
   @Input() cartItemCount = 0;
   @Input() grandTotalAmount = 0;
   // @Input() modifyCartData: any;
   @Input() bannersDetail: any[] = [];
+  @Input() bannerFive: any;
   @Input() associatedProducts: any[] = [];
   @Input() showLoading: boolean = true;
   @Output() goToProduct = new EventEmitter<any>();
@@ -35,6 +28,10 @@ export class CartComponent {
   @Output() redirectToHome = new EventEmitter<any>();
   @Output() onCheckoutRedirection = new EventEmitter<any>();
   constructor() {}
+
+  ngOnInit(): void {
+    console.log('bannerFive::', this.bannerFive);
+  }
 
   goToProductDetails(product: any) {
     this.goToProduct.emit(product);

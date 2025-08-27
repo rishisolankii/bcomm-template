@@ -14,6 +14,7 @@ export class OfferBannerComponent {
   @Input() mediaURL!: string;
   @Input() bgColor!: string;
   @Input() bannerData!: any;
+  @Input() mediaType!: string;
   @Output() goToBanner = new EventEmitter<any>();
 
   goToBannerURL() {

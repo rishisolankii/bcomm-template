@@ -1,18 +1,33 @@
 <div class="banner__item">
   <div class="banner__item--media">
-    <img loading="lazy" fill [ngSrc]="banner?.url" alt="Banner Image" />
+    <!-- CASE 1::If Media Type is IMAGE -->
+    <ng-container *ngIf="banner?.type === 'banner'">
+      <img loading="lazy" fill [ngSrc]="banner?.urls[0]" alt="Banner Image" />
+    </ng-container>
+    <!-- CASE 2::If Media Type is VIDEO -->
+    <ng-container *ngIf="banner?.type === 'video'">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        [src]="banner?.urls[0]"
+      ></video>
+    </ng-container>
+    <!-- CASE 3::If Media Type is CAROUSEL -->
+    <ng-container
+      *ngIf="banner?.type === 'slider'"
+      [ngTemplateOutlet]="carousel"
+    ></ng-container>
   </div>
   <div class="banner__item--info">
     <div class="banner__item--info-left">
       <div class="banner__item--info-title">
-        {{ banner?.imageTitle || "Upto 50% Off" | titlecase }}
+        {{ banner?.title | titlecase }}
       </div>
       <div class="banner__item--info-description">
-        {{
-          banner?.imageDescription ||
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
-            | titlecase
-        }}
+        {{ banner?.Description | titlecase }}
       </div>
     </div>
     <div
@@ -23,3 +38,13 @@
     </div>
   </div>
 </div>
+
+<ng-template #carousel>
+  <ngb-carousel class="carousel">
+    <ng-template ngbSlide *ngFor="let slide of banner?.urls; index as i">
+      <div class="carousel__img-wrapper">
+        <img [src]="slide" alt="Banner Title" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</ng-template>

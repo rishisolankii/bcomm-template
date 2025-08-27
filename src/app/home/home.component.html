@@ -1,53 +1,17 @@
 <div class="hero">
-  <!-- <app-hero-banner
-    *ngIf="storeTheme === 'THEME_AUTOPARTS'"
-    [banner]="bannersDetail"
-    [foundBanner]="foundBanner"
-    [bannerKey]="'banner1'"
-    (bannerUrl)="goToURL($event)"
-  ></app-hero-banner>
-
-
-  <app-hero-full
-    *ngIf="
-      storeTheme === 'THEME_FURNITURE' ||
-      storeTheme === 'THEME_FASHION' ||
-      storeTheme === 'THEME_JEWELRY' ||
-      storeTheme === 'THEME_PET'
-    "
-    [banner]="bannersDetail"
-    [bannerKey]="'banner1'"
-    [foundBanner]="foundBanner"
-    (bannerUrl)="goToURL($event)"
-  ></app-hero-full>
-
-  <app-hero-modern
-    *ngIf="
-      storeTheme === 'THEME_ELECTRONIC' ||
-      storeTheme === 'THEME_BEAUTY' ||
-      storeTheme === 'THEME_GARDEN' ||
-      storeTheme === 'THEME_SPORTS' ||
-      storeTheme === 'THEME_LIGHTS'
-    "
-    [banner]="bannersDetail"
-    [bannerKey]="'banner1'"
-    [foundBanner]="foundBanner"
-    (bannerUrl)="goToURL($event)"
-  ></app-hero-modern> -->
-
   <ng-container [ngSwitch]="themeComponent">
     <app-hero-banner
       *ngSwitchCase="'autoparts'"
       [banner]="bannersDetail"
-      [bannerKey]="'banner1'"
+      [bannerKey]="'media1'"
       [foundBanner]="foundBanner"
       (bannerUrl)="goToURL($event)"
     ></app-hero-banner>
 
     <app-hero-full
       *ngSwitchCase="'full'"
-      [banner]="bannersDetail"
-      [bannerKey]="'banner1'"
+      [banner]="bannerOne"
+      [bannerKey]="'media1'"
       [foundBanner]="foundBanner"
       (bannerUrl)="goToURL($event)"
     ></app-hero-full>
@@ -55,10 +19,18 @@
     <app-hero-modern
       *ngSwitchCase="'modern'"
       [banner]="bannersDetail"
-      [bannerKey]="'banner1'"
+      [bannerKey]="'media1'"
       [foundBanner]="foundBanner"
       (bannerUrl)="goToURL($event)"
     ></app-hero-modern>
+
+    <app-hero-full
+      *ngSwitchCase="null"
+      [banner]="bannerOne"
+      [bannerKey]="'media1'"
+      [foundBanner]="foundBanner"
+      (bannerUrl)="goToURL($event)"
+    ></app-hero-full>
   </ng-container>
   <ng-container *ngIf="showLoading">
     <div class="shimmer w-100 h-100 p-5"></div>
@@ -84,7 +56,14 @@
           <div style="position: relative; width: 100%; height: 200px">
             <img
               priority
-              [ngSrc]="popularCategory.imageUrl"
+              [ngSrc]="
+                popularCategory.entity.linkOneImageUrl
+                  ? popularCategory.entity.linkOneImageUrl.startsWith('http') ||
+                    popularCategory.entity.linkOneImageUrl.startsWith('https')
+                    ? popularCategory.entity.linkOneImageUrl
+                    : popularCategory.entity.linkOneImageUrlS3
+                  : 'assets/images/no-product-image.png'
+              "
               alt="Popular Category Image"
               fill
               style="object-fit: cover"
@@ -132,15 +111,9 @@
 </div>
 
 <app-offer-banner
-  [title]="
-    bannerFive?.imageTitle ? bannerFive?.imageTitle : 'Marketing Message Here'
-  "
-  [mediaURL]="bannerFive?.url"
-  [description]="
-    bannerFive?.imageDescription
-      ? bannerFive?.imageDescription
-      : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.'
-  "
+  [title]="bannerFive?.title"
+  [mediaURL]="bannerFive?.urls"
+  [description]="bannerFive?.description"
   [ctaLabel]="'Shop Now'"
   [ctaType]="'LINK'"
   [bgColor]="'blue'"
@@ -191,48 +164,6 @@
     </div>
     <div class="banner__list">
       <div class="banner__item--wrapper col-lg-4">
-        <!-- <div class="banner__item" *ngIf="!showLoading; else loadingBannerTwo">
-          <div class="banner__item--media">
-            <img
-              loading="lazy"
-              fill
-              [ngSrc]="bannerTwo?.url"
-              alt="Banner Image"
-            /> -->
-        <!-- (error)="bannerTwo.url = 'assets/images/dummy-product-01.png'" -->
-        <!-- <img
-                    [ngSrc]="
-                      bannerTwo?.url
-                        ? bannerTwo?.url
-                        : 'assets/images/dummy-product-01.png'
-                    "
-                    alt="Banner Image"
-                  /> -->
-        <!-- </div>
-          <div class="banner__item--info">
-            <div class="banner__item--info-left">
-              <div class="banner__item--info-title">
-                {{
-                  bannerTwo?.imageTitle || "Marketing Message Here" | titlecase
-                }}
-              </div>
-              <div class="banner__item--info-description">
-                {{
-                  bannerTwo?.imageDescription ||
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
-                    | titlecase
-                }}
-              </div>
-            </div>
-            <div
-              class="banner__item--info-right c-pointer"
-              (click)="goToBannerURL(bannerTwo)"
-            >
-              <button class="btn btn-dark">Shop Now</button> -->
-        <!-- <img ngSrc="assets/icons/arrow_right.png" alt="Arrow Right Icon" /> -->
-        <!-- </div>
-          </div>
-        </div> -->
         <ng-container *ngIf="!showLoading; else loadingBannerTwo">
           <app-banner-item
             [banner]="bannerTwo"
@@ -245,36 +176,6 @@
       </div>
 
       <div class="banner__item--wrapper middle col-lg-4">
-        <!-- <div class="banner__item" *ngIf="!showLoading; else loadingBannerThree">
-          <div class="banner__item--media">
-            <img
-              loading="lazy"
-              fill
-              [ngSrc]="bannerThree?.url"
-              alt="Banner Image"
-            />
-          </div>
-          <div class="banner__item--info">
-            <div class="banner__item--info-left">
-              <div class="banner__item--info-title">
-                {{ bannerThree?.imageTitle || "Upto 50% Off" | titlecase }}
-              </div>
-              <div class="banner__item--info-description">
-                {{
-                  bannerThree?.imageDescription ||
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
-                    | titlecase
-                }}
-              </div>
-            </div>
-            <div
-              class="banner__item--info-right c-pointer"
-              (click)="goToBannerURL(bannerThree)"
-            >
-              <button class="btn btn-dark">Shop Now</button>
-            </div>
-          </div>
-        </div> -->
         <ng-container *ngIf="!showLoading; else loadingBannerThree">
           <app-banner-item
             [banner]="bannerThree"
@@ -287,36 +188,6 @@
       </div>
 
       <div class="banner__item--wrapper last col-lg-4">
-        <!-- <div class="banner__item" *ngIf="!showLoading; else loadingBannerFour">
-          <div class="banner__item--media">
-            <img
-              loading="lazy"
-              fill
-              [ngSrc]="bannerFour?.url"
-              alt="Banner Image"
-            />
-          </div>
-          <div class="banner__item--info">
-            <div class="banner__item--info-left">
-              <div class="banner__item--info-title">
-                {{ bannerFour?.imageTitle || "Upto 50% Off" | titlecase }}
-              </div>
-              <div class="banner__item--info-description">
-                {{
-                  bannerFour?.imageDescription ||
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
-                    | titlecase
-                }}
-              </div>
-            </div>
-            <div
-              class="banner__item--info-right c-pointer"
-              (click)="goToBannerURL(bannerFour)"
-            >
-              <button class="btn btn-dark">Shop Now</button>
-            </div>
-          </div>
-        </div> -->
         <ng-container *ngIf="!showLoading; else loadingBannerFour">
           <app-banner-item
             [banner]="bannerFour"
@@ -331,15 +202,9 @@
   </div>
 
   <app-offer-banner
-    [title]="
-      bannerSix?.imageTitle ? bannerSix?.imageTitle : 'Marketing Message Here'
-    "
-    [mediaURL]="bannerSix?.url || 'assets/images/dummy-product-01.png'"
-    [description]="
-      bannerSix?.imageDescription
-        ? bannerSix?.imageDescription
-        : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.'
-    "
+    [title]="bannerSix?.title"
+    [mediaURL]="bannerSix?.urls"
+    [description]="bannerSix?.description"
     [ctaLabel]="'Shop Now'"
     [ctaType]="'LINK'"
     [bgColor]="'blue'"
