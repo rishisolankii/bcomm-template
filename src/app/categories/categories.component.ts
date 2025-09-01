@@ -9,7 +9,8 @@ import { FormControl } from '@angular/forms';
 export class CategoriesComponent {
   @Input() categoryId!: string;
   @Input() subCategories: any[] = [];
-  @Input() products: object[] = [];
+  // @Input() products: object[] = [];
+  @Input() products: any[] = [];
   @Input() categoryBanner: any;
   @Input() categoryName: any;
   @Input() categoryDescription: any;

@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
   styleUrl: './item-card.component.scss',
 })
-export class ItemCardComponent {
+export class ItemCardComponent implements OnInit {
   @Input() product!: any;
   @Input() isLoading: boolean = false;
   @Input() isSearch = false;
@@ -15,5 +15,9 @@ export class ItemCardComponent {
 
   goToProductDetails(product: any) {
     this.goToProduct.emit(product);
+  }
+
+  ngOnInit(): void {
+    // console.log('::productDetails', this.productDetails);
   }
 }
