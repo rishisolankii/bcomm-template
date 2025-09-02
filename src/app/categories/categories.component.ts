@@ -36,6 +36,7 @@ export class CategoriesComponent {
   @Input() searchPlaceHolder: any;
   @Output() goToBanner = new EventEmitter<any>();
   @Input() filters: any = {};
+  @Input() filterList: any;
   @Input() selectedFilters: any = {};
   @Output() deselectRadioBtn$ = new EventEmitter<{}>();
   @Output() onApplyFilter$ = new EventEmitter<void>();

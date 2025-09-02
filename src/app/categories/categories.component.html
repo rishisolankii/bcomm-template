@@ -227,10 +227,15 @@
         <!-- Inner Accordion: Expandable Filter Groups -->
         <div ngbAccordion>
           <div
-            *ngFor="let filter of filters; let i = index"
+            *ngFor="let filter of filterList; let i = index"
             ngbAccordionItem
             [collapsed]="i !== 0"
           >
+          <!-- <div
+            *ngFor="let filter of filters; let i = index"
+            ngbAccordionItem
+            [collapsed]="i !== 0"
+          > -->
             <div ngbAccordionHeader class="sidebar--filter-header">
               <button ngbAccordionButton>
                 <img
