@@ -9,6 +9,7 @@ import {
   CmsPageComponent,
   FaqsComponent,
   HeaderTopStripComponent,
+  HomeComponent,
   OfferBannerComponent,
 } from './component.module';
 import { ItemCardComponent } from './item-card/item-card.component';
@@ -92,7 +93,7 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: FaqsComponent,
+    component: HomeComponent,
   },
   {
     path: 'hero-banner',

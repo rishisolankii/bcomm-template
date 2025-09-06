@@ -31,6 +31,33 @@ export class HomeComponent {
   @Output() productRedirection = new EventEmitter<any>();
   @Input() themeComponent: 'autoparts' | 'full' | 'modern' | null = null;
 
+  brands = [
+    {
+      title: 'Brand 01',
+      logo: '/assets/images/brands/01.png'
+    },
+    {
+      title: 'Brand 02',
+      logo: '/assets/images/brands/02.png'
+    },
+    {
+      title: 'Brand 03',
+      logo: '/assets/images/brands/03.png'
+    },
+    {
+      title: 'Brand 04',
+      logo: '/assets/images/brands/04.png'
+    },
+    {
+      title: 'Brand 05',
+      logo: '/assets/images/brands/05.png'
+    },
+    {
+      title: 'Brand 06',
+      logo: '/assets/images/brands/06.png'
+    },
+  ]
+
   ngOnInit() {
     console.log(
       'bannersDetail-',

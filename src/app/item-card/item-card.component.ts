@@ -18,6 +18,6 @@ export class ItemCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('::productDetails', this.productDetails);
+    console.log('::productDetails', this.productDetails);
   }
 }

@@ -234,3 +234,40 @@
     </div>
   </div>
 </div>
+
+<!-- Static Section: You can change the content as you like -->
+<div class="static-banner__wrapper">
+  <div class="static-banner__media">
+      <img
+        loading="lazy"
+        src="assets/images/dummy-product-05.png"
+        alt="Banner alt text"
+      />
+  </div>
+  <div class="static-banner__info">
+    <h1 class="static-banner__info--title">Static Banner <span>Title</span>T. Lorem ipsum dolor sit <span>amet</span></h1>
+    <h2 class="static-banner__info--description">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae illo fuga fugiat odio exercitationem voluptas obcaecati quod nesciunt vero? Nesciunt voluptate magni est ea totam perspiciatis ut laborum, quo voluptatem?
+    </h2>
+    <div class="static-banner__info--action static-banner__info--action-button">
+      <button class="btn btn-light">
+        Explore our club
+        <img src="assets/icons/arrow_right.png" alt="Arrow Right Icon" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Static Section: You can change the content as you like -->
+<div class="brand__wrapper">
+  <div class="brand__list">
+    <div
+      class="brand__item--wrapper col-xs-3 col-md-2 col-lg-2"
+      *ngFor="let item of brands"
+    >
+      <div class="brand__item">
+          <img [src]="item.logo" [alt]="item.title" />
+      </div>
+    </div>
+  </div>
+</div>
