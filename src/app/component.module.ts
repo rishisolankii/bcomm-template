@@ -29,6 +29,7 @@ import { CmsPageComponent } from './cms-page/cms-page.component';
 import { BannerItemComponent } from './banner-item/banner-item.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { RemoteAssetPipe } from './utils/remote-asset.pipe';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     BannerItemComponent,
     CategoriesComponent,
     ProductDetailComponent,
+    RemoteAssetPipe
   ],
   exports: [
     HeaderComponent,

@@ -238,14 +238,34 @@
 <!-- Static Section: You can change the content as you like -->
 <div class="static-banner__wrapper">
   <div class="static-banner__media">
+      <!-- <img
+        loading="lazy"
+        src="template/full-banner.jpeg"
+        alt="Banner alt text"
+      /> -->
+      <!-- <img
+        loading="lazy"
+        [src]="staticBanner"
+        alt="Banner alt text"
+      /> -->
       <img
+        loading="lazy"
+        [src]="'images/temp_full-banner.jpeg' | remoteAsset"
+        alt="Banner alt text"
+      />
+      <!-- <img
+        loading="lazy"
+        src="http://localhost:4201/assets/images/temp_full-banner.jpeg"
+        alt="Banner alt text"
+      /> -->
+      <!-- <img
         loading="lazy"
         src="assets/images/dummy-product-05.png"
         alt="Banner alt text"
-      />
+      /> -->
   </div>
   <div class="static-banner__info">
-    <h1 class="static-banner__info--title">Static Banner <span>Title</span>T. Lorem ipsum dolor sit <span>amet</span></h1>
+    <h1 class="static-banner__info--title">Static Banner <span>Title</span>. Lorem ipsum dolor sit <span>amet</span></h1>
     <h2 class="static-banner__info--description">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae illo fuga fugiat odio exercitationem voluptas obcaecati quod nesciunt vero? Nesciunt voluptate magni est ea totam perspiciatis ut laborum, quo voluptatem?
     </h2>
