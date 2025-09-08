@@ -30,6 +30,7 @@ import { BannerItemComponent } from './banner-item/banner-item.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { DevPreviewComponent } from './dev-preview/dev-preview.component';
+import { RemoteAssetPipe } from './utils/remote-asset.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { DevPreviewComponent } from './dev-preview/dev-preview.component';
     CategoriesComponent,
     ProductDetailComponent,
     DevPreviewComponent,
+    RemoteAssetPipe
   ],
   exports: [
     HeaderComponent,

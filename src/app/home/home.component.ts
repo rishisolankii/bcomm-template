@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { remoteAsset } from '../utils/remote-asset';
 
 @Component({
   selector: 'app-home',
@@ -34,27 +35,27 @@ export class HomeComponent {
   brands = [
     {
       title: 'Brand 01',
-      logo: '/assets/images/brands/01.png'
+      logo: remoteAsset('images/brands/01.png')
     },
     {
       title: 'Brand 02',
-      logo: '/assets/images/brands/02.png'
+      logo: remoteAsset('images/brands/02.png')
     },
     {
       title: 'Brand 03',
-      logo: '/assets/images/brands/03.png'
+      logo: remoteAsset('images/brands/03.png')
     },
     {
       title: 'Brand 04',
-      logo: '/assets/images/brands/04.png'
+      logo: remoteAsset('images/brands/04.png')
     },
     {
       title: 'Brand 05',
-      logo: '/assets/images/brands/05.png'
+      logo: remoteAsset('images/brands/05.png')
     },
     {
       title: 'Brand 06',
-      logo: '/assets/images/brands/06.png'
+      logo: remoteAsset('images/brands/06.png')
     },
   ]
 
@@ -181,6 +182,8 @@ export class HomeComponent {
       ]
     }
   ];
+  // Usage Example for Static Assets
+  staticBanner = remoteAsset('images/temp_full-banner.jpeg');
 
   ngOnInit() {
     // Use Input data if available, otherwise use mock data
