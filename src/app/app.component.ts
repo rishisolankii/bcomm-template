@@ -15,11 +15,11 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'lasio-template';
-  showHeader = true;
-  showTopHeaderStrip = true;
-  showHeaderCategories = true;
-  showCopyrightStrip = true;
-  showFooter = true;
+  showHeader = false;
+  showTopHeaderStrip = false;
+  showHeaderCategories = false;
+  showCopyrightStrip = false;
+  showFooter = false;
 
   private hideAllRoutes: string[] = [
     '/auth/register',

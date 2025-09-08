@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,6 +13,23 @@ export class ForgotPasswordComponent {
   @Output() sendEmail = new EventEmitter<any>();
   @Output() redirectToHome = new EventEmitter<any>();
   @Output() redirectToLogin = new EventEmitter<any>();
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    // Set default reset form if not provided
+    if (!this.resetFG) {
+      this.resetFG = this.fb.group({
+        email: ['', [Validators.required, Validators.email]]
+      });
+    }
+
+    // Set default store logo if not provided
+    if (!this.storeLogo) {
+      this.storeLogo = 'assets/images/logo.png';
+    }
+  }
+
   onSendEmail() {
     this.sendEmail.emit();
   }

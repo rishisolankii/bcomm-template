@@ -22,6 +22,27 @@ export class HeroFullComponent implements AfterViewInit {
 
   @ViewChild('bannerVideo') bannerVideo!: ElementRef<HTMLVideoElement>;
 
+  ngOnInit() {
+    // Set default banner if not provided
+    if (!this.banner) {
+      this.banner = {
+        type: 'full-banner',
+        urls: ['assets/images/hero-full-default.jpg'],
+        videoUrl: 'assets/videos/hero-video.mp4',
+        title: 'Full Experience',
+        description: 'Immerse yourself in our complete shopping experience',
+        imageTitle: 'Discover More',
+        imageDescription: 'Full screen shopping experience',
+        urlType: 'category',
+        url: '/categories/featured'
+      };
+    }
+
+    if (!this.foundBanner) {
+      this.foundBanner = this.banner;
+    }
+  }
+
   ngAfterViewInit() {
     console.log('==== fallback autoplay ====');
     if (this.bannerVideo?.nativeElement) {
@@ -33,12 +54,12 @@ export class HeroFullComponent implements AfterViewInit {
     }
   }
 
+  goToBannerURL(banner?: any) {
+    this.bannerUrl.emit(banner || true);
+  }
+
   // ngOnInit(): void {
   //   console.log('foundBanner::', this.foundBanner);
   //   console.log('banner::', this.banner);
   // }
-
-  goToBannerURL(banner?: any) {
-    this.bannerUrl.emit(banner || true);
-  }
 }

@@ -24,6 +24,21 @@ export class HeaderComponent {
   @Output() search = new EventEmitter<any>();
   @Output() logout = new EventEmitter<any>();
 
+  ngOnInit() {
+    // Set default values if not provided
+    if (!this.storeLogo) {
+      this.storeLogo = 'assets/images/logo.png';
+    }
+    
+    if (this.cartItemCount === undefined || this.cartItemCount === null) {
+      this.cartItemCount = 0;
+    }
+
+    if (!this.userFirstName && this.isLogin) {
+      this.userFirstName = 'Guest User';
+    }
+  }
+
   searchProducts(e: any) {
     this.search.emit(e);
   }

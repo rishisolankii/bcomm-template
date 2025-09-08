@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-cart',
@@ -27,10 +28,33 @@ export class CartComponent implements OnInit {
   @Output() redirectBreadcrumbUrl = new EventEmitter<any>();
   @Output() redirectToHome = new EventEmitter<any>();
   @Output() onCheckoutRedirection = new EventEmitter<any>();
-  constructor() {}
+  constructor(private mockDataService: MockDataService) {}
 
   ngOnInit(): void {
-    console.log('bannerFive::', this.bannerFive);
+    // Set default cart data if not provided
+    if (!this.cartDetailsList || this.cartDetailsList.length === 0) {
+      this.showLoading = false;
+      this.cartDetailsList = this.mockDataService.getMockCartItems();
+      
+      // Calculate totals from mock data
+      this.cartItemCount = this.cartDetailsList.length;
+      this.subTotal = this.cartDetailsList.reduce((total: number, item: any) => {
+        return total + (item.product.productSummary.price.price * item.quantity);
+      }, 0);
+      this.grandTotalAmount = this.subTotal - this.discountTotal;
+    }
+
+    if (!this.bannersDetail || this.bannersDetail.length === 0) {
+      this.bannersDetail = this.mockDataService.getMockBanners();
+    }
+
+    if (!this.associatedProducts || this.associatedProducts.length === 0) {
+      this.associatedProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.couponFormCtr) {
+      this.couponFormCtr = new FormControl('');
+    }
   }
 
   goToProductDetails(product: any) {

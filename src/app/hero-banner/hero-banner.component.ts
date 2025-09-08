@@ -10,9 +10,29 @@ export class HeroBannerComponent {
   @Input() foundBanner!: any;
   @Input() bannerKey: string = 'banner1';
   @Output() bannerUrl = new EventEmitter<any>();
+
+  ngOnInit() {
+    // Set default banner if not provided
+    if (!this.banner) {
+      this.banner = {
+        type: 'banner',
+        urls: ['assets/images/hero-banner-default.jpg'],
+        title: 'Welcome to Our Store',
+        description: 'Discover amazing products with great deals and fast shipping',
+        imageTitle: 'Shop Now',
+        imageDescription: 'Quality products at unbeatable prices',
+        urlType: 'category',
+        url: '/categories/featured'
+      };
+    }
+
+    if (!this.foundBanner) {
+      this.foundBanner = this.banner;
+    }
+  }
+
   goToBannerURL(banner?: any) {
     console.log(banner);
-
     this.bannerUrl.emit(banner || true);
   }
 }

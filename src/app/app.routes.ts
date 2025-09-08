@@ -11,6 +11,7 @@ import {
   HeaderTopStripComponent,
   HomeComponent,
   OfferBannerComponent,
+  DevPreviewComponent,
 } from './component.module';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { LoginComponent } from './login/login.component';
@@ -27,6 +28,14 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: DevPreviewComponent,
+  },
+  {
+    path: 'dev-preview',
+    component: DevPreviewComponent,
+  },
   {
     path: 'header',
     component: HeaderComponent,

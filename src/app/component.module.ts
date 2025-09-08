@@ -29,6 +29,7 @@ import { CmsPageComponent } from './cms-page/cms-page.component';
 import { BannerItemComponent } from './banner-item/banner-item.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { DevPreviewComponent } from './dev-preview/dev-preview.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     BannerItemComponent,
     CategoriesComponent,
     ProductDetailComponent,
+    DevPreviewComponent,
   ],
   exports: [
     HeaderComponent,
@@ -86,6 +88,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     BannerItemComponent,
     CategoriesComponent,
     ProductDetailComponent,
+    DevPreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -124,4 +127,5 @@ export {
   BannerItemComponent,
   CategoriesComponent,
   ProductDetailComponent,
+  DevPreviewComponent,
 };

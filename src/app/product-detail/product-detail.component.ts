@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { SafeHtml } from '@angular/platform-browser';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -117,9 +118,66 @@ export class ProductDetailComponent implements OnInit {
 
   data: any = {};
 
-  constructor() {}
+  constructor(private mockDataService: MockDataService) {}
 
   ngOnInit() {
+    // Set default product data if not provided
+    if (!this.product) {
+      this.product = this.mockDataService.getMockProductDetail();
+    }
+
+    if (!this.productImage) {
+      this.productImage = this.product?.images?.[0] || 'assets/images/no-product-image.png';
+    }
+
+    if (!this.additionalImages || this.additionalImages.length === 0) {
+      this.additionalImages = this.product?.images || ['assets/images/no-product-image.png'];
+    }
+
+    if (!this.alsoBoughtProducts || this.alsoBoughtProducts.length === 0) {
+      this.alsoBoughtProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.accessoryProducts || this.accessoryProducts.length === 0) {
+      this.accessoryProducts = this.mockDataService.getMockProducts(3);
+    }
+
+    if (!this.crossSellProducts || this.crossSellProducts.length === 0) {
+      this.crossSellProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.upSellProducts || this.upSellProducts.length === 0) {
+      this.upSellProducts = this.mockDataService.getMockProducts(3);
+    }
+
+    if (!this.lastViewedProducts || this.lastViewedProducts.length === 0) {
+      this.lastViewedProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.bannersDetail || this.bannersDetail.length === 0) {
+      this.bannersDetail = this.mockDataService.getMockBanners();
+    }
+
+    // Set default display price if not provided
+    if (!this.displayPrice && this.product?.productSummary?.price) {
+      this.displayPrice = {
+        price: this.product.productSummary.price.price,
+        oldPrice: this.product.productSummary.price.oldPrice || this.product.productSummary.price.price,
+        hasDiscount: this.product.productSummary.hasDiscount || false,
+        discountPercent: this.product.productSummary.discountPercent || 0
+      };
+    }
+
+    // Set default features if not provided
+    if (!this.features) {
+      this.features = [
+        { name: 'Wireless', description: 'Bluetooth 5.0 connectivity' },
+        { name: 'Battery Life', description: '30 hours playback' },
+        { name: 'Noise Cancellation', description: 'Active noise cancelling' },
+        { name: 'Quick Charge', description: '5 min charge = 3 hours play' }
+      ];
+    }
+
     console.log('========== Prepared Variants ==========', this.variantTree);
   }
 

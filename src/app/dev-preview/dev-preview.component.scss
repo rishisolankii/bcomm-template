@@ -1,0 +1,48 @@
+.dev-preview {
+  .dev-nav {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 2px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+    h3 {
+      margin: 0 0 1rem 0;
+      color: #495057;
+      font-size: 1.25rem;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .nav-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #dee2e6;
+      background: white;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.875rem;
+      
+      &:hover {
+        background: #e9ecef;
+        border-color: #adb5bd;
+      }
+      
+      &.active {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+      }
+    }
+  }
+  
+  .dev-content {
+    min-height: 500px;
+    padding: 0;
+  }
+}

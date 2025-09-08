@@ -1,0 +1,51 @@
+/* Default product image placeholder */
+.no-product-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.no-product-image::after {
+  content: 'Product Image';
+}
+
+/* Placeholder banner styles */
+.banner-placeholder {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.banner-placeholder::after {
+  content: 'Banner Image';
+}
+
+/* Category placeholder */
+.category-placeholder {
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.category-placeholder::after {
+  content: 'Category Image';
+}
