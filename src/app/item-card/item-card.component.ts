@@ -37,7 +37,6 @@ export class ItemCardComponent implements OnInit {
     if (!this.product) {
       this.product = this.mockProduct;
     }
-    
-    console.log('::productDetails', this.productDetails);
+    // console.log('::productDetails', this.productDetails);
   }
 }

@@ -32,6 +32,11 @@
     <h2 class="banner__info--description">
       {{ description }}
     </h2>
+    <!-- Timer -->
+    <div class="banner__timer" *ngIf="timer">
+      <app-countdown-timer></app-countdown-timer>
+      <!-- <app-countdown-timer [targetDate]="timer"></app-countdown-timer> -->
+    </div>
     <div
       class="banner__info--action c-pointer"
       *ngIf="ctaType === 'LINK'"

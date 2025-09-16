@@ -20,11 +20,13 @@ export class HeaderComponent {
   @Input() cmsData: any;
   @Input() defaultStoreLogoUrl =
     'https://tenant-prod.enterprisehub.io/public/logo/logo.png';
+  @Input() categories!: any;
 
   @Output() search = new EventEmitter<any>();
   @Output() logout = new EventEmitter<any>();
 
   ngOnInit() {
+    // console.log('template categories received::', this.categories);
     // Set default values if not provided
     if (!this.storeLogo) {
       this.storeLogo = 'assets/images/logo.png';

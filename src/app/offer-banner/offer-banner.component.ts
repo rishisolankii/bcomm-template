@@ -15,6 +15,7 @@ export class OfferBannerComponent implements OnInit {
   @Input() bgColor!: string;
   @Input() bannerData!: any;
   @Input() mediaType!: string;
+  @Input() timer!: any;
   @Output() goToBanner = new EventEmitter<any>();
 
   ngOnInit() {

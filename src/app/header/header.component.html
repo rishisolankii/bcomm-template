@@ -51,6 +51,28 @@
               [(ngModel)]="searchText"
               (keydown.enter)="searchProducts($event)"
             />
+            <!-- BEGINS:: Categories Dropdown -->
+            <div ngbDropdown class="d-inline-block">
+              <div
+                class="header__action--item c-pointer"
+                ngbDropdownToggle
+              >
+                <span>All Categories</span>
+              </div>
+              <div class="categories__wrapper" ngbDropdownMenu>
+                <button ngbDropdownItem *ngFor="let categoryItem of categories">
+                  {{
+                    categoryItem.categoryName
+                      ? categoryItem.categoryName
+                      : categoryItem.description
+                      ? categoryItem.description
+                      : categoryItem.productCategoryId
+                  }}
+                </button>
+                <!-- <button ngbDropdownItem (click)="onLogout()">Logout</button> -->
+              </div>
+            </div>
+            <!-- ENDS:: Categories Dropdown -->
           </div>
         </div>
 

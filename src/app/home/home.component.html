@@ -16,14 +16,21 @@
       (bannerUrl)="goToURL($event)"
     ></app-hero-full>
 
-    <app-hero-modern
+    <!-- <app-hero-modern
       *ngSwitchCase="'modern'"
       [banner]="bannersDetail"
       [bannerKey]="'media1'"
       [foundBanner]="foundBanner"
       (bannerUrl)="goToURL($event)"
-    ></app-hero-modern>
+    ></app-hero-modern> -->
 
+    <app-hero-full
+      *ngSwitchCase="'modern'"
+      [banner]="bannerOne"
+      [bannerKey]="'media1'"
+      [foundBanner]="foundBanner"
+      (bannerUrl)="goToURL($event)"
+    ></app-hero-full>
     <app-hero-full
       *ngSwitchCase="null"
       [banner]="bannerOne"
@@ -209,6 +216,7 @@
     [ctaType]="'LINK'"
     [bgColor]="'blue'"
     [bannerData]="bannerSix"
+    [timer]="'2025-09-16T15:00:00+05:30'"
     (goToBanner)="goToURL()"
   ></app-offer-banner>
 
@@ -235,7 +243,7 @@
   </div>
 </div>
 
-<!-- Static Section: You can change the content as you like -->
+<!-- Static Section Start: You can change the content as you like -->
 <div class="static-banner__wrapper">
   <div class="static-banner__media">
       <!-- <img
@@ -277,6 +285,7 @@
     </div>
   </div>
 </div>
+<!-- Static Section End -->
 
 <!-- Static Section: You can change the content as you like -->
 <div class="brand__wrapper">
@@ -291,3 +300,4 @@
     </div>
   </div>
 </div>
+<!-- Static Section End -->
