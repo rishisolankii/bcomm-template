@@ -77,7 +77,7 @@
         [title]="categoryName ? categoryName : 'Category Name'"
         [subtitle]="'Explore products from'"
         [mediaURL]="
-          categoryBanner ? categoryBanner : 'assets/images/no-product-image.png'
+          categoryBanner ? categoryBanner : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'
         "
         [description]="categoryDescription ? categoryDescription : ''"
         [ctaLabel]="''"
@@ -142,7 +142,7 @@
                         subCategory.entity.linkOneImageUrl.startsWith('https')
                         ? subCategory.entity.linkOneImageUrl
                         : subCategory.entity.linkOneImageUrlS3
-                      : 'assets/images/no-product-image.png'
+                      : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'
                   "
                   alt="Category Image"
                 />
@@ -160,7 +160,7 @@
             >
               <div class="category__item--media">
                 <img
-                  src="assets/images/dummy-product-03.png"
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center"
                   alt="Category Image"
                 />
               </div>

@@ -127,11 +127,11 @@ export class ProductDetailComponent implements OnInit {
     }
 
     if (!this.productImage) {
-      this.productImage = this.product?.images?.[0] || 'assets/images/no-product-image.png';
+      this.productImage = this.product?.images?.[0] || 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center';
     }
 
     if (!this.additionalImages || this.additionalImages.length === 0) {
-      this.additionalImages = this.product?.images || ['assets/images/no-product-image.png'];
+      this.additionalImages = this.product?.images || ['https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'];
     }
 
     if (!this.alsoBoughtProducts || this.alsoBoughtProducts.length === 0) {

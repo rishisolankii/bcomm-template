@@ -16,7 +16,7 @@ export class HeroModernComponent {
     if (!this.banner) {
       this.banner = {
         type: 'modern-banner',
-        urls: ['assets/images/hero-modern-default.jpg'],
+        urls: ['https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&h=600&fit=crop&crop=center'],
         title: 'Modern Shopping Experience',
         description: 'Discover the future of online shopping with our curated collection',
         imageTitle: 'Explore Collection',

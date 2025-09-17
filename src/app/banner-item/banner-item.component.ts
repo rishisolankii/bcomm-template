@@ -16,7 +16,7 @@ export class BannerItemComponent {
     if (!this.banner) {
       this.banner = {
         type: 'item-banner',
-        urls: ['assets/images/banner-item-default.jpg'],
+        urls: ['https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=600&h=300&fit=crop&crop=center'],
         title: 'Special Offer',
         description: 'Limited time deal on selected items',
         imageTitle: 'Shop Deal',

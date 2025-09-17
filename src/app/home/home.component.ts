@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { remoteAsset } from '../utils/remote-asset';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @Input() heroBannerType: any;
   @Input() bannersDetail: any;
   @Input() foundBanner!: any;
@@ -63,7 +64,7 @@ export class HomeComponent {
   private mockBannersDetail = [
     {
       type: 'banner',
-      urls: ['assets/images/hero-banner-1.jpg'],
+      urls: ['https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=500&fit=crop&crop=center'],
       title: 'Summer Collection 2024',
       description: 'Discover our latest summer arrivals with up to 50% off',
       imageTitle: 'Summer Sale',
@@ -73,7 +74,7 @@ export class HomeComponent {
     },
     {
       type: 'banner',
-      urls: ['assets/images/hero-banner-2.jpg'],
+      urls: ['https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=500&fit=crop&crop=center'],
       title: 'New Electronics',
       description: 'Latest gadgets and electronics now available',
       imageTitle: 'Tech Sale',
@@ -88,7 +89,7 @@ export class HomeComponent {
       id: 'product-1',
       name: 'Premium Wireless Headphones',
       description: 'High-quality wireless headphones with noise cancellation',
-      image: 'assets/images/products/headphones.jpg',
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop&crop=center',
       productSummary: { 
         price: { price: 199.99, oldPrice: 249.99 },
         hasDiscount: true,
@@ -101,7 +102,7 @@ export class HomeComponent {
       id: 'product-2',
       name: 'Smart Fitness Watch',
       description: 'Track your fitness goals with this advanced smartwatch',
-      image: 'assets/images/products/smartwatch.jpg',
+      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop&crop=center',
       productSummary: { 
         price: { price: 299.99 },
         hasDiscount: false
@@ -185,22 +186,29 @@ export class HomeComponent {
   // Usage Example for Static Assets
   staticBanner = remoteAsset('images/temp_full-banner.jpeg');
 
+  constructor(private mockDataService: MockDataService) {}
+
   ngOnInit() {
-    // Use Input data if available, otherwise use mock data
+    // Use Input data if available, otherwise use mock data from service
     if (!this.bannersDetail || this.bannersDetail.length === 0) {
-      this.bannersDetail = this.mockBannersDetail;
+      this.bannersDetail = this.mockDataService.getMockBanners();
     }
     
     if (!this.topPicks || this.topPicks.length === 0) {
-      this.topPicks = this.mockTopPicks;
+      this.topPicks = this.mockDataService.getMockProducts(8);
     }
     
     if (!this.bestsellers || this.bestsellers.length === 0) {
-      this.bestsellers = this.mockTopPicks; // Reuse for demo
+      this.bestsellers = this.mockDataService.getMockProducts(8);
     }
     
     if (!this.popularCategories || this.popularCategories.length === 0) {
-      this.popularCategories = this.mockPopularCategories;
+      this.popularCategories = this.mockDataService.getMockCategories();
+    }
+
+    // Set default banner if not provided
+    if (!this.foundBanner) {
+      this.foundBanner = this.bannersDetail?.[0] || this.mockDataService.getMockBanners()[0];
     }
 
     // Set default theme if not provided
@@ -209,10 +217,12 @@ export class HomeComponent {
     }
 
     console.log(
-      'bannersDetail-',
-      this.bannersDetail,
-      'themeComponent-',
-      this.themeComponent
+      'HOME COMPONENT DATA:',
+      'bannersDetail-', this.bannersDetail,
+      'topPicks-', this.topPicks,
+      'bestsellers-', this.bestsellers,
+      'popularCategories-', this.popularCategories,
+      'themeComponent-', this.themeComponent
     );
   }
 

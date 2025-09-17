@@ -40,7 +40,7 @@ export class FooterComponent {
     }
 
     if (!this.storeLogo) {
-      this.storeLogo = 'assets/images/logo.png';
+      this.storeLogo = 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center';
     }
 
     // Set default categories if not provided

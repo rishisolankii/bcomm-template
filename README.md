@@ -10,8 +10,8 @@ This template provides a complete set of Angular components for e-commerce appli
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v18.19.1 or higher)
+- npm (v8.0.0 or higher)
 - Angular CLI
 
 ### Installation

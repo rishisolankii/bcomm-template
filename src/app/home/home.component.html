@@ -95,7 +95,7 @@
       <div class="bestseller__header--title">Best Sellers</div>
       <div
         class="bestseller__header--action c-pointer"
-        *ngIf="bestsellers?.length >= 4"
+        *ngIf="bestsellers?.length >= 0"
         (click)="goToCategory(promotionCategory)"
       >
         <span>View All</span>
@@ -109,7 +109,7 @@
       >
         <app-item-card
           [productDetails]="item"
-          [product]="item"
+          [product]="null"
           (goToProduct)="goToProduct($event)"
         ></app-item-card>
       </div>

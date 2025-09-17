@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class HeaderTopStripComponent {
   @Input() promotionTitle!: any;
   @Input() topCmsData!: any;
-  @Input() stripFlagIcon: any = 'assets/images/flags/USA.png';
+  @Input() stripFlagIcon: any = 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=32&h=24&fit=crop&crop=center';
   @Input() shippingIcon: any = 'assets/icons/shipping.png';
   @Output() pageUrl = new EventEmitter<any>();
 

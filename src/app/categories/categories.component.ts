@@ -84,7 +84,7 @@ export class CategoriesComponent implements OnInit {
     if (!this.categoryBanner) {
       this.categoryBanner = {
         type: 'category-banner',
-        urls: ['assets/images/categories/electronics-banner.jpg'],
+        urls: ['https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200&h=400&fit=crop&crop=center'],
         title: this.categoryName,
         description: this.categoryDescription
       };
@@ -104,7 +104,7 @@ export class CategoriesComponent implements OnInit {
       this.ctaLabel = 'Shop Now';
     }
     if (!this.mediaURL) {
-      this.mediaURL = 'assets/images/category-offer-banner.jpg';
+      this.mediaURL = 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center';
     }
     if (!this.bgColor) {
       this.bgColor = '#007bff';

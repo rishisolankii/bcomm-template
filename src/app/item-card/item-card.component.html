@@ -15,9 +15,9 @@
         [src]="
           productDetails?.image
             ? productDetails?.image
-            : 'assets/images/no-product-image.png'
+            : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'
         "
-        onerror="this.onerror=null; this.src='assets/images/no-product-image.png'"
+        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'"
         [alt]="
           productDetails?.description ||
           productDetails?.name ||

@@ -11,7 +11,7 @@ export class MockDataService {
         id: 'product-1',
         name: 'Premium Wireless Headphones',
         description: 'High-quality wireless headphones with noise cancellation and superior sound quality. Perfect for music lovers and professionals.',
-        image: 'assets/images/products/headphones.jpg',
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 199.99, oldPrice: 249.99 },
           hasDiscount: true,
@@ -26,7 +26,7 @@ export class MockDataService {
         id: 'product-2',
         name: 'Smart Fitness Watch',
         description: 'Advanced smartwatch with health monitoring, GPS tracking, and long battery life. Track your fitness goals.',
-        image: 'assets/images/products/smartwatch.jpg',
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 299.99 },
           hasDiscount: false
@@ -40,7 +40,7 @@ export class MockDataService {
         id: 'product-3',
         name: 'Portable Bluetooth Speaker',
         description: 'Compact speaker with powerful sound and waterproof design. Perfect for outdoor adventures.',
-        image: 'assets/images/products/speaker.jpg',
+        image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 79.99, oldPrice: 99.99 },
           hasDiscount: true,
@@ -55,7 +55,7 @@ export class MockDataService {
         id: 'product-4',
         name: 'Gaming Mechanical Keyboard',
         description: 'RGB backlit mechanical keyboard with tactile switches. Designed for gaming and productivity.',
-        image: 'assets/images/products/keyboard.jpg',
+        image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 149.99 },
           hasDiscount: false
@@ -69,7 +69,7 @@ export class MockDataService {
         id: 'product-5',
         name: 'Casual Cotton T-Shirt',
         description: 'Comfortable 100% cotton t-shirt available in various colors and sizes. Everyday casual wear.',
-        image: 'assets/images/products/tshirt.jpg',
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 24.99, oldPrice: 34.99 },
           hasDiscount: true,
@@ -84,7 +84,7 @@ export class MockDataService {
         id: 'product-6',
         name: 'Running Sneakers',
         description: 'Lightweight running shoes with advanced cushioning and breathable mesh upper.',
-        image: 'assets/images/products/sneakers.jpg',
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 89.99 },
           hasDiscount: false
@@ -98,7 +98,7 @@ export class MockDataService {
         id: 'product-7',
         name: 'Coffee Maker',
         description: 'Programmable coffee maker with auto-brew feature and thermal carafe. Start your day right.',
-        image: 'assets/images/products/coffee-maker.jpg',
+        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 129.99, oldPrice: 159.99 },
           hasDiscount: true,
@@ -113,7 +113,7 @@ export class MockDataService {
         id: 'product-8',
         name: 'Yoga Mat',
         description: 'Premium non-slip yoga mat with extra cushioning. Perfect for yoga, pilates, and exercise.',
-        image: 'assets/images/products/yoga-mat.jpg',
+        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop&crop=center',
         productSummary: { 
           price: { price: 39.99 },
           hasDiscount: false
@@ -133,7 +133,7 @@ export class MockDataService {
       {
         catalogName: 'Electronics',
         productCategoryId: 'electronics',
-        categoryImageUrl: 'assets/images/categories/electronics.jpg',
+        categoryImageUrl: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500&h=300&fit=crop&crop=center',
         productCount: 245,
         categoryList: [
           { productCategoryId: 'smartphones', categoryName: 'Smartphones', productCount: 45 },
@@ -146,7 +146,7 @@ export class MockDataService {
       {
         catalogName: 'Fashion',
         productCategoryId: 'fashion',
-        categoryImageUrl: 'assets/images/categories/fashion.jpg',
+        categoryImageUrl: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&h=300&fit=crop&crop=center',
         productCount: 189,
         categoryList: [
           { productCategoryId: 'mens-clothing', categoryName: 'Men\'s Clothing', productCount: 67 },
@@ -158,7 +158,7 @@ export class MockDataService {
       {
         catalogName: 'Home & Garden',
         productCategoryId: 'home-garden',
-        categoryImageUrl: 'assets/images/categories/home-garden.jpg',
+        categoryImageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=300&fit=crop&crop=center',
         productCount: 156,
         categoryList: [
           { productCategoryId: 'furniture', categoryName: 'Furniture', productCount: 36 },
@@ -170,7 +170,7 @@ export class MockDataService {
       {
         catalogName: 'Sports & Outdoors',
         productCategoryId: 'sports',
-        categoryImageUrl: 'assets/images/categories/sports.jpg',
+        categoryImageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=300&fit=crop&crop=center',
         productCount: 134,
         categoryList: [
           { productCategoryId: 'fitness', categoryName: 'Fitness Equipment', productCount: 41 },
@@ -185,7 +185,7 @@ export class MockDataService {
     return [
       {
         type: 'banner',
-        urls: ['assets/images/banners/summer-sale.jpg'],
+        urls: ['https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop&crop=center'],
         title: 'Summer Collection 2024',
         description: 'Discover our latest summer arrivals with up to 50% off selected items',
         imageTitle: 'Summer Sale',
@@ -195,7 +195,7 @@ export class MockDataService {
       },
       {
         type: 'banner',
-        urls: ['assets/images/banners/tech-deals.jpg'],
+        urls: ['https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=400&fit=crop&crop=center'],
         title: 'Tech Week Special',
         description: 'Latest gadgets and electronics now available at special prices',
         imageTitle: 'Tech Deals',
@@ -205,7 +205,7 @@ export class MockDataService {
       },
       {
         type: 'banner',
-        urls: ['assets/images/banners/fashion-week.jpg'],
+        urls: ['https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&h=400&fit=crop&crop=center'],
         title: 'Fashion Week Sale',
         description: 'Trendy fashion items for every style and occasion',
         imageTitle: 'Fashion Sale',
@@ -259,10 +259,10 @@ export class MockDataService {
         </ul>
       `,
       images: [
-        'assets/images/products/headphones-1.jpg',
-        'assets/images/products/headphones-2.jpg',
-        'assets/images/products/headphones-3.jpg',
-        'assets/images/products/headphones-4.jpg'
+        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&h=600&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=600&fit=crop&crop=center'
       ],
       productSummary: { 
         price: { price: 299.99, oldPrice: 399.99 },

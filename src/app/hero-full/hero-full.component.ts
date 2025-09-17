@@ -27,7 +27,7 @@ export class HeroFullComponent implements AfterViewInit {
     if (!this.banner) {
       this.banner = {
         type: 'full-banner',
-        urls: ['assets/images/hero-full-default.jpg'],
+        urls: ['https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1400&h=800&fit=crop&crop=center'],
         videoUrl: 'assets/videos/hero-video.mp4',
         title: 'Full Experience',
         description: 'Immerse yourself in our complete shopping experience',

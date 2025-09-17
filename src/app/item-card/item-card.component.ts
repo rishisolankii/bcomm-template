@@ -18,7 +18,7 @@ export class ItemCardComponent implements OnInit {
     id: 'mock-product-1',
     name: 'Sample Product',
     description: 'This is a sample product description for demonstration purposes',
-    image: 'assets/images/no-product-image.png',
+    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center',
     productSummary: { 
       price: { price: 99.99, oldPrice: 129.99 },
       hasDiscount: true,

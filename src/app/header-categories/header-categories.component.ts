@@ -62,7 +62,7 @@ export class HeaderCategoriesComponent {
     }
 
     if (!this.defaultProductImage) {
-      this.defaultProductImage = 'assets/images/no-product-image.png';
+      this.defaultProductImage = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center';
     }
   }
 

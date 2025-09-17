@@ -36,7 +36,7 @@ export class OfferBannerComponent implements OnInit {
       this.ctaType = 'button';
     }
     if (!this.mediaURL) {
-      this.mediaURL = 'assets/images/offer-banner.jpg';
+      this.mediaURL = 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=800&h=400&fit=crop&crop=center';
     }
     if (!this.bgColor) {
       this.bgColor = '#ff6b6b';

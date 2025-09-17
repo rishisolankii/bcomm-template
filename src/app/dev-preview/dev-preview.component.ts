@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MockDataService } from '../services/mock-data.service';
 
 @Component({
@@ -10,31 +11,31 @@ import { MockDataService } from '../services/mock-data.service';
         <h3>Template Preview</h3>
         <div class="nav-buttons">
           <button 
-            (click)="currentView = 'home'" 
+            (click)="setCurrentView('home')" 
             [class.active]="currentView === 'home'"
             class="nav-btn">
             Home
           </button>
           <button 
-            (click)="currentView = 'product'" 
+            (click)="setCurrentView('product')" 
             [class.active]="currentView === 'product'"
             class="nav-btn">
             Product Detail
           </button>
           <button 
-            (click)="currentView = 'category'" 
+            (click)="setCurrentView('category')" 
             [class.active]="currentView === 'category'"
             class="nav-btn">
             Category
           </button>
           <button 
-            (click)="currentView = 'cart'" 
+            (click)="setCurrentView('cart')" 
             [class.active]="currentView === 'cart'"
             class="nav-btn">
             Cart
           </button>
           <button 
-            (click)="currentView = 'contact'" 
+            (click)="setCurrentView('contact')" 
             [class.active]="currentView === 'contact'"
             class="nav-btn">
             Contact
@@ -49,7 +50,7 @@ import { MockDataService } from '../services/mock-data.service';
       </app-header-top-strip>
       
       <app-header 
-        [storeLogo]="'assets/images/logo.png'"
+        [storeLogo]="'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center'"
         [cartItemCount]="mockCartCount"
         [isLogin]="false">
       </app-header>
@@ -65,9 +66,11 @@ import { MockDataService } from '../services/mock-data.service';
           *ngIf="currentView === 'home'" 
           [bannersDetail]="mockBanners"
           [topPicks]="mockProducts"
-          [bestsellers]="mockProducts"
+          [bestsellers]="[]"
           [popularCategories]="mockCategories"
-          [themeComponent]="'modern'">
+          [themeComponent]="'modern'"
+          [heroBannerType]="'default'"
+          [foundBanner]="mockBanners[0]">
         </app-home>
         
         <!-- Product Detail View -->
@@ -117,7 +120,7 @@ import { MockDataService } from '../services/mock-data.service';
   `,
   styleUrls: ['./dev-preview.component.scss']
 })
-export class DevPreviewComponent {
+export class DevPreviewComponent implements OnInit {
   currentView = 'home';
   
   mockTopCmsData = [
@@ -131,9 +134,32 @@ export class DevPreviewComponent {
   mockBanners: any[] = [];
   mockCartCount = 3;
 
-  constructor(private mockDataService: MockDataService) {
+  constructor(
+    private mockDataService: MockDataService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.mockCategories = this.mockDataService.getMockCategories();
-    this.mockProducts = this.mockDataService.getMockProducts();
+    this.mockProducts = this.mockDataService.getMockProducts(8);
     this.mockBanners = this.mockDataService.getMockBanners();
+  }
+
+  ngOnInit() {
+    // Check for view query parameter on init
+    this.route.queryParams.subscribe(params => {
+      if (params['view']) {
+        this.currentView = params['view'];
+      }
+    });
+  }
+
+  setCurrentView(view: string) {
+    this.currentView = view;
+    // Update query parameter
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { view: view },
+      queryParamsHandling: 'merge'
+    });
   }
 }

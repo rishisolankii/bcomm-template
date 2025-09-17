@@ -16,7 +16,7 @@ export class HeroBannerComponent {
     if (!this.banner) {
       this.banner = {
         type: 'banner',
-        urls: ['assets/images/hero-banner-default.jpg'],
+        urls: ['https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=500&fit=crop&crop=center'],
         title: 'Welcome to Our Store',
         description: 'Discover amazing products with great deals and fast shipping',
         imageTitle: 'Shop Now',
