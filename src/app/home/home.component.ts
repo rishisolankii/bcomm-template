@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { remoteAsset } from '../utils/remote-asset';
 import { MockDataService } from '../services/mock-data.service';
 
@@ -7,7 +7,7 @@ import { MockDataService } from '../services/mock-data.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
   @Input() heroBannerType: any;
   @Input() bannersDetail: any;
   @Input() foundBanner!: any;
@@ -188,7 +188,29 @@ export class HomeComponent implements OnInit {
 
   constructor(private mockDataService: MockDataService) {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    // Re-initialize data when inputs change
+    if (changes['bannersDetail'] || changes['foundBanner'] || changes['topPicks'] || changes['bestsellers']) {
+      this.initializeData();
+    }
+  }
+
   ngOnInit() {
+    // Ensure all required data is available
+    this.initializeData();
+    
+    console.log(
+      'HOME COMPONENT DATA:',
+      'bannersDetail-', this.bannersDetail,
+      'foundBanner-', this.foundBanner,
+      'topPicks-', this.topPicks,
+      'bestsellers-', this.bestsellers,
+      'popularCategories-', this.popularCategories,
+      'themeComponent-', this.themeComponent
+    );
+  }
+
+  private initializeData() {
     // Use Input data if available, otherwise use mock data from service
     if (!this.bannersDetail || this.bannersDetail.length === 0) {
       this.bannersDetail = this.mockDataService.getMockBanners();
@@ -206,24 +228,17 @@ export class HomeComponent implements OnInit {
       this.popularCategories = this.mockDataService.getMockCategories();
     }
 
-    // Set default banner if not provided
-    if (!this.foundBanner) {
-      this.foundBanner = this.bannersDetail?.[0] || this.mockDataService.getMockBanners()[0];
+    // Set default banner if not provided - ensure it's always available
+    if (!this.foundBanner && this.bannersDetail && this.bannersDetail.length > 0) {
+      this.foundBanner = this.bannersDetail[0];
+    } else if (!this.foundBanner) {
+      this.foundBanner = this.mockDataService.getMockBanners()[0];
     }
 
     // Set default theme if not provided
     if (!this.themeComponent) {
       this.themeComponent = 'modern';
     }
-
-    console.log(
-      'HOME COMPONENT DATA:',
-      'bannersDetail-', this.bannersDetail,
-      'topPicks-', this.topPicks,
-      'bestsellers-', this.bestsellers,
-      'popularCategories-', this.popularCategories,
-      'themeComponent-', this.themeComponent
-    );
   }
 
   goToBannerURL(banner: any) {

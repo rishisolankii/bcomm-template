@@ -63,15 +63,25 @@ import { MockDataService } from '../services/mock-data.service';
       <div class="dev-content">
         <!-- Home View -->
         <app-home 
-          *ngIf="currentView === 'home'" 
+          *ngIf="currentView === 'home' && isDataLoaded && mockBanners.length > 0" 
           [bannersDetail]="mockBanners"
           [topPicks]="mockProducts"
-          [bestsellers]="[]"
+          [bestsellers]="mockProducts"
           [popularCategories]="mockCategories"
           [themeComponent]="'modern'"
           [heroBannerType]="'default'"
-          [foundBanner]="mockBanners[0]">
+          [foundBanner]="firstBanner">
         </app-home>
+
+        <!-- Loading state for home -->
+        <div *ngIf="currentView === 'home' && (!isDataLoaded || mockBanners.length === 0)" class="container">
+          <div class="text-center p-5">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Loading home content...</p>
+          </div>
+        </div>
         
         <!-- Product Detail View -->
         <div *ngIf="currentView === 'product'" class="container">
@@ -122,6 +132,7 @@ import { MockDataService } from '../services/mock-data.service';
 })
 export class DevPreviewComponent implements OnInit {
   currentView = 'home';
+  isDataLoaded = false;
   
   mockTopCmsData = [
     { pageTitle: 'Help & FAQ', pageUrl: '/help' },
@@ -139,9 +150,8 @@ export class DevPreviewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.mockCategories = this.mockDataService.getMockCategories();
-    this.mockProducts = this.mockDataService.getMockProducts(8);
-    this.mockBanners = this.mockDataService.getMockBanners();
+    // Initialize data immediately
+    this.initializeMockData();
   }
 
   ngOnInit() {
@@ -151,6 +161,28 @@ export class DevPreviewComponent implements OnInit {
         this.currentView = params['view'];
       }
     });
+    
+    // Ensure data is loaded
+    if (!this.isDataLoaded) {
+      this.initializeMockData();
+    }
+  }
+
+  private initializeMockData() {
+    this.mockCategories = this.mockDataService.getMockCategories();
+    this.mockProducts = this.mockDataService.getMockProducts(8);
+    this.mockBanners = this.mockDataService.getMockBanners();
+    
+    // Ensure data is fully initialized before marking as loaded
+    setTimeout(() => {
+      this.isDataLoaded = true;
+      console.log('Mock data initialized:', {
+        categories: this.mockCategories.length,
+        products: this.mockProducts.length,
+        banners: this.mockBanners.length,
+        firstBanner: this.mockBanners[0]
+      });
+    }, 0);
   }
 
   setCurrentView(view: string) {
@@ -161,5 +193,9 @@ export class DevPreviewComponent implements OnInit {
       queryParams: { view: view },
       queryParamsHandling: 'merge'
     });
+  }
+
+  get firstBanner() {
+    return this.mockBanners && this.mockBanners.length > 0 ? this.mockBanners[0] : null;
   }
 }
