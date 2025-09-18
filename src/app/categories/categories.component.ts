@@ -189,39 +189,9 @@ export class CategoriesComponent implements OnInit {
     this.onApplyFilter$.emit();
   }
 
-  // onChangeFilter($event: any, productFeatureId: string) {
-  //   const checked = ($event.target as HTMLInputElement).checked;
-  //   if (checked) {
-  //     this.selectedFilters[productFeatureId] = productFeatureId;
-  //   } else {
-  //     delete this.selectedFilters[productFeatureId];
-  //   }
-  // }
-
-  // getLabel(value: any): any {
-  //   const match = this.sortingOptions.find((opt: any) => opt.value === value);
-  //   return match ? match.label : '';
-  // }
-
   onChangeFilter($event: any, productFeatureId: string) {
     this.changeFilter$.emit({ $event, productFeatureId });
-    // const checked = ($event.target as HTMLInputElement).checked;
-    // if (checked) {
-    //   this.selectedFilters[productFeatureId] = productFeatureId;
-    // } else {
-    //   delete this.selectedFilters[productFeatureId];
-    // }
   }
-
-  // getLabel(value: any): any {
-  //   const match = this.sortingOptions.find((opt: any) => opt.value === value);
-  //   return match ? match.label : "";
-  // }
-  // getLabel(value: any): any {
-  //   this.getLabel$.emit(value);
-  //   // const match = this.sortingOptions.find((opt: any) => opt.value === value);
-  //   // return match ? match.label : "";
-  // }
 
   selectSorting(value: string) {
     this.selectSorting$.emit(value);

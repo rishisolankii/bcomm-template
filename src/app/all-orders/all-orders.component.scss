@@ -1,9 +1,6 @@
 @import "../../assets/styles/variables.scss";
 
 .order {
-  &__wrapper {
-    // margin-top: 40px;
-  }
   &__list {
     overflow-x: scroll;
     display: flex;
@@ -65,7 +62,6 @@
       &-success {
         background: rgba(21, 153, 0, 1);
         color: #fff;
-        // color: #159900;
         border: 1px solid #159900;
       }
       div {
@@ -123,12 +119,6 @@
 
 // Modal Styles
 .cart {
-  // &__wrapper {
-  //   display: flex;
-  //   padding: 20px 40px;
-  //   gap: 20px;
-  //   margin-bottom: 40px;
-  // }
   &__main {
     border-radius: 4px;
     height: fit-content;
@@ -228,15 +218,6 @@
   cursor: pointer;
   width: fit-content;
 }
-
-// @media (max-width: 1199.98px) {
-// }
-// @media (max-width: 991.98px) {
-// }
-// @media (max-width: 767.98px) {
-// }
-// @media (max-width: 575.98px) {
-// }
 
 mark {
   background-color: yellow; /* Background color for highlighted text */

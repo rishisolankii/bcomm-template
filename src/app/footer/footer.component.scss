@@ -1,14 +1,8 @@
 @import "../../assets/styles/variables.scss";
 .footer {
-  //   background-color: #f6f6fe;
   background: $color-brand;
-  // background: var(--color-dark);
   color: #fff;
   .container {
-    // background-image: url("../../../../assets/images/abstract-line.png");
-    // background-position: bottom bottom;
-    // background-size: contain;
-    // background-repeat: no-repeat;
     padding: 32px 0;
   }
   &__top,
@@ -17,12 +11,7 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-  &__left {
-  }
-  &__middle {
-  }
   &__right {
-    // background-color: #f1f8ff;
     background-color: var(--color-brand-light);
     border-radius: 8px;
     max-width: 800px;
@@ -52,21 +41,13 @@
   }
   &__contact {
     margin-top: 60px;
-    // button {
-    //   background-color: var(--color-medium);
-    //   border-color: var(--color-medium);
-    // }
   }
   &__subscribe {
     padding: 20px;
     display: flex;
     align-items: center;
     gap: 16px;
-    &--title {
-      // margin-bottom: 20px;
-    }
     &--input {
-      // margin-bottom: 20px;
       width: calc(100% - 300px);
       .input-group-append {
         background-color: var(--color-dark);
@@ -136,14 +117,12 @@
 
 @media (max-width: 767.98px) {
   .footer {
-    // background: #f6f6fe;
     .container {
       padding: 32px 0;
       background-image: none;
     }
     &__top,
     &__bottom {
-      // display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;

@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { bootstrapApplication } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { templateSettings } from '../utils/configs';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,10 @@ export class HeaderComponent {
 
   @Output() search = new EventEmitter<any>();
   @Output() logout = new EventEmitter<any>();
+  @Output() quickLogin = new EventEmitter<any>();
+
+  // Toggle this flat in the utils/configs.ts to swith betwene Quick login model, or full page login mode
+  quickLoginEnabled = templateSettings.quickLoginEnabled;
 
   ngOnInit() {
     // console.log('template categories received::', this.categories);
@@ -46,5 +51,9 @@ export class HeaderComponent {
   }
   onLogout() {
     this.logout.emit();
+  }
+  
+  onQuickLogin() {
+    this.quickLogin.emit();
   }
 }

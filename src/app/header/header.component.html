@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <div class="header__brand c-pointer" routerLink="/">
-        [local]
+        <!-- [local] -->
         <img [src]="storeLogo" alt="Brand Logo" />
         <!-- <img
               [src]="storeLogo ? storeLogo?.url : 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center'"
@@ -31,14 +31,28 @@
           <img src="assets/icons/heart.png" alt="Heart Icon" />
           Wishlist
         </div>
+        <!-- BEGINS: Login From New Page -->
         <div
           class="header__action--item c-pointer"
           routerLink="/auth/login"
-          *ngIf="!isLogin"
+          *ngIf="!isLogin && !quickLoginEnabled"
         >
           <img src="assets/icons/user.png" alt="User Icon" />
           <span>Sign in</span>
         </div>
+        <!-- ENDS: Login From New Page -->
+
+        <!-- BEGINS: Quick Login From Popup -->
+        <div
+          class="header__action--item c-pointer"
+          *ngIf="!isLogin && quickLoginEnabled"
+          (click)="onQuickLogin()"
+        >
+          <img src="assets/icons/user.png" alt="User Icon" />
+          <span>Quick Login</span>
+          <!-- <span>Sign in</span> -->
+        </div>
+        <!-- ENDS: Quick Login From Popup -->
         <div class="header__action--item header__search--wrapper">
           <div class="header__search">
             <img src="assets/icons/search.png" alt="Search Icon" />

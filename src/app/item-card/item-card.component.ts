@@ -10,6 +10,7 @@ export class ItemCardComponent implements OnInit {
   @Input() isLoading: boolean = false;
   @Input() isSearch = false;
   @Input() productDetails!: any;
+  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   @Output() goToProduct = new EventEmitter<any>();
 
@@ -38,5 +39,19 @@ export class ItemCardComponent implements OnInit {
       this.product = this.mockProduct;
     }
     // console.log('::productDetails', this.productDetails);
+    // console.log('::product', this.product);
+    console.log('::product', this.productDetails?.productSummary?.product?.createdDate);
+
   }
+
+  // TODO:: Move this logic to parent post confirmation on new tag logic
+  get isNewProduct(): boolean {
+    const createdAt = this.productDetails?.productSummary?.product?.createdDate;
+    if(!createdAt) return false;
+    const now = Date.now(); // current time in ms
+    // const newThreshold = 30 * 24 * 60 * 60 * 1000; // 30 days in ms
+    const newThreshold = 1500 * 24 * 60 * 60 * 1000; // 1500 days in ms for testing
+    return (now - createdAt) < newThreshold;
+  }
+
 }

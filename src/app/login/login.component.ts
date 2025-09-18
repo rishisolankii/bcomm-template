@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { templateSettings } from '../utils/configs';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,11 @@ export class LoginComponent {
   @Output() redirectToRegister = new EventEmitter<any>();
   @Output() redirectToHome = new EventEmitter<any>();
   @Output() onForgotPassword = new EventEmitter<any>();
+  @Output() quickLoginDismissed = new EventEmitter<any>();
+
+  // Toggle this flat in the utils/configs.ts to swith betwene Quick login model, or full page login mode
+  quickLoginEnabled: boolean = templateSettings.quickLoginEnabled ?? false;
+  isLoginLoaded = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -31,6 +37,11 @@ export class LoginComponent {
     }
   }
 
+  ngAfterViewInit() {
+  // Wait for remote to bootstrap
+    setTimeout(() => this.isLoginLoaded = true);
+  }
+
   onLogin() {
     this.login.emit(true);
   }
@@ -42,5 +53,9 @@ export class LoginComponent {
   }
   onRedirectToRegister() {
     this.redirectToRegister.emit(true);
+  }
+  
+  onDismissQuickLogin() {
+    this.quickLoginDismissed.emit(true);
   }
 }

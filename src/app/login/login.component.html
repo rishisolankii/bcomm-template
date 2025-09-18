@@ -1,29 +1,18 @@
-<div class="auth">
+<div *ngIf="isLoginLoaded" class="auth" [class.compact]="quickLoginEnabled">
   <div class="auth__form--wrapper">
     <div class="auth__form--main">
-      <div class="header__wrapper">
+      <div class="header__wrapper" *ngIf="!quickLoginEnabled">
         <div class="header__brand" (click)="onRedirectToHome()">
           <img width="120" height="120" [ngSrc]="storeLogo" alt="Brand Logo" />
         </div>
+      </div>
+      <div class="header__close" *ngIf="quickLoginEnabled">
+        <button type="button" class="btn-close" aria-label="Close" (click)="onDismissQuickLogin()"></button>
       </div>
 
       <div class="auth__form">
         <form [formGroup]="loginFormGroup">
           <div class="auth__form--title">Login</div>
-          <!-- <div class="auth__form--social">
-              <div class="auth__form--social-item">
-                <img src="assets/icons/google-coloured.png" alt="Google Icon" />
-                <span>Sign up with Google</span>
-              </div>
-              <div class="auth__form--social-item">
-                <img
-                  src="assets/icons/facebook-coloured.png"
-                  alt="Facebook Icon"
-                />
-                <span>Sign up with Facebook</span>
-              </div>
-            </div>
-            <div class="auth__form--divider">Or</div> -->
           <div class="auth__form--input">
             <input
               type="email"
@@ -54,12 +43,12 @@
           </div>
           <div class="auth__form--action-secondary">
             Don't have an account?
-            <a (click)="onRedirectToRegister()">Register with us!</a>
+            <a class="c-pointer" (click)="onRedirectToRegister()">Register with us!</a>
           </div>
         </form>
       </div>
     </div>
-    <div class="auth__form--media">
+    <div class="auth__form--media" *ngIf="!quickLoginEnabled">
       <img
         src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=800&fit=crop&crop=center"
         alt="Login Illustration"

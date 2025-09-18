@@ -67,13 +67,16 @@
   &__tag {
     display: flex;
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    top: 12px;
+    left: 12px;
     gap: 8px;
+    z-index: 1;
     &--item {
-      padding: 6px 8px;
+      padding: 4px 8px;
       background-color: var(--color-dark);
       color: $color-light;
+      border-radius: 8px;
+      font-size: 11px;
       &:nth-child(2) {
         background-color: $color-light;
         color: var(--color-dark);

@@ -6,11 +6,6 @@
   ></app-breadcrumb>
   <div class="page-title__wrapper">
     <div class="page-title__heading">Cart</div>
-    <!-- <div class="page-title__description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
-        amet, consectetu
-      </div> -->
   </div>
   <ng-container *ngIf="!showLoading; else loadingCartSummary">
     <div class="cart__wrapper" *ngIf="cartDetailsList?.length; else emptyCart">
@@ -225,16 +220,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="bestseller__footer">
-        <div class="bestseller__footer--action">
-          <span>View All</span>
-          <img
-            src="../../assets/icons/chevron-right-dark.png"
-            alt="Chevron Right Icon"
-          />
-        </div>
-      </div> -->
     </div>
   </ng-container>
   <ng-template #loadingCartBestseller>

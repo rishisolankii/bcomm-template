@@ -7,23 +7,55 @@
       class="item-card__media c-pointer"
       (click)="goToProductDetails(productDetails)"
     >
-      <!-- <div class="item-card__tag">
-              <div class="item-card__tag--item">New</div>
-              <div class="item-card__tag--item">Concious</div>
-            </div> -->
-      <img
-        [src]="
-          productDetails?.image
-            ? productDetails?.image
-            : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'
-        "
-        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'"
-        [alt]="
-          productDetails?.description ||
-          productDetails?.name ||
-          productDetails?.id
-        "
-      />
+      <div class="item-card__tag" *ngIf="isNewProduct">
+        <div class="item-card__tag--item">New</div>
+        <!-- <div class="item-card__tag--item">Concious</div> -->
+      </div>
+      <!-- BEGINS:: Single Image UI -->
+      <div *ngIf="false">
+        <img
+          [src]="
+            productDetails?.image
+              ? productDetails?.image
+              : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'
+          "
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'"
+          [alt]="
+            productDetails?.description ||
+            productDetails?.name ||
+            productDetails?.id
+          "
+        />
+      </div>
+      <!-- ENDS:: Single Image UI -->
+
+      <!-- BEGINS: Images Carousel UI -->
+      <!-- TODO:: Add dynamic images data once the API Changes are done -->
+      @if (true) {
+        <ngb-carousel [showNavigationArrows]="false" [interval]="3000" [pauseOnHover]="true" [pauseOnFocus]="true">
+          @for (imageItem of images; track $index) {
+            <ng-template ngbSlide>
+              <div>
+                <img
+                  [src]="
+                    productDetails?.image
+                      ? productDetails?.image
+                      : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'
+                  "
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'"
+                  [alt]="
+                    productDetails?.description ||
+                    productDetails?.name ||
+                    productDetails?.id
+                  "
+                />
+                <!-- <img [src]="imageItem" alt="Product Image" /> -->
+              </div>
+            </ng-template>
+          }
+        </ngb-carousel>
+      }
+      <!-- ENDS: Images Carousel UI -->
       <div
         class="item-card__media--more-options"
         *ngIf="productDetails?.displayMoreOption"
