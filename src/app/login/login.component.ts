@@ -38,7 +38,7 @@ export class LoginComponent {
   }
 
   ngAfterViewInit() {
-  // Wait for remote to bootstrap
+    // Wait for remote to bootstrap
     setTimeout(() => this.isLoginLoaded = true);
   }
 

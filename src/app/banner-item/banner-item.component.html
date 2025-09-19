@@ -2,7 +2,7 @@
   <div class="banner__item--media">
     <!-- CASE 1::If Media Type is IMAGE -->
     <ng-container *ngIf="banner?.type === 'banner'">
-      <img loading="lazy" fill [ngSrc]="banner?.urls[0]" alt="Banner Image" />
+      <img [src]="banner?.urls[0]" alt="Banner Image" />
     </ng-container>
     <!-- CASE 2::If Media Type is VIDEO -->
     <ng-container *ngIf="banner?.type === 'video'">

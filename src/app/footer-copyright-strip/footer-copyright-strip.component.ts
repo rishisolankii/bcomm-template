@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FooterCopyrightStripComponent {
   @Input() companyName: string = '';
+  currentYear = new Date().getFullYear();
 
   ngOnInit() {
     // Set default company name if not provided

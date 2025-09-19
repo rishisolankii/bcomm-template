@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,6 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
+  _mockService = inject(MockDataService);
+  mockContactDetails = this._mockService.getMockStoreDetails();
+
   @Input() isLoading = false; // Changed default to false for demo
   @Input() companyAddress!: any;
   @Input() companyContact!: any;
@@ -29,17 +33,17 @@ export class ContactComponent {
       });
     }
 
-    // Set default company information if not provided
+    // Set Mock Data for Dev Preview
     if (!this.companyAddress) {
-      this.companyAddress = '123 Commerce Street, Business District, NY 10001';
+      this.companyAddress = this.mockContactDetails.companyAddress;
     }
 
     if (!this.companyContact) {
-      this.companyContact = '+1 (555) 123-4567';
+      this.companyContact = this.mockContactDetails.companyContact;
     }
-
+    
     if (!this.companyEmail) {
-      this.companyEmail = 'info@demostore.com';
+      this.companyEmail = this.mockContactDetails.companyEmail;
     }
   }
 

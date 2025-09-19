@@ -14,8 +14,7 @@
 
   <div class="contact__wrapper">
     <div class="contact__main" #contactContainer>
-      <!-- <div class="contact__main--header">Get in touch with us!</div> -->
-      <div *ngIf="isLoading" class="spinner">Loading...</div>
+      <div *ngIf="isLoading">Loading...</div>
       <div *ngIf="!isLoading" [innerHTML]="iframeHtml"></div>
       <ng-container *ngIf="!contactFormData && !isLoading">
         <div class="contact__main--item-grp">
@@ -57,16 +56,13 @@
           </div>
         </div>
         <div class="contact__main--footer">
-          <div class="contact__main--footer-coupon"></div>
           <div class="contact__main--footer-shopping">
             <button class="btn btn-dark">Send Message</button>
           </div>
         </div>
       </ng-container>
-      <!-- <img src="assets/images/dummy-product-03.png" alt=""> -->
     </div>
     <div class="contact__info">
-      <!-- <div class="contact__info--header">Contact Details</div> -->
       <div class="contact__info--item">
         <i class="bi bi-geo-alt-fill"></i>
         <div class="contact__info--item-label">Address</div>
@@ -79,9 +75,6 @@
             {{ companyAddress?.postalCode }}
           </div>
         </div>
-        <div class="contact__info--item-value" *ngIf="!companyAddress">
-          <div>Company Address Goes Here</div>
-        </div>
       </div>
       <div class="contact__info--item">
         <i class="bi bi-telephone-fill"></i>
@@ -91,15 +84,12 @@
             companyContact.contactNumber
           }}
         </div>
-        <div class="contact__info--item-value" *ngIf="!companyContact">
-          123-456-7890
-        </div>
       </div>
       <div class="contact__info--item">
         <i class="bi bi-envelope-fill"></i>
         <div class="contact__info--item-label">Email</div>
         <div class="contact__info--item-value">
-          {{ companyEmail ? companyEmail : "company@email.com" }}
+          {{ companyEmail }}
         </div>
       </div>
       <div class="contact__info--item">

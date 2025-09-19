@@ -1,9 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { bootstrapApplication } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { templateSettings } from '../utils/configs';
 
 @Component({
@@ -31,7 +26,6 @@ export class HeaderComponent {
   quickLoginEnabled = templateSettings.quickLoginEnabled;
 
   ngOnInit() {
-    // console.log('template categories received::', this.categories);
     // Set default values if not provided
     if (!this.storeLogo) {
       this.storeLogo = 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center';

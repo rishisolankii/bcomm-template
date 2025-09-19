@@ -27,12 +27,8 @@
             >
               <div class="cart__main--item-product-media">
                 <img
-                  [src]="
-                    cartItem.image ? cartItem?.image : cartItem?.s3ImageUrl
-                  "
-                  [alt]="
-                    cartItem.product.productName || cartItem.product.productId
-                  "
+                  [src]="cartItem.image ? cartItem?.image : cartItem?.s3ImageUrl"
+                  [alt]="cartItem.product.productName || cartItem.product.productId"
                   onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center'"
                 />
               </div>
@@ -55,7 +51,6 @@
                     [value]="cartItem.quantity"
                     (change)="updateBulkQuantity($event, cartItem, i)"
                   />
-                  <!-- {{ cartItem.quantity }} -->
                 </div>
                 <div
                   class="cart__main--item-qty-decrement"
@@ -116,12 +111,6 @@
             ${{ discountTotal | number : "1.0-2" }}
           </div>
         </div>
-        <!-- <div class="cart__summary--shipping">
-            <div class="cart__summary--shipping-label">Shipping</div>
-            <div class="cart__summary--shipping-value">
-              Lorem ipsum dolor sit amet, iy consectetur adipisicing elit,
-            </div>
-          </div> -->
         <div class="cart__summary--total">
           <div class="cart__summary--total-label">Total</div>
           <div class="cart__summary--total-value">
@@ -195,16 +184,7 @@
       <div class="bestseller__header justify-content-between">
         <div class="bestseller__header--info">
           <div class="bestseller__header--title">You Might Like</div>
-          <!-- <div class="bestseller__header--subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-            ipsum dolor sit amet, consectetu
-          </div> -->
         </div>
-        <!-- <div class="bestseller__header--action">
-          <span>Show All</span>
-          <i class="bi bi-arrow-right"></i>
-        </div> -->
       </div>
       <div class="bestseller__list">
         <div
@@ -227,8 +207,6 @@
       <div class="bestseller__header justify-content-between">
         <div class="bestseller__header--info">
           <div class="skeleton-text large w-50 mb-2"></div>
-          <!-- Optionally show subtitle skeleton -->
-          <!-- <div class="skeleton-text w-75"></div> -->
         </div>
       </div>
 

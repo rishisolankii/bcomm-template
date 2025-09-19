@@ -136,53 +136,6 @@ export class HomeComponent implements OnInit, OnChanges {
       totalReviews: 203
     }
   ];
-
-  private mockPopularCategories = [
-    {
-      catalogName: 'Electronics',
-      productCategoryId: 'electronics',
-      categoryImageUrl: 'assets/images/categories/electronics.jpg',
-      productCount: 245,
-      categoryList: [
-        { productCategoryId: 'smartphones', categoryName: 'Smartphones' },
-        { productCategoryId: 'laptops', categoryName: 'Laptops' },
-        { productCategoryId: 'headphones', categoryName: 'Headphones' }
-      ]
-    },
-    {
-      catalogName: 'Fashion',
-      productCategoryId: 'fashion',
-      categoryImageUrl: 'assets/images/categories/fashion.jpg',
-      productCount: 189,
-      categoryList: [
-        { productCategoryId: 'mens-clothing', categoryName: 'Men\'s Clothing' },
-        { productCategoryId: 'womens-clothing', categoryName: 'Women\'s Clothing' },
-        { productCategoryId: 'shoes', categoryName: 'Shoes' }
-      ]
-    },
-    {
-      catalogName: 'Home & Garden',
-      productCategoryId: 'home-garden',
-      categoryImageUrl: 'assets/images/categories/home-garden.jpg',
-      productCount: 156,
-      categoryList: [
-        { productCategoryId: 'furniture', categoryName: 'Furniture' },
-        { productCategoryId: 'decor', categoryName: 'Home Decor' },
-        { productCategoryId: 'garden', categoryName: 'Garden Tools' }
-      ]
-    },
-    {
-      catalogName: 'Sports & Outdoors',
-      productCategoryId: 'sports',
-      categoryImageUrl: 'assets/images/categories/sports.jpg',
-      productCount: 134,
-      categoryList: [
-        { productCategoryId: 'fitness', categoryName: 'Fitness Equipment' },
-        { productCategoryId: 'outdoor-gear', categoryName: 'Outdoor Gear' },
-        { productCategoryId: 'sports-apparel', categoryName: 'Sports Apparel' }
-      ]
-    }
-  ];
   // Usage Example for Static Assets
   staticBanner = remoteAsset('images/temp_full-banner.jpeg');
 
@@ -206,7 +159,6 @@ export class HomeComponent implements OnInit, OnChanges {
       'topPicks-', this.topPicks,
       'bestsellers-', this.bestsellers,
       'popularCategories-', this.popularCategories,
-      'themeComponent-', this.themeComponent
     );
   }
 
@@ -225,7 +177,7 @@ export class HomeComponent implements OnInit, OnChanges {
     }
     
     if (!this.popularCategories || this.popularCategories.length === 0) {
-      this.popularCategories = this.mockDataService.getMockCategories();
+      this.popularCategories = this.mockDataService.getMockPopularCategories();
     }
 
     // Set default banner if not provided - ensure it's always available
@@ -234,11 +186,22 @@ export class HomeComponent implements OnInit, OnChanges {
     } else if (!this.foundBanner) {
       this.foundBanner = this.mockDataService.getMockBanners()[0];
     }
-
-    // Set default theme if not provided
-    if (!this.themeComponent) {
-      this.themeComponent = 'modern';
+    
+    if(!this.bannerOne) {
+      this.bannerOne = this.mockDataService.getMockBanners()[0];
     }
+  }
+
+  getCategoryImage(category: any): string {
+    const imageUrl = category?.entity?.linkOneImageUrl;
+
+    if (!imageUrl) {
+      return 'assets/images/no-product-image.png';
+    }
+
+    return imageUrl.startsWith('http')
+      ? imageUrl
+      : category.entity.linkOneImageUrlS3 || 'assets/images/no-product-image.png';
   }
 
   goToBannerURL(banner: any) {

@@ -1,59 +1,17 @@
 <div class="hero">
-  <ng-container [ngSwitch]="themeComponent">
-    <app-hero-banner
-      *ngSwitchCase="'autoparts'"
-      [banner]="bannersDetail"
-      [bannerKey]="'media1'"
-      [foundBanner]="foundBanner"
-      (bannerUrl)="goToURL($event)"
-    ></app-hero-banner>
-
-    <app-hero-full
-      *ngSwitchCase="'full'"
-      [banner]="bannerOne"
-      [bannerKey]="'media1'"
-      [foundBanner]="foundBanner"
-      (bannerUrl)="goToURL($event)"
-    ></app-hero-full>
-
-    <!-- <app-hero-modern
-      *ngSwitchCase="'modern'"
-      [banner]="bannersDetail"
-      [bannerKey]="'media1'"
-      [foundBanner]="foundBanner"
-      (bannerUrl)="goToURL($event)"
-    ></app-hero-modern> -->
-
-    <app-hero-full
-      *ngSwitchCase="'modern'"
-      [banner]="bannerOne"
-      [bannerKey]="'media1'"
-      [foundBanner]="foundBanner"
-      (bannerUrl)="goToURL($event)"
-    ></app-hero-full>
-    <app-hero-full
-      *ngSwitchCase="null"
-      [banner]="bannerOne"
-      [bannerKey]="'media1'"
-      [foundBanner]="foundBanner"
-      (bannerUrl)="goToURL($event)"
-    ></app-hero-full>
-  </ng-container>
+  <app-hero-full
+    [banner]="bannerOne"
+    [bannerKey]="'media1'"
+    [foundBanner]="foundBanner"
+    (bannerUrl)="goToURL($event)"
+  ></app-hero-full>
   <ng-container *ngIf="showLoading">
     <div class="shimmer w-100 h-100 p-5"></div>
   </ng-container>
 </div>
 <div class="container">
   <div class="category__wrapper" *ngIf="popularCategories">
-    <!-- <div class="category__header">Shop By Category</div> -->
     <div class="category__list">
-      <!-- <div class="category__item first">
-          <div class="category__item--label">All New Arrivals</div>
-          <div class="category__item--action">
-            <span>Discover</span>
-            <img src="assets/icons/arrow_right.png" alt="Arrow Right Icon" />
-          </div>
-        </div> -->
       <div
         class="category__item"
         *ngFor="let popularCategory of popularCategories; index as i"
@@ -63,27 +21,15 @@
           <div style="position: relative; width: 100%; height: 200px">
             <img
               priority
-              [ngSrc]="
-                popularCategory.entity.linkOneImageUrl
-                  ? popularCategory.entity.linkOneImageUrl.startsWith('http') ||
-                    popularCategory.entity.linkOneImageUrl.startsWith('https')
-                    ? popularCategory.entity.linkOneImageUrl
-                    : popularCategory.entity.linkOneImageUrlS3
-                  : 'assets/images/no-product-image.png'
-              "
+              [ngSrc]="getCategoryImage(popularCategory)"
               alt="Popular Category Image"
               fill
-              style="object-fit: cover"
             />
           </div>
         </div>
         <div class="category__item--title">
           <span>
-            {{
-              popularCategory.categoryName
-                ? popularCategory?.categoryName
-                : popularCategory?.entity?.productCategoryId
-            }}
+            {{ popularCategory.categoryName || popularCategory?.entity?.productCategoryId }}
           </span>
         </div>
       </div>
@@ -95,11 +41,10 @@
       <div class="bestseller__header--title">Best Sellers</div>
       <div
         class="bestseller__header--action c-pointer"
-        *ngIf="bestsellers?.length >= 0"
+        *ngIf="bestsellers?.length"
         (click)="goToCategory(promotionCategory)"
       >
         <span>View All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
       </div>
     </div>
     <div class="bestseller__list">
@@ -138,7 +83,6 @@
         (click)="goToCategory(mostPopularCategory)"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
       </div>
     </div>
     <div class="top-picks__list">
@@ -160,14 +104,6 @@
   <div class="banner">
     <div class="top-picks__header">
       <div class="top-picks__header--title">Featured</div>
-      <!-- <div
-          class="top-picks__header--action c-pointer"
-          *ngIf="topPicks?.length >= 8"
-          [routerLink]="'/categories/' + mostPopularCategory"
-        >
-          <span>Show All</span>
-          <i class="bi bi-arrow-right"></i>
-        </div> -->
     </div>
     <div class="banner__list">
       <div class="banner__item--wrapper col-lg-4">
@@ -277,10 +213,10 @@
   <div class="brand__list">
     <div
       class="brand__item--wrapper col-xs-3 col-md-2 col-lg-2"
-      *ngFor="let item of brands"
+      *ngFor="let brand of brands"
     >
       <div class="brand__item">
-          <img [src]="item.logo" [alt]="item.title" />
+          <img [src]="brand.logo" [alt]="brand.title" />
       </div>
     </div>
   </div>

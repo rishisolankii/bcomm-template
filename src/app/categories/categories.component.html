@@ -43,18 +43,6 @@
   <div class="category__wrapper" *ngIf="!showLoading; else bannerLoading">
     <div class="category__header">
       <div class="category__header--info">
-        <!-- <div class="category__header--info-title">
-                {{
-                  categoryName
-                    ? (categoryName | titlecase)
-                    : categoryDescription
-                    ? (categoryDescription | titlecase)
-                    : (categoryId | titlecase)
-                }}
-              </div> -->
-        <!-- <div class="category__header--info-description">
-            {{ categoryDescription | titlecase }}
-          </div> -->
       </div>
       <div class="category__header--search-wrapper">
         <div class="category__header--search">
@@ -140,11 +128,6 @@
             ngbAccordionItem
             [collapsed]="i !== 0"
           >
-          <!-- <div
-            *ngFor="let filter of filters; let i = index"
-            ngbAccordionItem
-            [collapsed]="i !== 0"
-          > -->
             <div ngbAccordionHeader class="sidebar--filter-header">
               <button ngbAccordionButton>
                 <img
@@ -195,7 +178,6 @@
       <div class="bestseller--action--wrapper">
         <div ngbDropdown class="d-inline-block" #dropdown="ngbDropdown">
           <button type="button" class="btn btn-dark" ngbDropdownToggle>
-            <!-- {{ getLabel(selectedSorting) }} -->
             {{sortingLabel}}
           </button>
           <div ngbDropdownMenu>

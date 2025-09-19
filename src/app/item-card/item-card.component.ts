@@ -11,6 +11,7 @@ export class ItemCardComponent implements OnInit {
   @Input() isSearch = false;
   @Input() productDetails!: any;
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  placeholderImage = 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
   @Output() goToProduct = new EventEmitter<any>();
 
@@ -19,7 +20,7 @@ export class ItemCardComponent implements OnInit {
     id: 'mock-product-1',
     name: 'Sample Product',
     description: 'This is a sample product description for demonstration purposes',
-    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     productSummary: { 
       price: { price: 99.99, oldPrice: 129.99 },
       hasDiscount: true,
@@ -52,6 +53,11 @@ export class ItemCardComponent implements OnInit {
     // const newThreshold = 30 * 24 * 60 * 60 * 1000; // 30 days in ms
     const newThreshold = 1500 * 24 * 60 * 60 * 1000; // 1500 days in ms for testing
     return (now - createdAt) < newThreshold;
+  }
+
+  onImageError(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = this.placeholderImage;
   }
 
 }

@@ -1,40 +1,39 @@
 .sidebar {
-    &__item {
-      padding: 8px 12px;
-      color: #667085;
-      cursor: pointer;
-      transition: all 0.1s ease-in;
-      &:hover {
-        background-color: #f9fafb;
-        color: #344054;
-      }
-    }
-    .active {
+  &__item {
+    padding: 8px 12px;
+    color: #667085;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+
+    &:hover {
       background-color: #f9fafb;
       color: #344054;
     }
   }
-  
-  // @media (max-width: 1199.98px) {
-  // }
-  // @media (max-width: 991.98px) {
-  // }
-  @media (max-width: 767.98px) {
-    .sidebar {
-      &__item {
-        font-size: 14px;
-      }
+
+  .active {
+    background-color: #f9fafb;
+    color: #344054;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    &__item {
+      font-size: 14px;
     }
   }
-  @media (max-width: 575.98px) {
-    .sidebar {
-      &__wrapper {
-        display: flex;
-        overflow-x: scroll;
-      }
-      &__item {
-        white-space: nowrap;
-      }
+}
+
+@media (max-width: 575.98px) {
+  .sidebar {
+    &__wrapper {
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    &__item {
+      white-space: nowrap;
     }
   }
-  
+}

@@ -3,18 +3,6 @@
 .hero {
   margin-top: -32px;
 }
-.banner__setting {
-  position: fixed;
-  height: 40px;
-  width: 40px;
-  left: 12px;
-  top: calc(50vh - 20px);
-  button {
-    font-size: 10px;
-    padding: 4px;
-    margin-bottom: 2px;
-  }
-}
 
 .shimmer {
   min-height: 340px;
@@ -28,7 +16,7 @@
   }
   &__item {
     &--wrapper {
-      padding: 0;
+      padding: 0 16px;
       position: relative;
       &.middle,
       &.last {
@@ -50,16 +38,9 @@
       img {
         height: 320px !important;
         object-fit: cover;
-        // border-radius: 5px;
       }
     }
     &--info {
-      //   position: absolute;
-      //   bottom: 0;
-      //   left: 0;
-      //   background: var(--gradient-banner);
-      // background: $gradient-banner;
-      // background-color: #eef4ff;
       padding: 32px;
       border-radius: 0 0 5px 5px;
       display: flex;
@@ -69,14 +50,9 @@
         display: flex;
         align-items: flex-end;
       }
-      // &-left {
-      // }
       &-right {
         display: flex;
         align-items: center;
-        // justify-content: center;
-        // min-width: 160px;
-        // padding: 0 8px;
         text-align: center;
         span {
           font-size: 24px;
@@ -107,12 +83,7 @@
 .category {
   &__wrapper {
     margin-top: 80px;
-
     border-radius: 4px;
-  }
-  &__header {
-    font-size: 32px;
-    margin-bottom: 20px;
   }
   &__list {
     gap: 20px;
@@ -165,18 +136,13 @@
       bottom: 0;
       left: 0;
       right: 0;
-      //   width: 100%;
-      //   height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.2);
       span {
-        // border-radius: 28px;
-        // box-shadow: 0 0 16px rgba(0, 0, 0, 0.07);
         padding: 4px 16px;
         color: #fff;
-        // width: fit-content;
       }
     }
   }
@@ -216,14 +182,9 @@
       min-width: 144px;
       span {
         font-size: 12px;
-        // padding-right: 8px;
         color: var(--color-brand);
         border-bottom: 1px solid var(--color-brand);
       }
-      //   i {
-      //     color: var(--color-brand);
-      //     font-size: 20px;
-      //   }
       img {
         width: 20px;
       }
@@ -248,7 +209,6 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    // gap: 40px;
   }
   &__header {
     font-size: 32px;
@@ -303,9 +263,7 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    // background-color: rgba(0, 0, 0, 0.07);
     border: 1px solid rgba(0, 0, 0, 0.07);
-    // gap: 40px;
   }
   &__item {
     padding: 20px;
@@ -395,8 +353,6 @@
           display: flex;
           align-items: flex-end;
         }
-        &-left {
-        }
         &-right {
           display: flex;
           align-items: center;
@@ -443,7 +399,6 @@
     }
   }
 }
-
 
 .static-banner {
   &__wrapper {

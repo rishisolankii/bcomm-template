@@ -199,26 +199,10 @@
   }
   &__footer {
     color: var(--color-text-primary);
-    font-family: Graphik;
     font-size: 20px;
     font-weight: 500;
     line-height: normal;
     padding: 16px;
     text-align: right;
   }
-}
-
-.close-modal-btn {
-  color: #000;
-  font-family: Inter;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 20px 20px 0;
-  cursor: pointer;
-  width: fit-content;
-}
-
-mark {
-  background-color: yellow; /* Background color for highlighted text */
 }

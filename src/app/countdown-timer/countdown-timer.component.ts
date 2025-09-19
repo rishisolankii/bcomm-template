@@ -3,12 +3,11 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-countdown-timer',
   standalone: false,
-  // imports: [],
   templateUrl: './countdown-timer.component.html',
   styleUrl: './countdown-timer.component.scss'
 })
 export class CountdownTimerComponent {
-  targetDate = new Date('2025-09-16T15:00:00+05:30').getTime();
+  targetDate = new Date('2025-10-16T15:00:00+05:30').getTime();
   // @Input() targetDate!: any;
   countdownText: string = '';
   private intervalId: any;

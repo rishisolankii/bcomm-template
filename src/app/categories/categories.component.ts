@@ -74,10 +74,42 @@ export class CategoriesComponent implements OnInit {
 
     if (!this.subCategories || this.subCategories.length === 0) {
       this.subCategories = [
-        { productCategoryId: 'smartphones', categoryName: 'Smartphones', productCount: 45 },
-        { productCategoryId: 'laptops', categoryName: 'Laptops', productCount: 32 },
-        { productCategoryId: 'headphones', categoryName: 'Headphones', productCount: 28 },
-        { productCategoryId: 'cameras', categoryName: 'Cameras', productCount: 19 }
+        {
+          productCategoryId: 'smartphones',
+          categoryName: 'Smartphones',
+          productCount: 45,
+          entity: {
+            displayImage:
+              'https://images.unsplash.com/photo-1642326656890-0dfbea690cd0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fHNwb3J0cyUyMGFuZCUyMG91dGRvb3IlMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D',
+          },
+        },
+        {
+          productCategoryId: 'laptops',
+          categoryName: 'Laptops',
+          productCount: 32,
+          entity: {
+            displayImage:
+              'https://images.unsplash.com/photo-1642326656890-0dfbea690cd0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fHNwb3J0cyUyMGFuZCUyMG91dGRvb3IlMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D',
+          },
+        },
+        {
+          productCategoryId: 'headphones',
+          categoryName: 'Headphones',
+          productCount: 28,
+          entity: {
+            displayImage:
+              'https://images.unsplash.com/photo-1642326656890-0dfbea690cd0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fHNwb3J0cyUyMGFuZCUyMG91dGRvb3IlMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D',
+          },
+        },
+        {
+          productCategoryId: 'cameras',
+          categoryName: 'Cameras',
+          productCount: 19,
+          entity: {
+            displayImage:
+              'https://images.unsplash.com/photo-1642326656890-0dfbea690cd0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fHNwb3J0cyUyMGFuZCUyMG91dGRvb3IlMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D',
+          },
+        },
       ];
     }
 
@@ -145,7 +177,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     if (!this.searchPlaceHolder) {
-      this.searchPlaceHolder = 'Search products...';
+      this.searchPlaceHolder = 'products...';
     }
 
     if (!this.sortingLabel) {

@@ -1,8 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { Component, inject, Input } from '@angular/core';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,6 +8,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
+  _mockService = inject(MockDataService);
+  mockContactDetails = this._mockService.getMockStoreDetails();
+
   @Input() storeLogo: any;
   @Input() categories: any = [];
   @Input() companyName: any;
@@ -22,25 +23,25 @@ export class FooterComponent {
   @Input() iframeHtml: any;
 
   ngOnInit() {
-    // Set default company info if not provided
-    if (!this.companyName) {
-      this.companyName = 'Demo Store';
+    // Set Mock Data for Dev Preview
+    if (!this.companyAddress) {
+      this.companyAddress = this.mockContactDetails.companyAddress;
+    }
+
+    if (!this.companyContact) {
+      this.companyContact = this.mockContactDetails.companyContact;
     }
     
     if (!this.companyEmail) {
-      this.companyEmail = 'info@demostore.com';
+      this.companyEmail = this.mockContactDetails.companyEmail;
     }
-    
-    if (!this.companyContact) {
-      this.companyContact = '+1 (555) 123-4567';
-    }
-    
-    if (!this.companyAddress) {
-      this.companyAddress = '123 Commerce Street, Business District, NY 10001';
+
+    if (!this.companyName) {
+      this.companyName = this.mockContactDetails.companyName;
     }
 
     if (!this.storeLogo) {
-      this.storeLogo = 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center';
+      this.storeLogo = this.mockContactDetails.logo;
     }
 
     // Set default categories if not provided

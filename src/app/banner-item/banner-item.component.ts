@@ -15,7 +15,7 @@ export class BannerItemComponent {
     // Set default banner if not provided
     if (!this.banner) {
       this.banner = {
-        type: 'item-banner',
+        type: 'banner',
         urls: ['https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=600&h=300&fit=crop&crop=center'],
         title: 'Special Offer',
         description: 'Limited time deal on selected items',

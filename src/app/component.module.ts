@@ -21,10 +21,8 @@ import { AccountHeaderComponent } from './account-header/account-header.componen
 import { AccountSidebarComponent } from './account-sidebar/account-sidebar.component';
 import { AllOrdersComponent } from './all-orders/all-orders.component';
 import { FaqsComponent } from './faqs/faqs.component';
-import { HeroBannerComponent } from './hero-banner/hero-banner.component';
 import { HeroFullComponent } from './hero-full/hero-full.component';
 import { HomeComponent } from './home/home.component';
-import { HeroModernComponent } from './hero-modern/hero-modern.component';
 import { CmsPageComponent } from './cms-page/cms-page.component';
 import { BannerItemComponent } from './banner-item/banner-item.component';
 import { CategoriesComponent } from './categories/categories.component';
@@ -53,10 +51,8 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
     AccountSidebarComponent,
     AllOrdersComponent,
     FaqsComponent,
-    HeroBannerComponent,
     HeroFullComponent,
     HomeComponent,
-    HeroModernComponent,
     CmsPageComponent,
     BannerItemComponent,
     CategoriesComponent,
@@ -84,10 +80,8 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
     AccountSidebarComponent,
     AllOrdersComponent,
     FaqsComponent,
-    HeroBannerComponent,
     HeroFullComponent,
     HomeComponent,
-    HeroModernComponent,
     CmsPageComponent,
     BannerItemComponent,
     CategoriesComponent,
@@ -124,10 +118,8 @@ export {
   AccountSidebarComponent,
   AllOrdersComponent,
   FaqsComponent,
-  HeroBannerComponent,
   HeroFullComponent,
   HomeComponent,
-  HeroModernComponent,
   CmsPageComponent,
   BannerItemComponent,
   CategoriesComponent,

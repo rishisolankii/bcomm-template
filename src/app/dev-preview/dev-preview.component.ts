@@ -8,7 +8,7 @@ import { MockDataService } from '../services/mock-data.service';
     <div class="dev-preview">
       <!-- Navigation for different views -->
       <div class="dev-nav">
-        <h3>Template Preview</h3>
+        <h4>Template Preview</h4>
         <div class="nav-buttons">
           <button 
             (click)="setCurrentView('home')" 
@@ -50,7 +50,7 @@ import { MockDataService } from '../services/mock-data.service';
       </app-header-top-strip>
       
       <app-header 
-        [storeLogo]="'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center'"
+        [storeLogo]="mockLogo"
         [cartItemCount]="mockCartCount"
         [isLogin]="false">
       </app-header>
@@ -67,7 +67,7 @@ import { MockDataService } from '../services/mock-data.service';
           [bannersDetail]="mockBanners"
           [topPicks]="mockProducts"
           [bestsellers]="mockProducts"
-          [popularCategories]="mockCategories"
+          [popularCategories]="mockPopularCategories"
           [themeComponent]="'modern'"
           [heroBannerType]="'default'"
           [foundBanner]="firstBanner">
@@ -140,7 +140,10 @@ export class DevPreviewComponent implements OnInit {
     { pageTitle: 'Track Order', pageUrl: '/track-order' }
   ];
 
+  mockLogo!: string;
+
   mockCategories: any[] = [];
+  mockPopularCategories: any[] = [];
   mockProducts: any[] = [];
   mockBanners: any[] = [];
   mockCartCount = 3;
@@ -170,8 +173,10 @@ export class DevPreviewComponent implements OnInit {
 
   private initializeMockData() {
     this.mockCategories = this.mockDataService.getMockCategories();
+    this.mockPopularCategories = this.mockDataService.getMockPopularCategories();
     this.mockProducts = this.mockDataService.getMockProducts(8);
     this.mockBanners = this.mockDataService.getMockBanners();
+    this.mockLogo = this.mockDataService.getMockStoreDetails().logo;
     
     // Ensure data is fully initialized before marking as loaded
     setTimeout(() => {
