@@ -39,9 +39,9 @@ export class CategoriesComponent implements OnInit {
   @Input() filters: any = {};
   @Input() filterList: any;
   @Input() selectedFilters: any = {};
-  @Output() deselectRadioBtn$ = new EventEmitter<{}>();
-  @Output() onApplyFilter$ = new EventEmitter<void>();
-  @Output() clearFilter$ = new EventEmitter<void>();
+  @Output() deselectRadioBtn$ = new EventEmitter<any>();
+  @Output() onApplyFilter$ = new EventEmitter<any>();
+  @Output() clearFilter$ = new EventEmitter<any>();
   objectKeys = Object.keys;
   @Input() minPrice: any = new FormControl();
   @Input() maxPrice: any = new FormControl();

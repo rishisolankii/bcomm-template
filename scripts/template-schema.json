@@ -3,7 +3,34 @@
     "selector": "app-root",
     "inputs": [],
     "outputs": [],
-    "methods": []
+    "methods": [
+      {
+        "name": "setLayout",
+        "parameters": [
+          {
+            "name": "header",
+            "type": "boolean"
+          },
+          {
+            "name": "topHeader",
+            "type": "boolean"
+          },
+          {
+            "name": "categories",
+            "type": "boolean"
+          },
+          {
+            "name": "copyright",
+            "type": "boolean"
+          },
+          {
+            "name": "footer",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
   },
   "src/app/register/register.component.ts": {
     "selector": "app-register",
@@ -33,6 +60,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "onRegister",
         "parameters": [],
         "returnType": "any"
@@ -45,6 +77,414 @@
       {
         "name": "onRedirectToLogin",
         "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/product-detail/product-detail.component.ts": {
+    "selector": "app-product-detail",
+    "inputs": [
+      {
+        "name": "spotlightImg",
+        "type": "any"
+      },
+      {
+        "name": "product",
+        "type": "any"
+      },
+      {
+        "name": "features",
+        "type": "any"
+      },
+      {
+        "name": "variantSampleKeys",
+        "type": "any"
+      },
+      {
+        "name": "variantTree",
+        "type": "any"
+      },
+      {
+        "name": "alsoBoughtProducts",
+        "type": "any"
+      },
+      {
+        "name": "accessoryProducts",
+        "type": "any"
+      },
+      {
+        "name": "crossSellProducts",
+        "type": "any"
+      },
+      {
+        "name": "upSellProducts",
+        "type": "any"
+      },
+      {
+        "name": "quantity",
+        "type": "any"
+      },
+      {
+        "name": "selectedVariant",
+        "type": "Partial<{\n    key: string;\n    skuName: string;\n    skuId: string;\n  }>"
+      },
+      {
+        "name": "productImage",
+        "type": "string"
+      },
+      {
+        "name": "downloadProdContents",
+        "type": "Array<any>"
+      },
+      {
+        "name": "additionalImages",
+        "type": "any"
+      },
+      {
+        "name": "userIsLoggedIn",
+        "type": "any"
+      },
+      {
+        "name": "reviewFormGroup",
+        "type": "FormGroup"
+      },
+      {
+        "name": "bannersDetail",
+        "type": "any[]"
+      },
+      {
+        "name": "lastViewedProducts",
+        "type": "any[]"
+      },
+      {
+        "name": "variantPrice",
+        "type": "any"
+      },
+      {
+        "name": "quesList",
+        "type": "any"
+      },
+      {
+        "name": "configPrice",
+        "type": "any"
+      },
+      {
+        "name": "showAllSimilarItems",
+        "type": "boolean"
+      },
+      {
+        "name": "showAllAlsoBoughtItems",
+        "type": "boolean"
+      },
+      {
+        "name": "showAllAccessoryItems",
+        "type": "boolean"
+      },
+      {
+        "name": "showAllObsoleteItems",
+        "type": "boolean"
+      },
+      {
+        "name": "showAllRevisionItems",
+        "type": "boolean"
+      },
+      {
+        "name": "showAllSubstituteItems",
+        "type": "boolean"
+      },
+      {
+        "name": "paymentMethods",
+        "type": "any[]"
+      },
+      {
+        "name": "showLoading",
+        "type": "any"
+      },
+      {
+        "name": "bannerFive",
+        "type": "any"
+      },
+      {
+        "name": "substituteProducts",
+        "type": "any"
+      },
+      {
+        "name": "obsoleteProducts",
+        "type": "any"
+      },
+      {
+        "name": "revisionProducts",
+        "type": "any"
+      },
+      {
+        "name": "selectedFeatureOne",
+        "type": "string"
+      },
+      {
+        "name": "selectedFeatureTwo",
+        "type": "string"
+      },
+      {
+        "name": "breadcrumbLabel",
+        "type": "string"
+      },
+      {
+        "name": "breadcrumbURL",
+        "type": "string"
+      },
+      {
+        "name": "productDetailsInfo",
+        "type": "SafeHtml"
+      },
+      {
+        "name": "reviewText",
+        "type": "string"
+      },
+      {
+        "name": "avgRatingsFill",
+        "type": "any"
+      },
+      {
+        "name": "displayPrice",
+        "type": "{\n    price: number;\n    oldPrice: number;\n    hasDiscount: boolean;\n    discountPercent: number;\n  } | null"
+      },
+      {
+        "name": "displayVariantPrice",
+        "type": "{\n    price: number;\n    oldPrice: number;\n    hasDiscount: boolean;\n    discountPercent: number;\n  } | null"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "changeImage",
+        "type": "any"
+      },
+      {
+        "name": "addCart",
+        "type": "any"
+      },
+      {
+        "name": "getProductSpecsPDF",
+        "type": "any"
+      },
+      {
+        "name": "addReview",
+        "type": "any"
+      },
+      {
+        "name": "selectVariant",
+        "type": "any"
+      },
+      {
+        "name": "selectItemVariant",
+        "type": "any"
+      },
+      {
+        "name": "onSelectProductDetails",
+        "type": "any"
+      },
+      {
+        "name": "openReview",
+        "type": "any"
+      },
+      {
+        "name": "imageSpotlightUp",
+        "type": "any"
+      },
+      {
+        "name": "imageSpotlightDown",
+        "type": "any"
+      },
+      {
+        "name": "onImageError",
+        "type": "any"
+      },
+      {
+        "name": "onShowAllAccessoryItems",
+        "type": "any"
+      },
+      {
+        "name": "onshowAllAlsoBoughtItems",
+        "type": "any"
+      },
+      {
+        "name": "onShowAllObsoleteItems",
+        "type": "any"
+      },
+      {
+        "name": "onShowAllSimilarItems",
+        "type": "any"
+      },
+      {
+        "name": "onShowAllRevisionItems",
+        "type": "any"
+      },
+      {
+        "name": "onShowAllSubstituteItems",
+        "type": "any"
+      },
+      {
+        "name": "onUpdatedQuantity",
+        "type": "any"
+      }
+    ],
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "addToCart",
+        "parameters": [
+          {
+            "name": "qty",
+            "type": "number"
+          },
+          {
+            "name": "isBuyNow",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "selectVariantHandler",
+        "parameters": [
+          {
+            "name": "type",
+            "type": "'key'"
+          },
+          {
+            "name": "value",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "selectVariantItemHandler",
+        "parameters": [
+          {
+            "name": "data",
+            "type": "any"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "selectProductDetails",
+        "parameters": [
+          {
+            "name": "conf",
+            "type": "any"
+          },
+          {
+            "name": "index",
+            "type": "any"
+          },
+          {
+            "name": "isSingleChoice",
+            "type": "any"
+          },
+          {
+            "name": "checkboxIndex",
+            "type": "any"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "openProductSpecificationsPDF",
+        "parameters": [
+          {
+            "name": "productId",
+            "type": "string"
+          },
+          {
+            "name": "contentId",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onChangeImage",
+        "parameters": [
+          {
+            "name": "imgId",
+            "type": "number"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleShowAccessory",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleShowAlsoBought",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleShowSimilar",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleShowObsolete",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleShowRevision",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleShowSubstitute",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "openReviewModal",
+        "parameters": [
+          {
+            "name": "content",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "spotlightUP",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "spotlightDown",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "onChangeQuantity",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "number"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
+        "name": "onError",
+        "parameters": [
+          {
+            "name": "event",
+            "type": "Event"
+          }
+        ],
         "returnType": "any"
       }
     ]
@@ -83,6 +523,14 @@
       {
         "name": "bannerData",
         "type": "any"
+      },
+      {
+        "name": "mediaType",
+        "type": "string"
+      },
+      {
+        "name": "timer",
+        "type": "any"
       }
     ],
     "outputs": [
@@ -92,6 +540,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "goToBannerURL",
         "parameters": [],
@@ -130,6 +583,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "onLogin",
         "parameters": [],
@@ -188,6 +646,11 @@
           }
         ],
         "returnType": "any"
+      },
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "void"
       }
     ]
   },
@@ -291,7 +754,22 @@
     ],
     "methods": [
       {
+        "name": "ngOnChanges",
+        "parameters": [
+          {
+            "name": "changes",
+            "type": "SimpleChanges"
+          }
+        ],
+        "returnType": "any"
+      },
+      {
         "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "initializeData",
         "parameters": [],
         "returnType": "any"
       },
@@ -361,6 +839,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "goToBannerURL",
         "parameters": [
           {
@@ -396,6 +879,16 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "ngAfterViewInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "goToBannerURL",
         "parameters": [
           {
@@ -430,6 +923,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "goToBannerURL",
         "parameters": [
@@ -469,6 +967,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "onRedirectDetailsPage",
         "parameters": [
@@ -520,6 +1023,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "openCategoryOverlay",
         "parameters": [
@@ -586,6 +1094,10 @@
       {
         "name": "defaultStoreLogoUrl",
         "type": "any"
+      },
+      {
+        "name": "categories",
+        "type": "any"
       }
     ],
     "outputs": [
@@ -599,6 +1111,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "searchProducts",
         "parameters": [
@@ -644,6 +1161,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "onSendEmail",
         "parameters": [],
         "returnType": "any"
@@ -669,7 +1191,13 @@
       }
     ],
     "outputs": [],
-    "methods": []
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
   },
   "src/app/footer/footer.component.ts": {
     "selector": "app-footer",
@@ -716,7 +1244,13 @@
       }
     ],
     "outputs": [],
-    "methods": []
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
   },
   "src/app/faqs/faqs.component.ts": {
     "selector": "app-faqs",
@@ -733,6 +1267,21 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "toggleFaq",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "number"
+          }
+        ],
+        "returnType": "any"
+      },
       {
         "name": "onRedirection",
         "parameters": [
@@ -757,6 +1306,55 @@
     "methods": [
       {
         "name": "onRedirectToHome",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/dev-preview/dev-preview.component.ts": {
+    "selector": "app-dev-preview",
+    "inputs": [],
+    "outputs": [],
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "initializeMockData",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "setCurrentView",
+        "parameters": [
+          {
+            "name": "view",
+            "type": "string"
+          }
+        ],
+        "returnType": "any"
+      }
+    ]
+  },
+  "src/app/countdown-timer/countdown-timer.component.ts": {
+    "selector": "app-countdown-timer",
+    "inputs": [],
+    "outputs": [],
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "ngOnDestroy",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
+        "name": "startCountdown",
         "parameters": [],
         "returnType": "any"
       }
@@ -798,6 +1396,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "onRedirect",
         "parameters": [
           {
@@ -825,6 +1428,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "onRedirectToUrl",
         "parameters": [
           {
@@ -849,7 +1457,7 @@
       },
       {
         "name": "products",
-        "type": "object[]"
+        "type": "any[]"
       },
       {
         "name": "categoryBanner",
@@ -924,6 +1532,10 @@
         "type": "any"
       },
       {
+        "name": "filterList",
+        "type": "any"
+      },
+      {
         "name": "selectedFilters",
         "type": "any"
       },
@@ -967,15 +1579,15 @@
       },
       {
         "name": "deselectRadioBtn$",
-        "type": "{}"
+        "type": "any"
       },
       {
         "name": "onApplyFilter$",
-        "type": "void"
+        "type": "any"
       },
       {
         "name": "clearFilter$",
-        "type": "void"
+        "type": "any"
       },
       {
         "name": "selectSorting$",
@@ -1007,6 +1619,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "onRedirectToUrl",
         "parameters": [
@@ -1147,6 +1764,10 @@
         "type": "any[]"
       },
       {
+        "name": "bannerFive",
+        "type": "any"
+      },
+      {
         "name": "associatedProducts",
         "type": "any[]"
       },
@@ -1202,6 +1823,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "void"
+      },
       {
         "name": "goToProductDetails",
         "parameters": [
@@ -1295,6 +1921,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "onRedirect",
         "parameters": [
           {
@@ -1325,6 +1956,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "goToBannerURL",
         "parameters": [
@@ -1364,6 +2000,11 @@
       }
     ],
     "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
       {
         "name": "onOpenOrderDetails",
         "parameters": [
@@ -1422,6 +2063,11 @@
     ],
     "methods": [
       {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      },
+      {
         "name": "onRedirection",
         "parameters": [
           {
@@ -1446,6 +2092,12 @@
       }
     ],
     "outputs": [],
-    "methods": []
+    "methods": [
+      {
+        "name": "ngOnInit",
+        "parameters": [],
+        "returnType": "any"
+      }
+    ]
   }
 }
