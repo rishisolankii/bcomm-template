@@ -170,11 +170,9 @@ To apply different themes, add the theme class to the `<body>` element:
 IMPORTANT: 
 - When preparing the .zip file, DO NOT include node_modules in your zip as they are only for your development purpose.
 
-Step 1:
-(src/assets/images/perparing-zip-01.png)
+![Step 1:](src/assets/images/perparing-zip-01.png)
 
-Step2:
-(src/assets/images/perparing-zip-02.png)
+![Step2:](src/assets/images/perparing-zip-02.png)
 
 ## Component Structure
 
