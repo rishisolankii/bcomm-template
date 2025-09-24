@@ -22,7 +22,7 @@ export class HeaderComponent {
   @Output() logout = new EventEmitter<any>();
   @Output() quickLogin = new EventEmitter<any>();
 
-  // Toggle this flat in the utils/configs.ts to swith betwene Quick login model, or full page login mode
+  // Toggle this flag in the utils/configs.ts to swith between Quick login model, or full page login mode
   quickLoginEnabled = templateSettings.quickLoginEnabled;
 
   ngOnInit() {
