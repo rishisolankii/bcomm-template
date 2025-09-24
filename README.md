@@ -1,5 +1,5 @@
 # Angular E-commerce Template
-Last Updated at: Sep 19, 2025
+Last Updated at: Sep 24, 2025
 
 A customizable Angular template for building e-commerce applications with pre-built components and theming support.
 
@@ -165,13 +165,16 @@ To apply different themes, add the theme class to the `<body>` element:
 </body>
 ```
 
-## Building for Production
+## Preparing and Uploading template .zip
 
-```bash
-npm run build
-```
+IMPORTANT: 
+- When preparing the .zip file, DO NOT include node_modules in your zip as they are only for your development purpose.
 
-The build artifacts will be stored in the `dist/` directory.
+Step 1:
+(src/assets/images/perparing-zip-01.png)
+
+Step2:
+(src/assets/images/perparing-zip-02.png)
 
 ## Component Structure
 
