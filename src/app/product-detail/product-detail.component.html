@@ -1,14 +1,9 @@
-<!-- <div class="position-fixed top-0 left-0 bg-danger px-1">
-  <small>TODO::Loaded from Template</small>
-</div> -->
+
 <div class="container">
   <app-breadcrumb
     [inactiveElements]="[
       { label: 'Home', redirectUrl: '' },
-      {
-        label: breadcrumbLabel,
-        redirectUrl: breadcrumbURL
-      }
+      { label: breadcrumbLabel, redirectUrl: breadcrumbURL }
     ]"
     [activeElement]="product?.title | titlecase"
   ></app-breadcrumb>
@@ -81,8 +76,7 @@
       </div>
     </div>
     <div class="product-details__info">
-      <ng-container *ngIf="!showLoading; else loading">
-        <!-- <div class="product-details__info--store">Blue Pennylandy Store</div> -->
+      <ng-container *ngIf="!showLoading; else productDetailsLoading">
         <h1
           class="product-details__info--title"
           [innerHTML]="productDetailsInfo"
@@ -384,28 +378,13 @@
             src="assets/icons/map.png"
             alt="Eye Icon"
           />
-          <!-- <span [innerHTML]="product?.product?.description"></span> -->
           <span>{{ product?.product?.description?.substr(0, 41) }}</span>
         </div>
         <div
           class="product-details__info--description"
           [innerHTML]="product?.product?.description"
         >
-          <!-- {{
-              product?.product?.description ||
-                "Lorem ipsum dolor sit amet, consectetuer adipi scing elit, sed diamnonummy nibh euismod tincidunt ut laoreet dolore magn."
-            }} -->
         </div>
-        <!-- <div class="product-details__info--shipping">
-            <img src="assets/icons/map.png" alt="Shipping Icon" />
-            <span>Free worldwide shipping on all orders over $100</span>
-          </div>
-          <div class="product-details__info--shipping">
-            <img src="assets/icons/map.png" alt="Delivery Icon" />
-            <span class="c-pointer"
-              >Delivers in: 3-7 Working Days <span>Shipping & Return</span></span
-            >
-          </div> -->
         <div class="product-details__info--ratings">
           <img
             src="assets/icons/star.png"
@@ -444,14 +423,6 @@
                 >
               </div>
             </div>
-            <!-- <div class="product-details__info--button-cart">
-                <button class="btn btn-dark" (click)="addToCart(quantity, false)">
-                  Add to Cart
-                </button>
-              </div>
-              <div class="product-details__info--button-favorite">
-                <img src="assets/icons/favorite-grey.png" alt="" />
-              </div> -->
           </div>
           <div class="product-details__info--button-grp">
             <button class="btn btn-dark" (click)="addToCart(quantity, false)">
@@ -480,19 +451,6 @@
           </div>
         </div>
       </ng-container>
-
-      <ng-template #loading>
-        <div class="shimmer w-50 p-2"></div>
-        <div class="shimmer w-100 p-3"></div>
-        <div class="shimmer w-50 p-2"></div>
-        <div class="shimmer w-75 p-3"></div>
-        <div
-          class="shimmer w-100 p-2"
-          *ngFor="let item of [].constructor(5)"
-        ></div>
-        <div class="shimmer w-75 p-3"></div>
-        <div class="shimmer w-75 p-3"></div>
-      </ng-template>
     </div>
   </div>
 
@@ -535,15 +493,7 @@
         <ng-template ngbNavContent>
           <p>
             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
-            skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-            single-origin coffee nulla assumenda shoreditch et. Nihil anim
-            keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-            sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-            occaecat craft beer farm-to-table, raw denim aesthetic synth
-            nesciunt you probably haven't heard of them accusamus labore
-            sustainable VHS.
+            terry richardson ad squid.
           </p>
         </ng-template>
       </li>
@@ -551,13 +501,6 @@
         <a ngbNavLink>Ratings & Reviews</a>
         <ng-template ngbNavContent>
           <div class="review__summary">
-            <!-- {{
-                  (product?.averageRating * 100 -
-                    ((product?.averageRating * 100) % 100)) /
-                    100
-                }}
-                /
-                {{ (product?.averageRating * 100) % 100 }} -->
             <i
               class="bi bi-star-fill"
               *ngFor="let stars of [].constructor(avgRatingsFill)"
@@ -577,19 +520,7 @@
           <div class="review__note">
             Only customers who have purchased this item can review
           </div>
-          <ng-container *ngIf="product?.averageRating">
-            <div class="review__media--count">15 Customer photos</div>
-            <div class="review__media">
-              <img
-                src="assets/images/dummy-product-03.png"
-                alt="Review Image"
-                *ngFor="let reviewImage of [].constructor(3)"
-              />
-              <div>All Photos</div>
-            </div>
-
-            <div class="review__title">Most recent</div>
-          </ng-container>
+          <div *ngIf="product?.averageRating" class="review__title">Most recent</div>
 
           <div
             class="review__item"
@@ -645,19 +576,12 @@
         (click)="toggleShowSimilar()"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
-        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
       </div>
     </div>
     <div class="product__list">
       <div
         class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
-        *ngFor="
-          let item of crossSellProducts.slice(
-            0,
-            showAllSimilarItems ? crossSellProducts.length : 4
-          )
-        "
+        *ngFor="let item of crossSellProducts.slice(0, showAllSimilarItems ? crossSellProducts.length : 4)"
       >
         <div class="product__item">
           <app-item-card [product]="item"></app-item-card>
@@ -683,19 +607,12 @@
         (click)="toggleShowAlsoBought()"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
-        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
       </div>
     </div>
     <div class="product__list">
       <div
         class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
-        *ngFor="
-          let item of alsoBoughtProducts.slice(
-            0,
-            showAllAlsoBoughtItems ? alsoBoughtProducts.length : 4
-          )
-        "
+        *ngFor="let item of alsoBoughtProducts.slice(0, showAllAlsoBoughtItems ? alsoBoughtProducts.length : 4)"
       >
         <div class="product__item">
           <app-item-card [product]="item"></app-item-card>
@@ -713,19 +630,12 @@
         (click)="toggleShowObsolete()"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
-        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
       </div>
     </div>
     <div class="product__list">
       <div
         class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
-        *ngFor="
-          let item of alsoBoughtProducts.slice(
-            0,
-            showAllAlsoBoughtItems ? alsoBoughtProducts.length : 4
-          )
-        "
+        *ngFor="let item of alsoBoughtProducts.slice(0, showAllAlsoBoughtItems ? alsoBoughtProducts.length : 4)"
       >
         <div class="product__item">
           <app-item-card [product]="item"></app-item-card>
@@ -743,19 +653,12 @@
         (click)="toggleShowAccessory()"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
-        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
       </div>
     </div>
     <div class="product__list">
       <div
         class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
-        *ngFor="
-          let item of accessoryProducts.slice(
-            0,
-            showAllAccessoryItems ? accessoryProducts.length : 4
-          )
-        "
+        *ngFor="let item of accessoryProducts.slice(0, showAllAccessoryItems ? accessoryProducts.length : 4)"
       >
         <div class="product__item">
           <app-item-card [product]="item"></app-item-card>
@@ -773,19 +676,12 @@
         (click)="toggleShowRevision()"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
-        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
       </div>
     </div>
     <div class="product__list">
       <div
         class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
-        *ngFor="
-          let item of accessoryProducts.slice(
-            0,
-            showAllAccessoryItems ? accessoryProducts.length : 4
-          )
-        "
+        *ngFor="let item of accessoryProducts.slice(0, showAllAccessoryItems ? accessoryProducts.length : 4)"
       >
         <div class="product__item">
           <app-item-card [product]="item"></app-item-card>
@@ -803,19 +699,12 @@
         (click)="toggleShowSubstitute()"
       >
         <span>Show All</span>
-        <!-- <i class="bi bi-arrow-right"></i> -->
-        <!-- <img src="assets/icons/arrow_right_purple.png" alt="Arrow Right Icon" /> -->
       </div>
     </div>
     <div class="product__list">
       <div
         class="product__item--wrapper col-sm-6 col-md-4 col-lg-3"
-        *ngFor="
-          let item of accessoryProducts.slice(
-            0,
-            showAllAccessoryItems ? accessoryProducts.length : 4
-          )
-        "
+        *ngFor="let item of accessoryProducts.slice(0, showAllAccessoryItems ? accessoryProducts.length : 4)"
       >
         <div class="product__item">
           <app-item-card [product]="item"></app-item-card>
@@ -827,10 +716,6 @@
   <div class="product" *ngIf="lastViewedProducts?.length">
     <div class="product__header">
       <div class="product__header--title">Recently Viewed</div>
-      <!-- <div class="product__header--action">
-          <span>Show All</span>
-          <i class="bi bi-arrow-right"></i>
-        </div> -->
     </div>
     <div class="product__list">
       <div
@@ -853,3 +738,21 @@
   [ctaType]="''"
   [bgColor]="'blue'"
 ></app-offer-banner>
+
+<!-- BEGINS:: Product Details Loading -->
+<ng-template #productDetailsLoading>
+  <div class="shimmer w-50 p-2"></div>
+  <div class="shimmer w-100 p-3 my-2"></div>
+  <div class="shimmer w-50 p-2"></div>
+  <div class="shimmer w-75 p-3 my-2"></div>
+  <div
+    class="shimmer w-100 p-2 mb-2"
+    *ngFor="let item of [].constructor(5)"
+  ></div>
+  <div class="flex gap-4 my-2">
+    <div class="shimmer w-25 p-3" *ngFor="let item of [].constructor(3)"></div>
+  </div>
+  <div class="shimmer w-75 p-3 my-2"></div>
+  <div class="shimmer w-75 p-3"></div>
+</ng-template>
+<!-- ENDS:: Product Details Loading -->

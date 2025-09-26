@@ -121,64 +121,14 @@ export class ProductDetailComponent implements OnInit {
   constructor(private mockDataService: MockDataService) {}
 
   ngOnInit() {
-    // Set default product data if not provided
-    if (!this.product) {
-      this.product = this.mockDataService.getMockProductDetail();
+    const runningStandalone = (window as any).__REMOTE_STANDALONE__ === true;
+    console.log('=== runningStandalone ==>>', runningStandalone);
+
+    if(runningStandalone) {
+      this.loadMockData();
     }
 
-    if (!this.productImage) {
-      this.productImage = this.product?.images?.[0] || 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-    }
-
-    if (!this.additionalImages || this.additionalImages.length === 0) {
-      this.additionalImages = this.product?.images || ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'];
-    }
-
-    if (!this.alsoBoughtProducts || this.alsoBoughtProducts.length === 0) {
-      this.alsoBoughtProducts = this.mockDataService.getMockProducts(4);
-    }
-
-    if (!this.accessoryProducts || this.accessoryProducts.length === 0) {
-      this.accessoryProducts = this.mockDataService.getMockProducts(3);
-    }
-
-    if (!this.crossSellProducts || this.crossSellProducts.length === 0) {
-      this.crossSellProducts = this.mockDataService.getMockProducts(4);
-    }
-
-    if (!this.upSellProducts || this.upSellProducts.length === 0) {
-      this.upSellProducts = this.mockDataService.getMockProducts(3);
-    }
-
-    if (!this.lastViewedProducts || this.lastViewedProducts.length === 0) {
-      this.lastViewedProducts = this.mockDataService.getMockProducts(4);
-    }
-
-    if (!this.bannersDetail || this.bannersDetail.length === 0) {
-      this.bannersDetail = this.mockDataService.getMockBanners();
-    }
-
-    // Set default display price if not provided
-    if (!this.displayPrice && this.product?.productSummary?.price) {
-      this.displayPrice = {
-        price: this.product.productSummary.price.price,
-        oldPrice: this.product.productSummary.price.oldPrice || this.product.productSummary.price.price,
-        hasDiscount: this.product.productSummary.hasDiscount || false,
-        discountPercent: this.product.productSummary.discountPercent || 0
-      };
-    }
-
-    // Set default features if not provided
-    if (!this.features) {
-      this.features = [
-        { name: 'Wireless', description: 'Bluetooth 5.0 connectivity' },
-        { name: 'Battery Life', description: '30 hours playback' },
-        { name: 'Noise Cancellation', description: 'Active noise cancelling' },
-        { name: 'Quick Charge', description: '5 min charge = 3 hours play' }
-      ];
-    }
-
-    console.log('========== Prepared Variants ==========', this.variantTree);
+    console.log('========== Prepared Variants ==========', this.features);
   }
 
   addToCart(qty: number, isBuyNow: boolean) {
@@ -265,5 +215,112 @@ export class ProductDetailComponent implements OnInit {
   }
   onError(event: Event) {
     this.onImageError.emit(event);
+  }
+
+  loadMockData() {
+    // Set default product data if not provided
+    if (!this.product) {
+      this.product = this.mockDataService.getMockProductDetail();
+    }
+
+    if (!this.productImage) {
+      this.productImage = this.product?.images?.[0] || 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+    }
+
+    if (!this.additionalImages || this.additionalImages.length === 0) {
+      this.additionalImages = this.product?.images || ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'];
+    }
+
+    if (!this.alsoBoughtProducts || this.alsoBoughtProducts.length === 0) {
+      this.alsoBoughtProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.accessoryProducts || this.accessoryProducts.length === 0) {
+      this.accessoryProducts = this.mockDataService.getMockProducts(3);
+    }
+
+    if (!this.crossSellProducts || this.crossSellProducts.length === 0) {
+      this.crossSellProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.upSellProducts || this.upSellProducts.length === 0) {
+      this.upSellProducts = this.mockDataService.getMockProducts(3);
+    }
+
+    if (!this.lastViewedProducts || this.lastViewedProducts.length === 0) {
+      this.lastViewedProducts = this.mockDataService.getMockProducts(4);
+    }
+
+    if (!this.bannersDetail || this.bannersDetail.length === 0) {
+      this.bannersDetail = this.mockDataService.getMockBanners();
+    }
+
+    // Set default display price if not provided
+    if (!this.displayPrice && this.product?.productSummary?.price) {
+      this.displayPrice = {
+        price: this.product.productSummary.price.price,
+        oldPrice: this.product.productSummary.price.oldPrice || this.product.productSummary.price.price,
+        hasDiscount: this.product.productSummary.hasDiscount || false,
+        discountPercent: this.product.productSummary.discountPercent || 0
+      };
+    }
+
+    // Set default variants if not provided
+    if (!this.features) {
+      this.features = [ 'Color', 'Size'];
+      this.variantSampleKeys = ['Black', 'Red', 'Blue', 'Green', 'White'];
+      this.variantTree = [{key: 'XS'}, {key: 'S'}, {key: 'M'}, {key: 'L'}, {key: 'XL'}]
+    }
+
+    if (!this.breadcrumbLabel) {
+      this.breadcrumbLabel = 'Electronics';
+    }
+    if (!this.productDetailsInfo) {
+      this.productDetailsInfo = this.product.name;
+    }
+    if (!this.avgRatingsFill) {
+      this.avgRatingsFill = 4;
+    }
+    if (!this.reviewText) {
+      this.reviewText = '2 reviews';
+    }
+    if (!this.paymentMethods.length) {
+      this.paymentMethods = [
+        {
+          title: "Amex",
+          icon: "assets/images/payment-methods/amex.svg",
+        },
+        {
+          title: "Discover",
+          icon: "assets/images/payment-methods/discover.jpg",
+        },
+        {
+          title: "Visa",
+          icon: "assets/images/payment-methods/visa.jpg",
+        },
+        {
+          title: "Master Card",
+          icon: "assets/images/payment-methods/mastercard.jpeg",
+        },
+        {
+          title: "Klarna",
+          icon: "assets/images/payment-methods/klarna.jpg",
+        },
+        {
+          title: "Apple Pay",
+          icon: "assets/images/payment-methods/apple-pay.jpg",
+        },
+        {
+          title: "Diner's Club",
+          icon: "assets/images/payment-methods/diners-club.jpeg",
+        },
+        {
+          title: "Amazon Pay",
+          icon: "assets/images/payment-methods/amazon-pay.jpg",
+        },
+      ];
+    }
+
+    console.log('product=====', this.product);
   }
 }

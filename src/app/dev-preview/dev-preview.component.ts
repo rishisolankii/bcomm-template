@@ -85,28 +85,20 @@ import { MockDataService } from '../services/mock-data.service';
         
         <!-- Product Detail View -->
         <div *ngIf="currentView === 'product'" class="container">
-          <app-breadcrumb
-            [inactiveElements]="[{ label: 'Home', redirectUrl: '' }, { label: 'Electronics', redirectUrl: 'electronics' }]"
-            [activeElement]="'Premium Wireless Headphones'">
-          </app-breadcrumb>
           <app-product-detail></app-product-detail>
         </div>
         
         <!-- Category View -->
         <div *ngIf="currentView === 'category'" class="container">
-          <app-breadcrumb
+          <!-- <app-breadcrumb
             [inactiveElements]="[{ label: 'Home', redirectUrl: '' }]"
             [activeElement]="'Electronics'">
-          </app-breadcrumb>
+          </app-breadcrumb> -->
           <app-categories></app-categories>
         </div>
         
         <!-- Cart View -->
         <div *ngIf="currentView === 'cart'" class="container">
-          <app-breadcrumb
-            [inactiveElements]="[{ label: 'Home', redirectUrl: '' }]"
-            [activeElement]="'Shopping Cart'">
-          </app-breadcrumb>
           <app-cart></app-cart>
         </div>
         
