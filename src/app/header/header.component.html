@@ -68,23 +68,30 @@
             />
             <!-- BEGINS:: Categories Dropdown -->
             <div ngbDropdown class="d-inline-block">
-              <div
-                class="header__action--item c-pointer"
-                ngbDropdownToggle
-              >
-                <span>All Categories</span>
+              <div class="header__action--item c-pointer" ngbDropdownToggle>
+                <span>
+                  {{ selectedCategory.name }} </span>
               </div>
+
               <div class="categories__wrapper" ngbDropdownMenu>
-                <button ngbDropdownItem *ngFor="let categoryItem of categories">
-                  {{
-                    categoryItem.categoryName
-                      ? categoryItem.categoryName
-                      : categoryItem.description
-                      ? categoryItem.description
-                      : categoryItem.productCategoryId
-                  }}
+                <!-- All Categories option -->
+                <button ngbDropdownItem (click)="onCategoryChange({
+                  name: 'All Categories',
+                  productCategoryId: null
+                })" [class.active]="selectedCategory.productCategoryId === null">
+                  All Categories
                 </button>
-                <!-- <button ngbDropdownItem (click)="onLogout()">Logout</button> -->
+
+                <!-- Dynamic categories -->
+                <button *ngFor="let categoryItem of categories" ngbDropdownItem
+                  (click)="onCategoryChange(categoryItem)" 
+                  [class.active]="selectedCategory.productCategoryId === categoryItem.productCategoryId">
+                  {{ categoryItem.categoryName
+                  ? categoryItem.categoryName
+                  : categoryItem.description
+                  ? categoryItem.description
+                  : categoryItem?.productCategoryId }}
+                </button>
               </div>
             </div>
             <!-- ENDS:: Categories Dropdown -->

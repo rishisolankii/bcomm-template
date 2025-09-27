@@ -162,3 +162,8 @@
     }
   }
 }
+
+button[ngbDropdownItem].active {
+  background-color: #f3f6fa; /* Bootstrap primary */
+  color: black;
+}
