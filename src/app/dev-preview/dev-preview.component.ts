@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockDataService } from '../services/mock-data.service';
 
@@ -164,9 +164,11 @@ export class DevPreviewComponent implements OnInit {
   }
 
   private initializeMockData() {
-    this.mockCategories = this.mockDataService.getMockCategories();
-    this.mockPopularCategories = this.mockDataService.getMockPopularCategories();
-    this.mockProducts = this.mockDataService.getMockProducts(8);
+    if(isDevMode()){
+      this.mockCategories = this.mockDataService.getMockCategories();
+      this.mockPopularCategories = this.mockDataService.getMockPopularCategories();
+      this.mockProducts = this.mockDataService.getMockProducts(8);
+    }
     this.mockBanners = this.mockDataService.getMockBanners();
     this.mockLogo = this.mockDataService.getMockStoreDetails().logo;
     

@@ -475,3 +475,48 @@
     }
   }
 }
+
+/* Empty State - Simple & Clean */
+.empty-state {
+  padding: 32px 20px;
+  text-align: center;
+  background: var(--color-light);
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px dashed #ddd;
+}
+
+.empty-state__icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.empty-state__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.empty-state__description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.empty-state__action {
+  background: $gray-color-100;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.empty-state__action:hover {
+  background: $gray-color-100;
+}

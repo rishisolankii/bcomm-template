@@ -36,21 +36,23 @@
     </div>
   </div>
 
-  <div class="bestseller" *ngIf="bestsellers?.length">
-    <div class="bestseller__header">
-      <div class="bestseller__header--title">Best Sellers</div>
-      <div
-        class="bestseller__header--action c-pointer"
-        *ngIf="bestsellers?.length"
-        (click)="goToCategory(promotionCategory)"
-      >
-        <span>View All</span>
-      </div>
+<div class="bestseller">
+  <div class="bestseller__header">
+    <div class="bestseller__header--title">Best Sellers</div>
+    <div
+      class="bestseller__header--action c-pointer"
+      *ngIf="bestsellers?.length"
+      (click)="goToCategory(promotionCategory)"
+    >
+      <span>View All</span>
     </div>
+  </div>
+
+  <ng-container *ngIf="bestsellers?.length; else noBestsellers">
     <div class="bestseller__list">
       <div
         class="bestseller__item col-sm-6 col-md-4 col-lg-3"
-        *ngFor="let item of bestsellers?.slice(0, 4)"
+        *ngFor="let item of bestsellers.slice(0, 4)"
       >
         <app-item-card
           [productDetails]="item"
@@ -59,7 +61,16 @@
         ></app-item-card>
       </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-template #noBestsellers>
+    <div class="empty-state">
+      <div class="empty-state__icon"><i class="bi bi-trophy"></i></div>
+      <h3 class="empty-state__title">Best Sellers Currently Unavailable</h3>
+      <p class="empty-state__description">Our top-rated products will be updated soon.</p>
+    </div>
+  </ng-template>
+</div>
 </div>
 
 <app-offer-banner
@@ -74,21 +85,23 @@
 ></app-offer-banner>
 
 <div class="container">
-  <div class="top-picks" *ngIf="topPicks?.length">
-    <div class="top-picks__header">
-      <div class="top-picks__header--title">Picks for you</div>
-      <div
-        class="top-picks__header--action c-pointer"
-        *ngIf="topPicks?.length >= 8"
-        (click)="goToCategory(mostPopularCategory)"
-      >
-        <span>Show All</span>
-      </div>
+<div class="top-picks">
+  <div class="top-picks__header">
+    <div class="top-picks__header--title">Picks for you</div>
+    <div
+      class="top-picks__header--action c-pointer"
+      *ngIf="topPicks?.length && topPicks.length >= 8"
+      (click)="goToCategory(mostPopularCategory)"
+    >
+      <span>Show All</span>
     </div>
+  </div>
+
+  <ng-container *ngIf="topPicks?.length; else noTopPicks">
     <div class="top-picks__list">
       <div
         class="top-picks__item--wrapper col-sm-6 col-md-6 col-lg-3"
-        *ngFor="let item of topPicks?.slice(0, 8)"
+        *ngFor="let item of topPicks.slice(0, 8)"
       >
         <div class="top-picks__item">
           <app-item-card
@@ -99,7 +112,18 @@
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+
+     <ng-template #noTopPicks>
+      <div class="empty-state">
+        <div class="empty-state__icon">
+           <i class="bi bi-bullseye"></i>
+        </div>
+        <h3 class="empty-state__title">Personalized Picks Coming Soon</h3>
+        <p class="empty-state__description">We're preparing recommendations just for you.</p>
+      </div>
+    </ng-template>
+</div>
 
   <div class="banner">
     <div class="top-picks__header">

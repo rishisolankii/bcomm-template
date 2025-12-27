@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, isDevMode } from '@angular/core';
 import { remoteAsset } from '../utils/remote-asset';
 import { MockDataService } from '../services/mock-data.service';
 
@@ -168,15 +168,15 @@ export class HomeComponent implements OnInit, OnChanges {
       this.bannersDetail = this.mockDataService.getMockBanners();
     }
     
-    if (!this.topPicks || this.topPicks.length === 0) {
+    if (!this.topPicks || this.topPicks.length === 0 && isDevMode()) {
       this.topPicks = this.mockDataService.getMockProducts(8);
     }
     
-    if (!this.bestsellers || this.bestsellers.length === 0) {
+    if (!this.bestsellers || this.bestsellers.length === 0 && isDevMode()) {
       this.bestsellers = this.mockDataService.getMockProducts(8);
     }
     
-    if (!this.popularCategories || this.popularCategories.length === 0) {
+    if (!this.popularCategories || this.popularCategories.length === 0 && isDevMode()) {
       this.popularCategories = this.mockDataService.getMockPopularCategories();
     }
 
