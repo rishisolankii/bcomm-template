@@ -1,5 +1,5 @@
 # Angular E-commerce Template
-Last Updated at: Dec 27, 2025
+Last Updated at: August 7, 2026
 
 A customizable Angular template for building e-commerce applications with pre-built components and theming support.
 

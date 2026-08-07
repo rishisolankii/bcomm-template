@@ -16,7 +16,7 @@ export class HeaderComponent {
     'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=60&fit=crop&crop=center';
   @Input() cmsData: any;
   @Input() defaultStoreLogoUrl =
-    'https://tenant-prod.enterprisehub.io/public/logo/logo.png';
+    'https://tenant-prod.bcomm.app/public/logo/logo.png';
   @Input() categories!: any;
 
   @Output() search = new EventEmitter<any>();
